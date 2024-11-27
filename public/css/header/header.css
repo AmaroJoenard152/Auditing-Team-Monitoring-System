@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    
+}
+
+
+/* Navigation Bar Styles */
+.head-nav-wrapper {
+    background-color: #17a2b8;
+    height: 70px;
+    color: #000000;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    z-index: 105;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    min-width: 100vw;
+    justify-content: space-between;
+}
+.head-nav-bar .head-nav-bar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .head-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #17a2b8;
+    gap: .5rem;
+    
+}
+
+
+.dost-logo {
+    max-width: 40px;
+    max-height: fit-content;
+    padding: 3px;
+    background-color: #fff;
+    border-radius: 50%;
+    
+}
+.head-text-container {
+    font-weight: 500;
+    width: 310px;
+    color: var(--color-white);
+    background-color: #17a2b8;
+    /* font-size: x-large; */
+    font-size: medium;
+}
+
+
+
+
+.head-nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.head-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    height: 50px;
+    background-color: #17a2b8;
+    padding: 0;
+}
+
+
+.iconNotif {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: inline-block;
+}
+.iconFullScreen{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.iconWindowed{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.iconLogout{
+    width: 25px;
+    height: 45px;
+    margin: 0px 20px 10px 0px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+
+.iconNotif, 
+.iconFullScreen,
+.iconWindowed,
+.iconLogout {
+    background-color: #17a2b8;
+}
+
+.iconNotif:hover,
+.iconFullScreen:hover,
+.iconWindowed:hover,
+.iconLogout:hover{
+    transform: scale(1.1); 
+}
+

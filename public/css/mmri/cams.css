@@ -1,0 +1,225 @@
+.form-wrapper-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.main-input-container {
+    box-sizing: border-box;
+    /* background-color: rgb(58, 57, 57); */
+    width: 28vw;
+    margin-left: 100px;
+    border-radius: 15px;
+    padding: 18px;
+    border:2px solid #ddd;
+}
+
+.form-row-input {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 5px;
+    width: 100%;
+    /* margin-top: .5vw; */
+}
+
+.form-column-input1 {
+    width: 100%;
+    /* color: #a8c7ed; */
+}
+
+.form-column-input2, 
+.form-column-input3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    width: 100%;
+    color: #a8c7ed;
+}
+
+.half-width {
+    width: 100%;
+}
+
+.input-type-text, .input-type-file, .input-type-date {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px; 
+}
+
+.date-form-btn-cancel, .dv-submit-button {
+    width: 30%;
+    /* padding: 5px; */
+    /* margin-top: 5px; */
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.date-form-btn-cancel {
+    background-color: transparent;
+    border:2px solid #ddd;
+    color: #999;
+}
+
+.dv-submit-button {
+    /* width: 20%; */
+    background-color: #2A8CCB;
+    color: white;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+/* Hover effect for submit button */
+.dv-submit-button:hover {
+    background-color: #a1c5f0;
+    /* Change the color on hover */
+  }
+  
+  /* Hover effect for cancel button */
+  .date-form-btn-cancel:hover {
+    color: #666;
+    /* Change the text color on hover */
+  }
+
+
+.table-container {
+    /* background-color: blue; */
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 15px;
+    width: 61vw; 
+    margin-left: 1.5vw;
+    overflow-y: auto;
+    height: 23.8vw;
+    border:2px solid #ddd;
+    
+}
+
+/* Table Content Styles */
+.table-content {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-content th {
+    padding: 4px;
+}
+
+.table-content td {
+    padding: 6px;
+    border-bottom: 1px solid #ccc;
+}
+
+.table-content th {
+    text-align: center;
+    /* background-color: var(--color-default); */
+    font-size: 12px;
+    /* font-weight: 10px; */
+    /* top: 0; 
+    background-color: #ddd;
+    position: sticky; */
+    color: black;
+    z-index: 1;
+}
+
+.table-content td {
+    text-align: center;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+    min-width: 75px;
+    /* Adjust the width as needed */
+    text-align: center;
+}
+
+h2{
+   /* color: #a8c7ed; */
+   text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.form-wrapper-container2 {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 2vw;
+    max-width: 1490px;
+}
+
+
+
+
+.table-container2 {
+    /* background-color: blue; */
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 15px;
+    width: 46vw; 
+    margin-left: 1vw;
+    overflow-y: auto;
+    height: 21vw;
+    border:2px solid #ddd;
+    margin-bottom: 2vw;
+    
+}
+
+
+
+
+/*Liquidation  */
+
+.liquidation-input-container {
+    box-sizing: border-box;
+    /* background-color: rgb(58, 57, 57); */
+    margin-left: 100px;
+    max-width: 25vw;
+    /* margin-left: 20px; */
+    border-radius: 15px;
+    padding: 18px;
+    border:2px solid #ddd;
+}
+
+
+
+
+/*Transaction  */
+
+.transaction-input-container {
+    box-sizing: border-box;
+    /* background-color: rgb(58, 57, 57); */
+    width: 25vw;
+    margin-left: 10px;
+    border-radius: 15px;
+    padding: 18px;
+    border:2px solid #ddd;
+}

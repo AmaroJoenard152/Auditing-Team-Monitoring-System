@@ -1,0 +1,60 @@
+.pagination {
+    margin-top: 1rem;
+    /* Push pagination to the bottom */
+    display: flex;
+    justify-content: flex-end;
+    /* Align items to the end (right) */
+    width: auto;
+
+}
+
+.pagination-btns {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+}
+
+.pagination .ellipsis {
+    color: #999;
+}
+
+.pagination button {
+    /* Add styles for pagination links */
+    /* You may need to adjust these styles to fit your design */
+    color: #999;
+    display: inline-flex;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+
+    height: 35px;
+    /* Adjust height as needed */
+    width: 35px;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    margin: 0 2.5px 0 2.5px;
+    /* Add space between pagination links */
+}
+
+.pagination button.active {
+    background-color: var(--color-default);
+    color: white;
+}
+
+.pagination button:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.pagination button:first-child {
+    margin-left: 0;
+    /* Remove left margin from the first link */
+}
+
+.pagination button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

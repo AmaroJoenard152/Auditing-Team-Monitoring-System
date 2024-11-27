@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap');
+
+.dv-input-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    /* border-radius: 10px; */
+    /* margin-top: 110px; */
+    width: 1320px;
+    /* margin-left: calc(78px + (100vw - 78px - 1300px) / 2); */
+    margin-right: auto; 
+}
+
+.h1-date {
+    font-size: 25px;
+    font-weight: 600;
+    margin-left: 20px;
+    background-color: #fff;
+}
+
+.newDvButton {
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    color: white;
+    margin-right: 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #0ba7ce;
+}
+
+
+.date-range-wrapper {
+    display: flex;
+    background-color: #fff;
+    width: 1320px;
+    /* margin-left: calc(78px + (100vw - 78px - 1300px) / 2); */
+    /* margin-right: auto;  */
+    padding: 10px;
+    height: auto;
+    gap: 16px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+        
+/* Set each row to occupy full width */
+.date-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Set each column to occupy full width */
+.date-col {
+  flex: 1;
+  min-width: 500px;
+    /* display: flex;
+    flex-direction: column; */
+
+}
+
+/* Set the flex-container to display its children in a row */
+.date-flex-container {
+  display: flex;
+  width: 100%;
+  gap: 390px;
+}
+
+.left-form-container {
+  width: 40%;
+}
+
+.right-form-container {
+  width: 60%;
+}
+
+
+/* Set each container within the flex-container to occupy equal width */
+.date-sub-container {
+    flex: 1;
+    min-width: 250px;
+    background-color: #fff;
+    /* border-radius: 16px; */
+    padding: 10px;
+}
+.date-container {
+  display: flex;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  width: auto;
+  gap: 10px;
+  background-color: #fff;
+  /* background-color: red; */
+}
+.daterange-group {
+  margin-right: 5px;
+  background-color: #fff;
+}
+.date-form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #4A4A4A;
+    background-color: #fff;
+  }
+
+.date-form-input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    color: #acafb5;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: "Poppins", sans-serif;
+    background-color: #fff;
+}
+
+.date-form-wrapper {
+  display: flex;
+  background-color: #fff;
+  gap: 4.5px;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    z-index: 1000;
+    white-space: nowrap;
+}
+
+
+
+.date-form-btn {
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  height: fit-content;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size: 10px;
+  font-family: "Poppins", sans-serif;
+}
+
+.date-form-btn.submit {
+  background-color: #17a2b8;
+}
+
+.date-form-btn.cancel {
+  background-color: transparent;
+  border: 1px solid #ddd;
+  color: #999;
+}
+/* Hover effect for submit button */
+.date-form-btn.submit:hover {
+  background-color: #a1c5f0;
+  /* Change the color on hover */
+}
+
+/* Hover effect for cancel button */
+.date-form-btn.cancel:hover {
+  color: #666;
+  /* Change the text color on hover */
+}
+
+.form-btn {
+    color: white;
+    border: none;
+    cursor: pointer;
+    height: auto;
+    padding: 10px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 10px;
+    font-family: "Poppins", sans-serif;
+}
+
+.form-btn.submit {
+    background-color: #17a2b8;
+}
+
+.form-btn.cancel {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    color: #999;
+}
+
+/* Hover effect for submit button */
+.form-btn.submit:hover {
+    background-color: var(--color-second-accent);
+    /* Change the color on hover */
+}
+
+/* Hover effect for cancel button */
+.form-btn.cancel:hover {
+    color: #666;
+    /* Change the text color on hover */
+}
+
+
+
+.form-input,
+.select-input {
+    width: 100%;
+    height: 35px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    color: var(--color-gray-dark);
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: "Poppins", sans-serif;
+}
+
+.form-input.input-month,
+.form-input.input-day,
+.form-input.input-year {
+    display: none;
+}
+
+.form-input.dropdown {
+    width: 100px;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--color-second);
+}
+
+.form-input::placeholder {
+    color: var(--color-gray-dark);
+    /* Change to your desired color */
+}

@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap');
+
+.h1-date {
+    font-size: 25px;
+    font-weight: 600;
+    margin-left: 20px;
+    background-color: #fff;
+}
+
+.date-range-wrapper {
+    display: flex;
+    background-color: #fff;
+    width: 1270px;
+    padding: 10px;
+    height: auto;
+    flex-direction: column;
+}
+
+.date-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.date-flex-container {
+    display: flex;
+    width: 100%;
+    gap: 225px;
+}
+
+.left-form-container {
+    width: 40%;
+}
+
+.right-form-container {
+    width: 60%;
+    margin-left: 60px;
+}
+
+.date-container {
+    display: flex;
+    width: 500px;
+    gap: 10px;
+    background-color: #fff;
+}
+
+.daterange-group {
+    margin-right: 5px;
+}
+
+.daterange-group-buttons {
+    margin-top: 23px;
+}
+
+.date-form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #4A4A4A;
+    background-color: #fff;
+}
+
+.date-form-input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    color: #acafb5;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: "Poppins", sans-serif;
+}
+
+.date-form-wrapper {
+    display: flex;
+    background-color: #fff;
+    gap: 2.5px;
+}
+
+
+
+.form-btn {
+    color: white;
+    border: none;
+    cursor: pointer;
+    height: auto;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 12px;
+    font-family: "Poppins", sans-serif;
+}
+
+.form-btn.submit {
+    background-color: #17a2b8;
+}
+
+.form-btn.cancel {
+    background-color: transparent;
+    border: 1px solid #ddd;
+    color: #999;
+}
+
+.form-btn.submit:hover {
+    background-color: var(--color-second-accent);
+}
+
+.form-btn.cancel:hover {
+    color: #666;
+}
+
+.form-input,
+.select-input {
+    width: 100%;
+    height: 35px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    color: var(--color-gray-dark);
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: "Poppins", sans-serif;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--color-second);
+}
+
+.form-input::placeholder {
+    color: var(--color-gray-dark);
+}
+
+
+.title-name{
+    margin: 5px 0px 5px 0px;
+}

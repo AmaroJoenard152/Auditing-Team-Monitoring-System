@@ -15,9 +15,6 @@ Route::get('/logbook-incoming', function () {
     return view('logbook/logbook-incoming');
 });
 
-Route::get('/logbook-outgoing', function () {
-    return view('logbook/logbook-outgoing');
-});
 
 Route::post('/submitVoucher', [DisbursementVoucherController::class, 'submitVoucher'])->name('monitoring.disbursement-voucher');
 

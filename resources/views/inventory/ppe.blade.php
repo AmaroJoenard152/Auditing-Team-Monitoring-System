@@ -3,7 +3,7 @@
 <head>
 
     <!-- DV ---->
-    <link rel="stylesheet" href="{{ asset('css/monitoring/disbursement-voucher.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/monitoring/ppe.css') }}">
     <script src="{{ asset('js/monitoring/disbursement-voucher.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -22,7 +22,7 @@
     <!-- End Header -->
 
     <!-- Date Range -->
-    <link rel="stylesheet" href="{{ asset('css/daterange/daterange.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/daterange/ppe-daterange.css') }}">
     <!-- End Header -->
 
     <!-- Pagination ---->
@@ -160,13 +160,15 @@
     
     <!-- DV Wrapper --->
     <div class="entire-dv-wrapper">
+
     
         <!-- Title and Pop-up Button --->
         <div class="dv-input-wrapper">  
-            <h1 class="h1-date">DV Monitoring</h1>       
-            <button class="newDvButton" onclick="inputDvModal()">Add New DV</button>
+            <h1 class="h1-date">One Time-Cleansing (PPE)</h1>       
+            <button class="newDvButton" onclick="inputDvModal()">Add New Property</button>
         </div>
         <!-- Title and Pop-up Button --->
+
 
 
         <!-- Date Range, Drop Down, Download Form --->
@@ -176,27 +178,12 @@
                 <div class="date-flex-container">
                     <!-- Left Side: Sort and Search Form -->
                     <div class="left-form-container">
-                        <div class="date-container">
-                            <div class="daterange-group">
-                                <label for="docDropdownSort" class="date-form-label">Sort Data</label>
-                                <select name="doc" class="date-form-input">
-                                    <option value="">Select Sort</option>
-                                    <option value="ascending">Ascending</option>
-                                    <option value="descending">Descending</option>
-                                </select>
-                            </div>
-                            
+                    <form id="filterForm" method="GET" action="{{ route('export.csv') }}" class="date-form-wrapper">
                             <div class="daterange-group">
                                 <label for="search_voucher" class="date-form-label">Search</label>
                                 <input type="text" id="search_voucher" name="search_voucher" class="date-form-input">
                                 <button id="search-btn" class="form-btn submit">Search</button>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Side: Filter Form -->
-                    <div class="right-form-container">
-                        <form id="filterForm" method="GET" action="{{ route('export.csv') }}" class="date-form-wrapper">
                             <div class="daterange-group">
                                 <label for="start_date" class="date-form-label">Start Date:</label>
                                 <input type="date" id="div_start_date" name="start_date" class="date-form-input">
@@ -206,27 +193,54 @@
                                 <label for="end_date" class="date-form-label">End Date:</label>
                                 <input type="date" id="div_end_date" name="end_date" class="date-form-input">
                             </div>
+                        </form>
+                    </div>
+
+                    <!-- Right Side: Filter Form -->
+                    <div class="right-form-container">
+
+                    <div class="date-container">
 
                             <div class="daterange-group">
-                                <label for="docDropdown" class="date-form-label">Document Type</label>
+                                <label for="docDropdownSort" class="date-form-label">Division</label>
                                 <select id="docDropdown" name="doc" class="date-form-input">
                                     <option value="">Select Doc</option>
-                                    <option value="CD" title="Check Disbursement">CD</option>
-                                    <option value="RCD" title="Report on Collections and Deposits">RCD</option>
-                                    <option value="LCA" title="Liquidation of Cash Advances">LCA</option>
-                                    <option value="GJ" title="General Journal">GJ</option>
-                                    <option value="RCI" title="Report on Checks Issued">RCI</option>
-                                    <option value="MCB" title="Magna Carta Benefits">MCB</option>
-                                    <option value="SPR" title="Salary, PERA, and RATA">SPR</option>
+                                    <option value="FAD-Personnel" title="FAD-Personnel">FAD-Personnel</option>
+                                    <option value="FAD-Accounting" title="FAD-Accounting">FAD-Accounting</option>
+                                    <option value="FAD-DO" title="FAD-DO">FAD-DO</option>
+                                    <option value="FAD-Property" title="FAD-Property">FAD-Property</option>
+                                </select>
+                            </div>
+
+
+                            <div class="daterange-group">
+                                <label for="docDropdownSort" class="date-form-label">Property Type</label>
+                                <select id="docDropdown" name="doc" class="date-form-input">
+                                    <option value="">Select Doc</option>
+                                    <option value="ICT" title="ICT">ICT</option>
+                                    <option value="Office Equipment" title="Office Equipment">Office Equipment</option>
+                                </select>
+                            </div>
+
+
+                            <div class="daterange-group">
+                                <label for="docDropdown" class="date-form-label">Condition</label>
+                                <select id="docDropdown" name="doc" class="date-form-input">
+                                    <option value="">Select Doc</option>
+                                    <option value="Good Condition" title="Good Condition">Good Condition</option>
+                                    <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
                                 </select>
                                 
                                 <div id="tooltip" class="tooltip"></div>
 
-                                <button type="button" onclick="dvsearchByDateRange()" class="form-btn submit">Apply</button>
-                                <button onclick="dvDownloadCSV()" class="form-btn submit">Download</button>
-                                <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
+                                <button type="button" onclick="" class="form-btn submit">Apply</button>
+                                <button onclick="" class="form-btn submit">Download</button>
+                                <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="">Reset</button>
                             </div>
-                        </form>
+
+
+                            
+                        </div>
                     </div>
                 </div>
             </div>
@@ -235,73 +249,36 @@
         <!-- Date Range, Drop Down, Download Form --->
 
 
+
+
         <!-- DV TABLE --->
 
         <div class="div-table-container">
             <table class="table-content" id="voucher-table">
                 <thead>
                     <tr>
-                        <th>Month</th>
-                        <th>Document Type</th>
-                        <th>Code</th>
-                        <th>Folder No.</th>
-                        <th>Account No.</th>
-                        <th>RADAI/RCI Report No.</th>
-                        <th>LDDAP-ADA / Check No.</th>
-                        <th>Total Amount</th>
-                        <th>Date Received</th>
+                        <th>Division</th>
+                        <th>User</th>
+                        <th>Article/Item</th>
+                        <th>Description</th>
+                        <th>Property Type</th>
+                        <th>Old PN Number</th>
+                        <th>New PN Number</th>
+                        <!-- <th>Unit of Meas.</th> -->
+                        <th>Unit Value</th>
+                        <th>Quantity (Property Card)</th> 
+                        <!-- <th>Quantity (Physical Count)</th> -->
+                        <!-- <th>Previous Location/Whereabouts -->
+                        <th>Current Location/Whereabouts
+                        <th>Condition</th>
+                        <!-- <th>Remarks</th> -->
+                        <!-- <th>Date Acquired</th> -->
+                        <th>View</th>
                         <th>Delete</th>
                         <th>Update</th>
                     </tr>
                 </thead>
-                <tbody id="table-body">
-                    @foreach($vouchers as $voucher)
-                        <tr>
-                            <td>{{$voucher->month_}}</td>
-                            <td>{{$voucher->doc_}}</td>
-                            <td>{{$voucher->code_no}}</td>
-                            <td>{{$voucher->folder}}</td>
-                            <!-- Check if the value is 'N/A', if so display an empty string -->
-                            <td>{{ $voucher->account_no !== 'N/A' ? $voucher->account_no : '' }}</td>
-                            <td>{{ $voucher->radai !== 'N/A' ? $voucher->radai : '' }}</td>
-                            <td>{{ $voucher->lddap !== 'N/A' ? $voucher->lddap : '' }}</td>
-                            <td>{{ $voucher->total_amount !== 'N/A' ? $voucher->total_amount : '' }}</td>
-                            <td>{{$voucher->date_received}}</td>
-                            <td>
-                                <a onclick="return confirm('Are you sure you want to delete this?');" href="{{url('deleteVoucher', $voucher->id)}}">
-                                    <!-- Delete SVG -->
-                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M14 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="javascript:void(0)" onclick="openEditModal({
-                                    id: {{$voucher->id}},
-                                    month_: '{{$voucher->month_}}',
-                                    doc_: '{{$voucher->doc_}}',
-                                    code_no: '{{$voucher->code_no}}',
-                                    folder: '{{$voucher->folder}}',
-                                    account_no: '{{$voucher->account_no}}',
-                                    radai: '{{$voucher->radai}}',
-                                    lddap: '{{$voucher->lddap}}',
-                                    total_amount: '{{$voucher->total_amount}}',
-                                    date_received: '{{$voucher->date_received}}'
-                                }, event)"> <!-- Pass the event object here -->
-                                    <!-- Edit SVG -->
-                                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </a>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
+
 
             </table>
         </div>
@@ -310,74 +287,110 @@
 
 
         <div id="pagination-btns" class="pagination"></div>
+
+
     </div>
+
     <!-- DV Wrapper --->
+
+
 
 
     <!-- Input Form Modal Pop-up --->
     <div class="overlay" id="inputOverlay"></div>
     <div id="inputDvModal" class="modal">
         <div class="modal-content">  
-            <form id="dv-input" action="{{url('/submitVoucher')}}" method="Post">
+            <form id="dv-input" action="" method="Post">
                 @csrf
                 <input type="hidden" name="id" id="voucherId">
 
                 <div class="input-dv-container">
                     <span class="close" onclick="closeInputPopup()">&times;</span>
-                    <br>
+                    <!-- <br> -->
                     <div class="form-row-input">
-                        <div class="form-column-input">
-                            <label>Month</label>
+                        
+                        <!-- First Column -->
+                        <div class="form-column-input"> 
+                            <label for="month_">Division</label>
                             <select id="month_" name="month_" class="input-type-text">
-                                <option selected>Choose Month</option>
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
+                                <option selected>Select Division</option>
+                                <option value="FAD-Personnel">FAD-Personnel</option>
+                                <option value="FAD-Accounting">FAD-Accounting</option>
+                                <option value="FAD-DO">FAD-DO</option>
+                                <option value="FAD-Property">FAD-Property</option>
                             </select>
 
-                            <label>Document Type</label>
-                            <select id="doc_" name="doc_" class="input-type-text">
-                                <option value="">Choose Document</option>
-                                <option value="CD" id="CD" title="Check Disbursement">CD</option>
-                                <option value="RCD" id="RCD" title="Report on Collections and Deposits">RCD</option>
-                                <option value="LCA" id="LCA" title="Liquidation of Cash Advances">LCA</option>
-                                <option value="GJ" id="GJ" title="General Journal">GJ</option>
-                                <option value="RCI" id="RCI" title="Report on Checks Issued">RCI</option>
-                                <option value="MCB" id="MCB" title="Magna Carta Benefits">MCB</option>
-                                <option value="SPR" id="SPR" title="Salary, PERA, and RATA">SPR</option>
-                            </select>
-                            <div id="tooltip" class="tooltip"></div>
-
-                            <label>Code</label>
+                            <label for="code_no">User</label>
                             <input type="text" id="code_no" name="code_no" class="input-type-text">
 
-                            <label>Folder No.</label>
-                            <input type="text" id="folder" name="folder" class="input-type-text">
+                            <label for="doc_">Property Type</label>
+                            <select id="doc_" name="doc_" class="input-type-text">
+                                <option selected>Select Property Type</option>
+                                <option value="ICT">ICT</option>
+                                <option value="Office Equipment">Office Equipment</option>
+                            </select>
 
-                            <label>Account No.</label>
-                            <input type="text" id="account_no" name="account_no" class="input-type-text">
+                            <label for="doc_">Article/Item</label>
+                            <select id="doc_" name="doc_" class="input-type-text">
+                                <option selected>Select Article/Item</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Desktop">Desktop</option>
+                            </select>
                         </div>
 
-                        <div class="form-column-input">
-                            <label>RADAI/RCI Report No.</label>
+                        <!-- Second Column -->
+                        <div class="form-column-input"> 
+                            <label for="folder">Description</label>
+                            <input type="text" id="folder" name="folder" class="input-type-text">
+
+                            <label for="account_no">Old PN Number</label>
+                            <input type="text" id="account_no" name="account_no" class="input-type-text">
+
+                            <label for="radai">New PN Number</label>
                             <input type="text" id="radai" name="radai" class="input-type-text">
 
-                            <label>LDDAP-ADA / Check No.</label>
+                            <label for="lddap">Unit of Meas.</label>
                             <input type="text" id="lddap" name="lddap" class="input-type-text">
+                        </div>
 
-                            <label>Total Amount</label>
-                            <input type="text" id="total_amount" name="total_amount" class="input-type-text">
 
-                            <label>Date Received</label>
+
+                        <!-- Third Column -->
+                        <div class="form-column-input"> 
+                            <label for="folder">Unit Value</label>
+                            <input type="text" id="folder" name="folder" class="input-type-text">
+
+                            <label for="account_no">Quantity (Property Card)</label>
+                            <input type="text" id="account_no" name="account_no" class="input-type-text">
+
+                            <label for="radai">Quantity (Physical Count)</label>
+                            <input type="text" id="radai" name="radai" class="input-type-text">
+
+                            <label for="doc_">Location/Whereabouts</label>
+                            <select id="doc_" name="doc_" class="input-type-text">
+                                <option selected>Select Location/Whereabouts</option>
+                                <option value="FAD-Personnel">FAD-Personnel</option>
+                                <option value="FAD-Accounting">FAD-Accounting</option>
+                                <option value="FAD-DO">FAD-DO</option>
+                                <option value="FAD-Property">FAD-Property</option>
+                            </select>
+                        </div>
+
+
+
+                        <!-- Fourth Column -->
+                        <div class="form-column-input"> 
+                            <label for="doc_">Condition</label>
+                            <select id="doc_" name="doc_" class="input-type-text">
+                                <option selected>Select Condition</option>
+                                <option value="Good Condition">Good Condition</option>
+                                <option value="Unserviceable">Unserviceable</option>
+                            </select>
+
+                            <label for="account_no">Remarks</label>
+                            <input type="text" id="account_no" name="account_no" class="input-type-text">
+
+                            <label for="date_received">Date Acquired</label>
                             <input type="date" id="date_received" name="date_received" class="input-type-date">
 
                             <button type="button" id="dvReloadBtn" class="date-form-btn-cancel" onclick="resetDVInput()">Reset</button>
@@ -391,12 +404,13 @@
     <!-- Input Form Modal Pop-up --->
 
 
+
     
     <!-- Edit Modal -->
     <div class="overlay" id="editOverlay"></div>
     <div id="editModal" class="modal">
         <div class="modal-content">
-            <form id="editForm" method="POST" action="/saveVoucher/{{ $voucher->id }}">
+            <form id="editForm" method="POST" action="">
                 @csrf
                 <input type="hidden" name="id" id="editVoucherId">
 
@@ -467,5 +481,66 @@
 
 </body>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+// Input Modal Handling
+var inputModal = document.getElementById("inputDvModal");
+var inputOverlay = document.getElementById("inputOverlay");
+
+function inputDvModal() {
+    inputModal.style.display = "block";
+    inputOverlay.style.display = "block";
+}
+
+function closeInputPopup() {
+    inputModal.style.display = "none";
+    inputOverlay.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == inputOverlay) {
+        closeInputPopup();
+    }
+}
+
+// Edit Modal Handling
+var editModal = document.getElementById("editModal");
+var editOverlay = document.getElementById("editOverlay");
+
+function editVoucher(voucher) {
+    document.getElementById('editVoucherId').value = voucher.id;
+    document.getElementById('edit_month_').value = voucher.month_;
+    document.getElementById('edit_doc_').value = voucher.doc_;
+    document.getElementById('edit_code_no').value = voucher.code_no;
+    document.getElementById('edit_folder').value = voucher.folder;
+    document.getElementById('edit_account_no').value = voucher.account_no;
+    document.getElementById('edit_radai').value = voucher.radai;
+    document.getElementById('edit_lddap').value = voucher.lddap;
+    document.getElementById('edit_total_amount').value = voucher.total_amount;
+    document.getElementById('edit_date_received').value = voucher.date_received;
+
+    // Set the form action dynamically
+    document.getElementById('editForm').action = `/saveVoucher/${voucher.id}`;
+
+    editModal.style.display = "block";
+    editOverlay.style.display = "block";
+}
+
+
+function closeEditPopup() {
+    editModal.style.display = "none";
+    editOverlay.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == editOverlay) {
+        closeEditPopup();
+    }
+}
+
+
+</script>
 
 </html>

@@ -259,17 +259,17 @@
                     <tr>
                         <th>Division</th>
                         <th>User</th>
+                        <th>Property Type</th>
                         <th>Article/Item</th>
                         <th>Description</th>
-                        <th>Property Type</th>
                         <th>Old PN Number</th>
                         <th>New PN Number</th>
                         <!-- <th>Unit of Meas.</th> -->
                         <th>Unit Value</th>
                         <th>Quantity (Property Card)</th> 
                         <!-- <th>Quantity (Physical Count)</th> -->
-                        <!-- <th>Previous Location/Whereabouts -->
-                        <th>Current Location/Whereabouts
+                        <!-- <th>Previous Location/Whereabouts</th> -->
+                        <th>Current Location/Whereabouts</th>
                         <th>Condition</th>
                         <!-- <th>Remarks</th> -->
                         <!-- <th>Date Acquired</th> -->
@@ -279,11 +279,82 @@
                     </tr>
                 </thead>
 
+                <tbody id="table-body">
+                    @foreach($ppes as $ppe)
+                    <tr>
+                        <td>{{$ppe->division}}</td>
+                        <td>{{$ppe->user}}</td>
+                        <td>{{$ppe->property_type}}</td>
+                        <td>{{$ppe->article_item}}</td>
+                        <td>{{$ppe->description}}</td>
+                        <td>{{$ppe->old_pn}}</td>
+                        <td>{{$ppe->new_pn}}</td>
+                        <!-- <td>{{$ppe->unit_meas}}</td> -->
+                        <td>{{$ppe->unit_value}}</td>
+                        <td>{{$ppe->quantity_property}}</td>
+                        <!-- <td>{{$ppe->quantity_physical}}</td> -->
+                        <td>{{$ppe->location}}</td>
+                        <td>{{$ppe->condition}}</td>
+                        <!-- <td>{{$ppe->remarks}}</td> -->
+                        <!-- <td>{{$ppe->date_acq}}</td> -->
 
+
+                        <td> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                        </svg>
+                        </td>
+
+
+                        <td>
+                            <a onclick="return confirm('Are you sure you want to delete this?');" href="{{url('deleteVoucher', $ppe->id)}}">
+                                <!-- Delete SVG -->
+                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M14 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="openEditModal({
+                                id: {{$ppe->id}},
+                                division: '{{$ppe->division}}',
+                                user: '{{$ppe->user}}',
+                                property_type: '{{$ppe->property_type}}',
+                                folder: '{{$ppe->folder}}',
+                                account_no: '{{$ppe->account_no}}',
+                                article_item: '{{$ppe->article_item}}',
+                                description: '{{$ppe->description}}',
+                                old_pn: '{{$ppe->old_pn}}',
+                                new_pn: '{{$ppe->new_pn}}',
+                                unit_meas: '{{$ppe->unit_meas}}',
+                                unit_value: '{{$ppe->unit_value}}',
+                                quantity_property: '{{$ppe->quantity_property}}',
+                                quantity_physical: '{{$ppe->quantity_physical}}',
+                                location: '{{$ppe->location}}',
+                                condition: '{{$ppe->condition}}',
+                                remarks: '{{$ppe->remarks}}',
+                                date_acq: '{{$ppe->date_acq}}'
+                            }, event)"> <!-- Pass the event object here -->
+                                <!-- Edit SVG -->
+                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
             </table>
         </div>
 
         <!-- DV TABLE --->
+
 
 
         <div id="pagination-btns" class="pagination"></div>
@@ -300,7 +371,7 @@
     <div class="overlay" id="inputOverlay"></div>
     <div id="inputDvModal" class="modal">
         <div class="modal-content">  
-            <form id="dv-input" action="" method="Post">
+            <form id="dv-input" action="{{url('/submitPpe')}}" method="Post">
                 @csrf
                 <input type="hidden" name="id" id="voucherId">
 
@@ -311,8 +382,8 @@
                         
                         <!-- First Column -->
                         <div class="form-column-input"> 
-                            <label for="month_">Division</label>
-                            <select id="month_" name="month_" class="input-type-text">
+                            <label for="division">Division</label>
+                            <select id="division" name="division" class="input-type-text">
                                 <option selected>Select Division</option>
                                 <option value="FAD-Personnel">FAD-Personnel</option>
                                 <option value="FAD-Accounting">FAD-Accounting</option>
@@ -320,18 +391,18 @@
                                 <option value="FAD-Property">FAD-Property</option>
                             </select>
 
-                            <label for="code_no">User</label>
-                            <input type="text" id="code_no" name="code_no" class="input-type-text">
+                            <label for="user">User</label>
+                            <input type="text" id="user" name="user" class="input-type-text">
 
-                            <label for="doc_">Property Type</label>
-                            <select id="doc_" name="doc_" class="input-type-text">
+                            <label for="property_type">Property Type</label>
+                            <select id="property_type" name="property_type" class="input-type-text">
                                 <option selected>Select Property Type</option>
                                 <option value="ICT">ICT</option>
                                 <option value="Office Equipment">Office Equipment</option>
                             </select>
 
-                            <label for="doc_">Article/Item</label>
-                            <select id="doc_" name="doc_" class="input-type-text">
+                            <label for="article_item">Article/Item</label>
+                            <select id="article_item" name="article_item" class="input-type-text">
                                 <option selected>Select Article/Item</option>
                                 <option value="Laptop">Laptop</option>
                                 <option value="Desktop">Desktop</option>
@@ -340,34 +411,32 @@
 
                         <!-- Second Column -->
                         <div class="form-column-input"> 
-                            <label for="folder">Description</label>
-                            <input type="text" id="folder" name="folder" class="input-type-text">
+                            <label for="description">Description</label>
+                            <input type="text" id="description" name="description" class="input-type-text">
 
-                            <label for="account_no">Old PN Number</label>
-                            <input type="text" id="account_no" name="account_no" class="input-type-text">
+                            <label for="old_pn">Old PN Number</label>
+                            <input type="text" id="old_pn" name="old_pn" class="input-type-text">
 
-                            <label for="radai">New PN Number</label>
-                            <input type="text" id="radai" name="radai" class="input-type-text">
+                            <label for="new_pn">New PN Number</label>
+                            <input type="text" id="new_pn" name="new_pn" class="input-type-text">
 
-                            <label for="lddap">Unit of Meas.</label>
-                            <input type="text" id="lddap" name="lddap" class="input-type-text">
+                            <label for="unit_meas">Unit of Meas.</label>
+                            <input type="text" id="unit_meas" name="unit_meas" class="input-type-text">
                         </div>
-
-
 
                         <!-- Third Column -->
                         <div class="form-column-input"> 
-                            <label for="folder">Unit Value</label>
-                            <input type="text" id="folder" name="folder" class="input-type-text">
+                            <label for="unit_value">Unit Value</label>
+                            <input type="text" id="unit_value" name="unit_value" class="input-type-text">
 
-                            <label for="account_no">Quantity (Property Card)</label>
-                            <input type="text" id="account_no" name="account_no" class="input-type-text">
+                            <label for="quantity_property">Quantity (Property Card)</label>
+                            <input type="text" id="quantity_property" name="quantity_property" class="input-type-text">
 
-                            <label for="radai">Quantity (Physical Count)</label>
-                            <input type="text" id="radai" name="radai" class="input-type-text">
+                            <label for="quantity_physical">Quantity (Physical Count)</label>
+                            <input type="text" id="quantity_physical" name="quantity_physical" class="input-type-text">
 
-                            <label for="doc_">Location/Whereabouts</label>
-                            <select id="doc_" name="doc_" class="input-type-text">
+                            <label for="location">Location/Whereabouts</label>
+                            <select id="location" name="location" class="input-type-text">
                                 <option selected>Select Location/Whereabouts</option>
                                 <option value="FAD-Personnel">FAD-Personnel</option>
                                 <option value="FAD-Accounting">FAD-Accounting</option>
@@ -376,22 +445,20 @@
                             </select>
                         </div>
 
-
-
                         <!-- Fourth Column -->
                         <div class="form-column-input"> 
-                            <label for="doc_">Condition</label>
-                            <select id="doc_" name="doc_" class="input-type-text">
+                            <label for="condition">Condition</label>
+                            <select id="condition" name="condition" class="input-type-text">
                                 <option selected>Select Condition</option>
                                 <option value="Good Condition">Good Condition</option>
                                 <option value="Unserviceable">Unserviceable</option>
                             </select>
 
-                            <label for="account_no">Remarks</label>
-                            <input type="text" id="account_no" name="account_no" class="input-type-text">
+                            <label for="remarks">Remarks</label>
+                            <input type="text" id="remarks" name="remarks" class="input-type-text">
 
-                            <label for="date_received">Date Acquired</label>
-                            <input type="date" id="date_received" name="date_received" class="input-type-date">
+                            <label for="date_acq">Date Acquired</label>
+                            <input type="date" id="date_acq" name="date_acq" class="input-type-date">
 
                             <button type="button" id="dvReloadBtn" class="date-form-btn-cancel" onclick="resetDVInput()">Reset</button>
                             <input type="submit" value="Submit" class="dv-submit-button">

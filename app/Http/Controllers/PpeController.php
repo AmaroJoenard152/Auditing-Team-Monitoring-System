@@ -43,4 +43,13 @@ class PpeController extends Controller
         // Pass the vouchers to the view
         return view('inventory.ppe', ['ppes' => $ppes]);
     }
+
+    public function deletePpe($id)
+    {
+        $ppe = Ppe::find($id);
+
+        $ppe->delete();
+
+        return redirect()->back();
+    }
 }

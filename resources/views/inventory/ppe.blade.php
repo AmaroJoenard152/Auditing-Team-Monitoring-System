@@ -4,7 +4,7 @@
 
     <!-- DV ---->
     <link rel="stylesheet" href="{{ asset('css/monitoring/ppe.css') }}">
-    <script src="{{ asset('js/monitoring/disbursement-voucher.js') }}"></script>
+    <script src="{{ asset('js/monitoring/ppe.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -170,7 +170,6 @@
         <!-- Title and Pop-up Button --->
 
 
-
         <!-- Date Range, Drop Down, Download Form --->
 
         <div class="date-range-wrapper">  
@@ -247,8 +246,6 @@
         </div>
 
         <!-- Date Range, Drop Down, Download Form --->
-
-
 
 
         <!-- DV TABLE --->
@@ -355,16 +352,11 @@
 
         <!-- DV TABLE --->
 
-
-
         <div id="pagination-btns" class="pagination"></div>
-
 
     </div>
 
     <!-- DV Wrapper --->
-
-
 
 
     <!-- Input Form Modal Pop-up --->
@@ -610,6 +602,9 @@ window.onclick = function(event) {
 
 const rowsPerPage = 5;  // Adjust the number of rows to display per page
 let currentPage = 1;
+const maxPaginationButtons = 3;
+
+
 let filteredData = [];  // To hold filtered data
 const initialData = @json($ppes);  // Original data from the server
 
@@ -681,9 +676,10 @@ function updateTableRows() {
     });
 }
 
-// Initial setup
+// Initialize data and pagination
 filteredData = initialData.slice();  // Clone the data
 updateTableRows();
+generatePaginationButtons();
 
 
 

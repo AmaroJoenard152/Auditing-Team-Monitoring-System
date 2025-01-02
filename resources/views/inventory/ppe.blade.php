@@ -180,17 +180,17 @@
                     <form id="filterForm" method="GET" action="{{ route('export.csv') }}" class="date-form-wrapper">
                             <div class="daterange-group">
                                 <label for="search_voucher" class="date-form-label">Search</label>
-                                <input type="text" id="search_voucher" name="search_voucher" class="date-form-input">
+                                <input type="text" id="search_ppe" name="search_voucher" class="date-form-input">
                                 <button id="search-btn" class="form-btn submit">Search</button>
                             </div>
                             <div class="daterange-group">
                                 <label for="start_date" class="date-form-label">Start Date:</label>
-                                <input type="date" id="div_start_date" name="start_date" class="date-form-input">
+                                <input type="date" id="ppe_start_date" name="start_date" class="date-form-input">
                             </div>
 
                             <div class="daterange-group">
                                 <label for="end_date" class="date-form-label">End Date:</label>
-                                <input type="date" id="div_end_date" name="end_date" class="date-form-input">
+                                <input type="date" id="ppe_end_date" name="end_date" class="date-form-input">
                             </div>
                         </form>
                     </div>
@@ -202,7 +202,7 @@
 
                             <div class="daterange-group">
                                 <label for="docDropdownSort" class="date-form-label">Division</label>
-                                <select id="docDropdown" name="doc" class="date-form-input">
+                                <select id="divisionDropdown" name="doc" class="date-form-input">
                                     <option value="">Select Doc</option>
                                     <option value="FAD-Personnel" title="FAD-Personnel">FAD-Personnel</option>
                                     <option value="FAD-Accounting" title="FAD-Accounting">FAD-Accounting</option>
@@ -214,7 +214,7 @@
 
                             <div class="daterange-group">
                                 <label for="docDropdownSort" class="date-form-label">Property Type</label>
-                                <select id="docDropdown" name="doc" class="date-form-input">
+                                <select id="ptDropdown" name="doc" class="date-form-input">
                                     <option value="">Select Doc</option>
                                     <option value="ICT" title="ICT">ICT</option>
                                     <option value="Office Equipment" title="Office Equipment">Office Equipment</option>
@@ -224,7 +224,7 @@
 
                             <div class="daterange-group">
                                 <label for="docDropdown" class="date-form-label">Condition</label>
-                                <select id="docDropdown" name="doc" class="date-form-input">
+                                <select id="conditionDropdown" name="doc" class="date-form-input">
                                     <option value="">Select Doc</option>
                                     <option value="Good Condition" title="Good Condition">Good Condition</option>
                                     <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
@@ -234,7 +234,7 @@
 
                                 <button type="button" onclick="" class="form-btn submit">Apply</button>
                                 <button onclick="" class="form-btn submit">Download</button>
-                                <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="">Reset</button>
+                                <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
                             </div>
 
 

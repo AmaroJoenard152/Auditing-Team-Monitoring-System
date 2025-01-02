@@ -608,6 +608,19 @@ window.onclick = function(event) {
 }
 
 
+
+
+
+
+
+let currentPage = 1;
+const rowsPerPage = 10;  // Adjust the number of rows you want to display per page
+const maxPaginationButtons = 3; // Maximum number of pagination buttons to display
+
+let filteredData = [];  // To hold the filtered data
+const initialData = @json($ppes);  // Original data from server
+
+
 </script>
 
 </html>

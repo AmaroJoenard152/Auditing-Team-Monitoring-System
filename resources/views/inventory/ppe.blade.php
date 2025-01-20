@@ -305,14 +305,15 @@
                         <a onclick="return confirm('Are you sure you want to delete this?');" href="/deletePpe/${ppe.id}">
                             <!-- Delete SVG -->
                             <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M14 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 7H20" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
                     </td>
+
 
                     <td>
                         <a href="javascript:void(0);" onclick='editPpe(${JSON.stringify(ppe)})'>
@@ -348,14 +349,13 @@
 
                 <div class="input-dv-container">
                     <span class="close" onclick="closeInputPopup()">&times;</span>
-                    <!-- <br> -->
                     <div class="form-row-input">
-                        
+
                         <!-- First Column -->
                         <div class="form-column-input"> 
                             <label for="division">Division</label>
-                            <select id="division" name="division" class="input-type-text">
-                                <option selected>Select Division</option>
+                            <select id="division" name="division" class="input-type-text" onchange="updateUserDropdown()">
+                                <option selected disabled>Select Division</option>
                                 <option value="FAD-Personnel">FAD-Personnel</option>
                                 <option value="FAD-Accounting">FAD-Accounting</option>
                                 <option value="FAD-DO">FAD-DO</option>
@@ -363,7 +363,9 @@
                             </select>
 
                             <label for="user">User</label>
-                            <input type="text" id="user" name="user" class="input-type-text">
+                            <select id="user" name="user" class="input-type-text" disabled>
+                                <option selected disabled>Select User</option>
+                            </select>
 
                             <label for="property_type">Property Type</label>
                             <select id="property_type" name="property_type" class="input-type-text">
@@ -667,6 +669,40 @@ window.onclick = function(event) {
 
 
 
+function updateUserDropdown() {
+        const division = document.getElementById('division').value;
+        const userDropdown = document.getElementById('user');
+
+        // Clear previous options
+        userDropdown.innerHTML = '<option selected disabled>Select User</option>';
+
+        // Enable the dropdown
+        userDropdown.disabled = false;
+
+        // Define division-to-user mapping
+        const usersByDivision = {
+            "FAD-Personnel": ["Jas", "Marci", "Tina"],
+            "FAD-Accounting": ["MaeAnne", "Jen", "Jaivee"],
+            "FAD-DO": ["Jane", "Precious", "Joenard"],
+            "FAD-Property": ["Nars", "Aileen", "Nette"]
+        };
+
+        // Populate dropdown with users based on selected division
+        if (usersByDivision[division]) {
+            usersByDivision[division].forEach(user => {
+                const option = document.createElement('option');
+                option.value = user;
+                option.textContent = user;
+                userDropdown.appendChild(option);
+            });
+        } else {
+            // Disable dropdown if no valid division selected
+            userDropdown.disabled = true;
+        }
+    }
+
+    
+
 // Edit Modal Handling
 var editPpeModal = document.getElementById("editPpeModal");
 var editPpeOverlay = document.getElementById("editPpeOverlay");
@@ -804,18 +840,18 @@ function updateTableRows() {
                 </a>
             </td>
 
-            <td>
-                <a onclick="return confirm('Are you sure you want to delete this?');" href="/deletePpe/${ppe.id}">
-                    <!-- Delete SVG -->
-                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M14 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </td>
+                    <td>
+                        <a onclick="return confirm('Are you sure you want to delete this?');" href="/deletePpe/${ppe.id}">
+                            <!-- Delete SVG -->
+                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 7H20" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </td>
 
             <td>
                 <a href="javascript:void(0);" onclick='editPpe(${JSON.stringify(ppe)})'>

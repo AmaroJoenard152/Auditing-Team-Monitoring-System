@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('quantity_physical')->notNull();
             $table->string('location')->notNull();
             $table->string('condition')->notNull();
+            $table->string('status')->notNull();
             $table->string('remarks')->notNull();
             $table->date('date_acq')->notNull();
         });

@@ -5,8 +5,6 @@
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    /* border-radius: 10px; */
-    /* margin-top: 110px; */
     width: 1370px;
     /* margin-left: calc(78px + (100vw - 78px - 1300px) / 2); */
     margin-right: auto; 
@@ -39,9 +37,8 @@
     /* margin-right: auto;  */
     padding: 10px;
     height: auto;
-    gap: 16px;
-    flex-direction: column;
-    justify-content: space-between;
+    /* flex-direction: column; */
+    /* justify-content: space-between; */
 }
         
 /* Set each row to occupy full width */
@@ -50,51 +47,39 @@
   flex-wrap: wrap;
 }
 
-/* Set each column to occupy full width */
-.date-col {
-  flex: 1;
-  min-width: 500px;
-    /* display: flex;
-    flex-direction: column; */
-
-}
 
 /* Set the flex-container to display its children in a row */
 .date-flex-container {
   display: flex;
   width: 100%;
-  gap: 150px;
+  gap: 20px;
 }
 
 .left-form-container {
-  width: 50%;
+  width: 500px;
+  margin-right: 120px;
 }
 
 .right-form-container {
-  width: 50%;
+  width: 730px;
 }
 
 
 /* Set each container within the flex-container to occupy equal width */
-.date-sub-container {
-    flex: 1;
-    min-width: 250px;
-    background-color: #fff;
-    /* border-radius: 16px; */
-    padding: 10px;
-}
+
 .date-container {
   display: flex;
   /* justify-content: space-between; */
   /* align-items: center; */
   width: auto;
-  gap: 10px;
+  /* gap: 5px; */
   background-color: #fff;
   /* background-color: red; */
 }
 .daterange-group {
-  margin-right: 5px;
+  margin-right: 8px;
   background-color: #fff;
+  width: auto;
 }
 .date-form-label {
     display: block;
@@ -118,7 +103,7 @@
 .date-form-wrapper {
   display: flex;
   background-color: #fff;
-  gap: 4.5px;
+  gap: 2.5px;
 }
 
 .tooltip {

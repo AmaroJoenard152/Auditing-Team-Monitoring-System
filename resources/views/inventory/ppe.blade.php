@@ -223,22 +223,32 @@
 
 
                             <div class="daterange-group">
-                                <label for="docDropdown" class="date-form-label">Condition</label>
+                            <label for="docDropdown" class="date-form-label">Condition</label>
                                 <select id="conditionDropdown" name="doc" class="date-form-input">
                                     <option value="">Select Doc</option>
                                     <option value="Good Condition" title="Good Condition">Good Condition</option>
                                     <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
                                 </select>
+                            </div>
                                 
-                                <div id="tooltip" class="tooltip"></div>
+                                
+                            <div class="daterange-group">
+                            <label for="docDropdown" class="date-form-label">Status</label>
+                                <select id="conditionDropdown" name="doc" class="date-form-input">
+                                    <option selected>Select Status</option>
+                                    <option value="Found">Found</option>
+                                    <option value="Missing">Missing</option>
+                                    <option value="Unchecked">Unchecked</option>
+                                </select>
 
                                 <button type="button" onclick="" class="form-btn submit">Apply</button>
                                 <button onclick="" class="form-btn submit">Download</button>
                                 <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
+
+                                
+                                <div id="tooltip" class="tooltip"></div>
                             </div>
 
-
-                            
                         </div>
                     </div>
                 </div>
@@ -259,15 +269,16 @@
                     <th>Property Type</th>
                     <th>Article/Item</th>
                     <th>Description</th>
-                    <th>Old PN Number</th>
+                    <!-- <th>Old PN Number</th> -->
                     <th>New PN Number</th>
                     <!-- <th>Unit of Meas.</th> -->
                     <th>Unit Value</th>
-                    <th>Quantity (Property Card)</th>
-                    <!-- <th>Quantity (Physical Count)</th> -->
+                    <th>Qty (Property Card)</th>
+                    <th>Qty (Physical Count)</th>
                     <!-- <th>Previous Location/Whereabouts</th> -->
-                    <th>Current Location/Whereabouts</th>
+                    <!-- <th>Current Location/Whereabouts</th> -->
                     <th>Condition</th>
+                    <th>Status</th>
                     <!-- <th>Remarks</th> -->
                     <!-- <th>Date Acquired</th> -->
                     <th>View</th>
@@ -284,13 +295,15 @@
                     <td>${ppe.property_type || ''}</td>
                     <td>${ppe.article_item || ''}</td>
                     <td>${ppe.description || ''}</td>
-                    <td>${ppe.old_pn || ''}</td>
+                    <!-- <td>${ppe.old_pn || ''}</td> -->
                     <td>${ppe.new_pn || ''}</td>
-                    <td>${ppe.unit_meas || ''}</td>
+                    <!-- <td>${ppe.unit_meas || ''}</td> -->
                     <td>${ppe.unit_value || ''}</td>
                     <td>${ppe.quantity_property || ''}</td>
-                    <td>${ppe.location || ''}</td>
+                    <td>${ppe.quantity_physical || ''}</td>
+                    <!-- <td>${ppe.location || ''}</td> -->
                     <td>${ppe.condition || ''}</td>
+                    <td>${ppe.status || ''}</td>
 
                     <td>
                         <a href="javascript:void(0)" onclick="showPpeDetails(${JSON.stringify(ppe).replace(/"/g, '&quot;')})">
@@ -427,6 +440,14 @@
                                 <option value="Unserviceable">Unserviceable</option>
                             </select>
 
+                            <label for="status">Status</label>
+                            <select id="status" name="status" class="input-type-text">
+                                <option selected>Select Status</option>
+                                <option value="Found">Found</option>
+                                <option value="Missing">Missing</option>
+                                <option value="Unchecked">Unchecked</option>
+                            </select>
+
                             <label for="remarks">Remarks</label>
                             <input type="text" id="remarks" name="remarks" class="input-type-text">
 
@@ -519,11 +540,19 @@
                     <!-- Fourth Column -->
                     <div class="form-column-input"> 
                         <label for="condition">Condition</label>
-                        <select id="view_condition" name="condition" class="input-type-text" disabled>
-                            <option selected>Select Condition</option>
-                            <option value="Good Condition">Good Condition</option>
-                            <option value="Unserviceable">Unserviceable</option>
-                        </select>
+                            <select id="view_condition" name="condition" class="input-type-text" disabled>
+                                <option selected>Select Condition</option>
+                                <option value="Good Condition">Good Condition</option>
+                                <option value="Unserviceable">Unserviceable</option>
+                            </select>
+
+                        <label for="status">Status</label>
+                            <select id="view_status" name="status" class="input-type-text" disabled>
+                                <option selected>Select Status</option>
+                                <option value="Found">Found</option>
+                                <option value="Missing">Missing</option>
+                                <option value="Unchecked">Unchecked</option>
+                            </select>
 
                         <label for="remarks">Remarks</label>
                         <input type="text" id="view_remarks" name="remarks" class="input-type-text" disabled>
@@ -617,11 +646,19 @@
 
                         <!-- Fourth Column -->
                         <div class="editForm-column-input">
-                        <label for="condition">Condition</label>
+                            <label for="condition">Condition</label>
                             <select id="edit_condition" name="condition" class="input-type-text">
                                 <option selected>Select Condition</option>
                                 <option value="Good Condition">Good Condition</option>
                                 <option value="Unserviceable">Unserviceable</option>
+                            </select>
+
+                            <label for="status">Status</label>
+                            <select id="edit_status" name="status" class="input-type-text">
+                                <option selected>Select Status</option>
+                                <option value="Found">Found</option>
+                                <option value="Missing">Missing</option>
+                                <option value="Unchecked">Unchecked</option>
                             </select>
 
                             <label for="remarks">Remarks</label>
@@ -701,13 +738,13 @@ function updateUserDropdown() {
         }
     }
 
-    
+
 
 // Edit Modal Handling
 var editPpeModal = document.getElementById("editPpeModal");
 var editPpeOverlay = document.getElementById("editPpeOverlay");
 
-function editPpe(ppe) {
+function editPpe(ppe) { 
     document.getElementById('edit_division').value = ppe.division || 'Select Division';
     document.getElementById('edit_user').value = ppe.user || '';
     document.getElementById('edit_property_type').value = ppe.property_type || 'Select Property Type';
@@ -721,6 +758,7 @@ function editPpe(ppe) {
     document.getElementById('edit_quantity_physical').value = ppe.quantity_physical || '';
     document.getElementById('edit_location').value = ppe.location || 'Select Location/Whereabouts';
     document.getElementById('edit_condition').value = ppe.condition || 'Select Condition';
+    document.getElementById('edit_status').value = ppe.status || 'Select Status';
     document.getElementById('edit_remarks').value = ppe.remarks || '';
     document.getElementById('edit_date_acq').value = ppe.date_acq || '';
 
@@ -792,6 +830,7 @@ function showPpeDetails(ppe) {
     document.getElementById('view_quantity_physical').value = ppe.quantity_physical || '';
     document.getElementById('view_location').value = ppe.location || 'Select Location/Whereabouts';
     document.getElementById('view_condition').value = ppe.condition || 'Select Condition';
+    document.getElementById('view_status').value = ppe.status || 'Select Status';
     document.getElementById('view_remarks').value = ppe.remarks || '';
     document.getElementById('view_date_acq').value = ppe.date_acq || '';
     
@@ -823,13 +862,14 @@ function updateTableRows() {
             <td>${ppe.user || ''}</td>
             <td>${ppe.property_type || ''}</td>
             <td>${ppe.article_item || ''}</td>
-            <td>${ppe.description || ''}</td>
-            <td>${ppe.old_pn || ''}</td>
+            <td>${ppe.description || ''}</td>          
             <td>${ppe.new_pn || ''}</td>
             <td>${ppe.unit_value || ''}</td>
             <td>${ppe.quantity_property || ''}</td>
-            <td>${ppe.location || ''}</td>
+            <td>${ppe.quantity_physical || ''}</td>
+            
             <td>${ppe.condition || ''}</td>
+            <td>${ppe.status || ''}</td>
             <td>
                 <a href="javascript:void(0)" onclick="showPpeDetails(${JSON.stringify(ppe).replace(/"/g, '&quot;')})">
                     <!-- View SVG -->

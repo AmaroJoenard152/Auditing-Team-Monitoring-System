@@ -84,7 +84,7 @@ class PpeController extends Controller
         $ppe->quantity_physical = $request->quantity_physical;
         $ppe->location = $request->location;
         $ppe->condition = $request->condition;
-        $ppe->status = $request->status;
+        $ppe->status = $request->condition;
         $ppe->remarks = $request->remarks;
         $ppe->date_acq = $request->date_acq;
         

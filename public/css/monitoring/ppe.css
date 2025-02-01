@@ -171,12 +171,12 @@
 }
 
 .table-content th {
-    padding: 4px;
+    padding: 5px;
     background-color: #fff;
 }
 
 .table-content td {
-    padding: 6px;
+    padding: 10px;
     border-bottom: 1px solid #ccc;
 }
 

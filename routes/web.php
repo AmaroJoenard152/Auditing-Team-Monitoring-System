@@ -42,3 +42,4 @@ Route::get('/deletePpe/{id}', [PpeController::class, 'deletePpe'])->name('invent
 Route::get('/updatePpe/{id}', [PpeController::class, 'updatePpe'])->name('inventory.ppe');
 Route::post('/savePpe/{id}', [PpeController::class, 'savePpe'])->name('inventory.ppe');
 Route::get('/searchPpe', [PpeController::class, 'searchPpe'])->name('inventory.ppe');
+Route::get('/export-csv', [PpeController::class, 'dvExportCSV'])->name('export.csv');

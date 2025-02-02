@@ -193,60 +193,65 @@
                             </div>
                         </form>
                     </div>
+
+
                     <!-- Right Side: Filter Form -->
                     <div class="right-form-container">
-                        <div class="date-container">
+                        <form id="filterForm" method="GET" action="{{ route('export.csv') }}" class="date-form-wrapper">
+                            <div class="date-container">
 
-                            <div class="daterange-group">
-                                <label for="divisionDropdown" class="date-form-label">Division</label>
-                                <select id="divisionDropdown" name="division" class="date-form-input" onchange="updateUserDropdown()">
-                                    <option selected disabled>Select Division</option>
-                                    <option value="--All Divisions--">--All Divisions--</option>
-                                    <option value="FAD-Personnel">FAD-Personnel</option>
-                                    <option value="FAD-Accounting">FAD-Accounting</option>
-                                    <option value="FAD-DO">FAD-DO</option>
-                                    <option value="FAD-Property">FAD-Property</option>
-                                </select>
+                                <div class="daterange-group">
+                                    <label for="divisionDropdown" class="date-form-label">Division</label>
+                                    <select id="divisionDropdown" name="division" class="date-form-input" onchange="updateUserDropdown()">
+                                        <option selected disabled>Select Division</option>
+                                        <option value="--All Divisions--">--All Divisions--</option>
+                                        <option value="FAD-Personnel">FAD-Personnel</option>
+                                        <option value="FAD-Accounting">FAD-Accounting</option>
+                                        <option value="FAD-DO">FAD-DO</option>
+                                        <option value="FAD-Property">FAD-Property</option>
+                                    </select>
+                                </div>
+
+
+                                <!-- <div class="daterange-group">
+                                    <label for="userDropdown" class="date-form-label">User</label>
+                                    <select id="userDropdown" name="user" class="date-form-input" disabled>
+                                        <option selected disabled>Select User</option>
+                                    </select>
+                                </div> -->
+
+
+                                <div class="daterange-group">
+                                    <label for="ptDropdown" class="date-form-label">Property Type</label>
+                                    <select id="ptDropdown" name="property_type" class="date-form-input">
+                                        <option value="">Select Property Type</option>
+                                        <option value="ICT">ICT</option>
+                                        <option value="Office Equipment">Office Equipment</option>
+                                    </select>
+                                </div>
+
+                                <div class="daterange-group">
+                                    <label for="conditionDropdown" class="date-form-label">Condition</label>
+                                    <select id="conditionDropdown" name="condition" class="date-form-input">
+                                        <option value="">Select Condition</option>
+                                        <option value="Good Condition">Good Condition</option>
+                                        <option value="Unserviceable">Unserviceable</option>
+                                    </select>
+                                </div>
+                                <div class="daterange-group">
+                                    <label for="statusDropdown" class="date-form-label">Status</label>
+                                    <select id="statusDropdown" name="status" class="date-form-input">
+                                        <option value="">Select Status</option>
+                                        <option value="Found">Found</option>
+                                        <option value="Missing">Missing</option>
+                                        <option value="Unchecked">Unchecked</option>
+                                    </select>
+                                    <button type="button" onclick="filterByDateRange()" class="form-btn submit">Apply</button>
+                                    <button onclick="dvDownloadCSV()" class="form-btn submit">Download</button>
+                                    <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
+                                </div>
                             </div>
-
-
-                            <!-- <div class="daterange-group">
-                                <label for="userDropdown" class="date-form-label">User</label>
-                                <select id="userDropdown" name="user" class="date-form-input" disabled>
-                                    <option selected disabled>Select User</option>
-                                </select>
-                            </div> -->
-
-
-                            <div class="daterange-group">
-                                <label for="ptDropdown" class="date-form-label">Property Type</label>
-                                <select id="ptDropdown" name="property_type" class="date-form-input">
-                                    <option value="">Select Property Type</option>
-                                    <option value="ICT">ICT</option>
-                                    <option value="Office Equipment">Office Equipment</option>
-                                </select>
-                            </div>
-
-                            <div class="daterange-group">
-                                <label for="conditionDropdown" class="date-form-label">Condition</label>
-                                <select id="conditionDropdown" name="condition" class="date-form-input">
-                                    <option value="">Select Condition</option>
-                                    <option value="Good Condition">Good Condition</option>
-                                    <option value="Unserviceable">Unserviceable</option>
-                                </select>
-                            </div>
-                            <div class="daterange-group">
-                                <label for="statusDropdown" class="date-form-label">Status</label>
-                                <select id="statusDropdown" name="status" class="date-form-input">
-                                    <option value="">Select Status</option>
-                                    <option value="Found">Found</option>
-                                    <option value="Missing">Missing</option>
-                                    <option value="Unchecked">Unchecked</option>
-                                </select>
-                                <button type="button" onclick="filterByDateRange()" class="form-btn submit">Apply</button>
-                                <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

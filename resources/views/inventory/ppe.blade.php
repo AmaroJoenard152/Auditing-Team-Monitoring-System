@@ -348,7 +348,23 @@
 
         <!-- DV TABLE --->
 
+
+
+    <div class="footer-container">
+        <div class="autoValues">
+            <label for="totalPpe">Total PPE:</label>
+            <input type="text" id="totalPpe" name="totalPpe" class="autoValue" disabled>
+
+            <label for="totalAmount">Total Amount:</label>
+            <input type="text" id="totalAmount" name="totalAmount" class="autoValue" disabled>
+        </div>
+
         <div id="pagination-btns" class="pagination"></div>
+    </div>
+
+
+
+
 
     </div>
 
@@ -410,7 +426,7 @@
                             <input type="text" id="new_pn" name="new_pn" class="input-type-text">
 
                             <label for="unit_meas">Unit of Meas.</label>
-                            <input type="text" id="unit_meas" name="unit_meas" class="input-type-text">
+                            <input type="text" id="unit_meas" name="unit_meas" class="input-type-text" onblur="updateUnitValueDisplay(this)">
                         </div>
 
                         <!-- Third Column -->
@@ -629,7 +645,7 @@
                         <!-- Third Column -->
                         <div class="editForm-column-input">
                         <label for="unit_value">Unit Value</label>
-                            <input type="text" id="edit_unit_value" name="unit_value" class="input-type-text">
+                            <input type="text" id="edit_unit_value" name="unit_value" class="input-type-text" onblur="updateUnitValueDisplay(this)">
 
                             <label for="quantity_property">Quantity (Property Card)</label>
                             <input type="text" id="edit_quantity_property" name="quantity_property" class="input-type-text">
@@ -867,6 +883,14 @@ function closeViewPopup() {
     document.getElementById('viewDvModal').style.display = 'none';
 }
 
+function formatNumber(value) {
+    // Format number with commas and ensure two decimal places
+    return new Intl.NumberFormat('en-US', { 
+        minimumFractionDigits: 2, 
+        maximumFractionDigits: 2 
+    }).format(value);
+}
+
 function updateTableRows() {
     const tableBody = document.getElementById('table-body');
     tableBody.innerHTML = ''; // Clear current table rows
@@ -877,6 +901,16 @@ function updateTableRows() {
     const end = start + rowsPerPage;
     const paginatedData = sortedData.slice(start, end);
 
+    let totalPpe = 0; // Total PPE will count the number of rows
+    let totalAmount = 0; // Total Amount will sum the unit values
+
+    // Iterate through all data, not just the paginated portion
+    filteredData.forEach((ppe) => {
+        totalPpe += 1; // Count each row
+        totalAmount += parseFloat(ppe.unit_value || 0); // Sum the unit values
+    });
+
+    // Display the paginated data in the table
     paginatedData.forEach((ppe, index) => {
         const rowNumber = start + index + 1; // Generates the row number dynamically
         const row = document.createElement('tr');
@@ -888,13 +922,14 @@ function updateTableRows() {
             <td>${ppe.article_item || ''}</td>
             <td>${ppe.description || ''}</td>          
             <td>${ppe.new_pn || ''}</td>
-            <td>${ppe.unit_value || ''}</td>
+            <td>${ppe.unit_value ? formatNumber(ppe.unit_value) : ''}</td> <!-- Apply formatting -->
             <td>${ppe.quantity_property || ''}</td>
             <td>${ppe.quantity_physical || ''}</td>
             <td>${ppe.condition || ''}</td>
             <td>${ppe.status || ''}</td>
             <td>
                 <a href="javascript:void(0)" onclick="showPpeDetails(${JSON.stringify(ppe).replace(/"/g, '&quot;')})">
+                    <!-- View SVG -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                         <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
                         <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
@@ -903,6 +938,7 @@ function updateTableRows() {
             </td>
             <td>
                 <a onclick="return confirm('Are you sure you want to delete this?');" href="/deletePpe/${ppe.id}">
+                    <!-- Delete SVG -->
                     <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M14 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -914,6 +950,7 @@ function updateTableRows() {
             </td>
             <td>
                 <a href="javascript:void(0);" onclick='editPpe(${JSON.stringify(ppe)})'>
+                    <!-- Edit SVG -->
                     <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -923,7 +960,19 @@ function updateTableRows() {
         `;
         tableBody.appendChild(row);
     });
+
+    // Update the footer with the totals
+    document.getElementById('totalPpe').value = totalPpe; // Total PPE: count of all rows
+    document.getElementById('totalAmount').value = formatNumber(totalAmount); // Total Amount: sum of all unit values
 }
+
+// Assuming the input fields are dynamically updated
+function updateUnitValueDisplay(inputElement) {
+    const formattedValue = formatNumber(inputElement.value);
+    inputElement.value = formattedValue;
+}
+
+
 
 
 //Search function

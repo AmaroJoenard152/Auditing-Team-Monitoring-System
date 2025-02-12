@@ -723,6 +723,22 @@
                         <input type="date" id="view_date_acq" name="date_acq" class="input-type-date" disabled>
                     </div>
                 </div>
+
+
+                <div class="form-column-input-flex">
+                    <div class="form-group-item">
+                        <label for="created_at">Date Created</label>
+                        <span id="view_created_at" class="input-type-text" disabled></span>
+                    </div>
+                    <div class="form-group-item">
+                        <label for="updated_at">Last Updated</label>
+                        <span id="view_updated_at" class="input-type-text" disabled></span>
+                    </div>
+                </div>
+
+
+
+
             </div>
         </div>
     </div>
@@ -1085,10 +1101,31 @@ function showPpeDetails(ppe) {
     document.getElementById('view_remarks').value = ppe.remarks || '';
     document.getElementById('view_date_acq').value = ppe.date_acq || '';
     
+    // Format and populate timestamps
+    document.getElementById('view_created_at').textContent = formatDateTime(ppe.created_at);
+    document.getElementById('view_updated_at').textContent = formatDateTime(ppe.updated_at);
+
     // Show the modal
     document.getElementById('ppeModal').style.display = 'block';
     document.getElementById('viewDvModal').style.display = 'block';
 }
+
+
+// Function to format timestamp properly
+function formatDateTime(dateTime) {
+    if (!dateTime) return 'N/A';
+    let date = new Date(dateTime);
+    return date.toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+}
+
+
 
 // Function to close the modal
 function closeViewPopup() {

@@ -1,31 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap');
 
 .dv-input-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    width: 1370px;
-    /* margin-left: calc(78px + (100vw - 78px - 1300px) / 2); */
-    margin-right: auto; 
+  display: flex;
+  justify-content: space-between; /* This keeps the title and button-wrapper on opposite sides */
+  align-items: center;
+  background-color: #fff;
+  width: 1370px;
+  margin-right: auto; 
 }
 
-.h1-date {
-    font-size: 25px;
-    font-weight: 600;
-    margin-left: 20px;
-    background-color: #fff;
+.button-wrapper {
+  display: flex;
+  gap: 20px; /* Adds space between the buttons */
 }
 
 .newDvButton {
-    padding: 10px 20px;
-    font-weight: bold;
-    border-radius: 10px;
-    color: white;
-    margin-right: 20px;
-    border: none;
-    cursor: pointer;
-    background-color: #0ba7ce;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  background-color: #0ba7ce;
+}
+
+
+
+
+.h1-date {
+  font-size: 25px;
+  font-weight: 600;
+  /* margin-left: 20px; */
+  background-color: #fff;
 }
 
 
@@ -219,4 +225,66 @@
 .form-input::placeholder {
     color: var(--color-gray-dark);
     /* Change to your desired color */
+}
+
+
+
+
+
+
+
+
+
+
+
+/* View Edit History */
+.viewEditHistory-range-wrapper {
+  display: flex;
+  background-color: #fff;
+  width: 820px;
+  padding: 5px;
+  height: auto;
+}
+
+/* Ensure elements are in a row with space between */
+.date-flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+/* Left Side - Search Form */
+.viewEditHistory-form-container {
+  /* background-color: blue; */
+  flex: 1;
+  max-width: 30%;
+}
+
+/* Right Side - Date Range & Buttons */
+.viewEditHistory-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 1;
+  width: 450px;
+  gap: 10px;
+  background-color: #fff;
+  margin-left: 55px;
+}
+
+
+.editHistoryDaterange-group {
+  /* margin-right: 8px; */
+  background-color: #fff;
+  width: 250px;
+}
+
+.editHistoryDaterangeButton {
+  margin-right: 5px;
+  margin-top: 20px;
+  background-color: #fff;
+  width: auto;
 }

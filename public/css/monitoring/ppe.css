@@ -286,3 +286,16 @@ td:nth-child(1) {
     width: 280px; 
     height: 50px;
 }
+
+
+
+.div-editTable-container {
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 5px;
+    width: 840px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 25vw;
+    border:1px solid #ddd;
+}

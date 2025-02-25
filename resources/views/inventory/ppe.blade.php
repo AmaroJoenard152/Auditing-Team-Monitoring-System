@@ -165,8 +165,12 @@
         <!-- Title and Pop-up Button --->
         <div class="dv-input-wrapper">  
             <h1 class="h1-date">One Time-Cleansing (PPE)</h1>       
-            <button class="newDvButton" onclick="inputDvModal()">Add New Property</button>
+            <div class="button-wrapper">
+                <button class="newDvButton" onclick="inputDvModal()">Add New Property</button>
+                <button class="newDvButton" onclick="openViewEditHistory()">View Edit History</button>
+            </div>
         </div>
+
         <!-- Title and Pop-up Button --->
 
 
@@ -380,7 +384,6 @@
             </tbody>
         </table>
         </div>
-
         <!-- DV TABLE --->
 
 
@@ -735,15 +738,12 @@
                         <span id="view_updated_at" class="input-type-text" disabled></span>
                     </div>
                 </div>
-
-
-
-
             </div>
         </div>
     </div>
     <!-- View Modal -->
 
+    
 
     <!-- Edit Modal -->
     <div class="overlay" id="editPpeOverlay"></div>
@@ -913,11 +913,103 @@
     </div>
     <!-- Edit Modal -->
 
+
+    <!-- View Edit History -->
+    <div class="overlay" id="editHistoryModal"></div>
+    <div id="viewEditHistory" class="modal">
+        <div class="modal-content">
+            <form id="dv-input">
+                <div class="input-dv-container">
+                    <h2 class="h1-date">PPE Edit History</h2>
+                    <span class="close" onclick="closeViewEditHistory()">&times;</span>
+                    <div class="form-row-input">
+                        <div class="div-editTable-container">
+                            <div class="viewEditHistory-range-wrapper">
+                                <div class="date-row">
+                                    <div class="date-flex-container">
+                                        <!-- Left Side: Search Form -->
+                                        <div class="viewEditHistory-form-container">
+                                            <form id="filterForm" class="date-form-wrapper">
+                                                <div class="editHistoryDaterange-group">
+                                                    <label for="search_ppe" class="date-form-label">Search</label>
+                                                    <input type="text" id="search_ppe" name="search_ppe" class="date-form-input">
+                                                    <button type="button" id="search-btn" class="form-btn submit">Search</button>
+                                                </div>
+                                            </form>
+                                        </div>
+        
+                                        <!-- Right Side: Date Range & Buttons -->
+                                        <div class="viewEditHistory-controls">
+                                            <div class="daterange-group">
+                                                <label for="start_date" class="date-form-label">Start Date:</label>
+                                                <input type="date" id="start-date" name="start-date" class="date-form-input">
+                                            </div>
+                                            <div class="daterange-group">
+                                                <label for="end_date" class="date-form-label">End Date:</label>
+                                                <input type="date" id="end-date" name="end-date" class="date-form-input">
+                                            </div>
+                                            <div class="editHistoryDaterangeButton">
+                                                <button type="button" onclick="filterByDateRange()" class="form-btn submit">Apply</button>
+                                                <button onclick="dvDownloadCSV()" class="form-btn submit">Download</button>
+                                                <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <table class="table-content" id="ppe-table">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <!-- <th>Division</th>
+                                        <th>User</th>
+                                        <th>New PN</th> -->
+                                        <th>Field Name</th>
+                                        <th>Previous Value</th>
+                                        <th>Updated Value</th>
+                                        <th>Date Edited</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="historyTableBody">
+                                @if(isset($editHistory))
+                                    @foreach($editHistory as $index => $history)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $history->field_name ?? 'N/A' }}</td>
+                                        <td>{{ $history->previous_value ?? 'N/A' }}</td>
+                                        <td>{{ $history->updated_value ?? 'N/A' }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($history->edited_at)->format('Y-m-d H:i:s') }}</td>
+                                    </tr>
+                                    @endforeach
+                                @endif
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- View Edit History -->
+
+
+
+
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+
+const rowsPerPage = 10; // Number of rows to display per page
+let currentPage = 1;
+const maxPaginationButtons = 3; // Maximum pagination buttons to display
+let allData = @json($ppes); // Original data from server
+let filteredData = [...allData]; // Default to all data initially
+
+
 // Input Modal Handling
 var inputModal = document.getElementById("inputDvModal");
 var inputOverlay = document.getElementById("inputOverlay");
@@ -940,6 +1032,112 @@ window.onclick = function(event) {
 }
 
 
+
+
+// Open the View Edit History modal
+var editHistoryModal = document.getElementById("editHistoryModal");
+var viewEditHistory = document.getElementById("viewEditHistory");
+
+function openViewEditHistory() {
+    editHistoryModal.style.display = "block";
+    viewEditHistory.style.display = "block";
+}
+
+// Close the View Edit History modal
+function closeViewEditHistory() {
+    editHistoryModal.style.display = "none";
+    viewEditHistory.style.display = "none";
+}
+
+// Close modal if clicked outside
+window.onclick = function(event) {
+    if (event.target == editHistoryModal) {
+        closeViewEditHistory();
+    }
+}
+
+function updateEditHistoryTableRows() {
+    const tableBody = document.getElementById('historyTableBody');
+    tableBody.innerHTML = ''; // Clear existing table rows
+
+    // Sort the filtered data before pagination
+    const sortedData = sortDataTable(filteredData);
+
+    // Calculate pagination range
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const endIndex = startIndex + rowsPerPage;
+    const paginatedData = sortedData.slice(startIndex, endIndex);
+
+    // Populate the table with paginated data
+    paginatedData.forEach((history, index) => {
+        const rowNumber = startIndex + index + 1; // Dynamic row numbering
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${rowNumber}</td>
+            <td>${history.field_name || 'N/A'}</td>
+            <td>${history.previous_value ?? 'N/A'}</td>
+            <td>${history.updated_value ?? 'N/A'}</td>
+            <td>${formatDateTime(history.edited_at)}</td>
+        `;
+
+        tableBody.appendChild(row);
+    });
+}
+
+// Helper function to format date/time in Philippine Time (PHT)
+function formatDateTime(dateTime) {
+    const date = new Date(dateTime);
+    return date.toLocaleString('en-US', { timeZone: 'Asia/Manila' });
+}
+
+
+
+
+// Edit Modal Handling
+var editPpeModal = document.getElementById("editPpeModal");
+var editPpeOverlay = document.getElementById("editPpeOverlay");
+
+function editPpe(ppe) { 
+    document.getElementById('edit_division').value = ppe.division || 'Select Division';
+    document.getElementById('edit_user').value = ppe.user || '';
+    document.getElementById('edit_property_type').value = ppe.property_type || 'Select Property Type';
+    document.getElementById('edit_article_item').value = ppe.article_item || 'Select Article/Item';
+    document.getElementById('edit_description').value = ppe.description || '';
+    document.getElementById('edit_old_pn').value = ppe.old_pn || '';
+    document.getElementById('edit_new_pn').value = ppe.new_pn || '';
+    document.getElementById('edit_unit_meas').value = ppe.unit_meas || '';
+    document.getElementById('edit_unit_value').value = ppe.unit_value || '';
+    document.getElementById('edit_quantity_property').value = ppe.quantity_property || '';
+    document.getElementById('edit_quantity_physical').value = ppe.quantity_physical || '';
+    document.getElementById('edit_location').value = ppe.location || 'Select Location/Whereabouts';
+    document.getElementById('edit_condition').value = ppe.condition || 'Select Condition';
+    document.getElementById('edit_status').value = ppe.status || 'Select Status';
+    document.getElementById('edit_remarks').value = ppe.remarks || '';
+    document.getElementById('edit_date_acq').value = ppe.date_acq || '';
+
+    // Set the form action dynamically
+    document.getElementById('editForm').action = `/savePpe/${ppe.id}`;
+
+    editPpeModal.style.display = "block";
+    editPpeOverlay.style.display = "block";
+}
+
+function closeEditPopup() {
+    editPpeModal.style.display = "none";
+    editPpeOverlay.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == editPpeOverlay) {
+        closeEditPopup();
+    }
+}
+
+
+
+
+// Function for PPE Table
 function updateUserDropdown(event) {
     // Get the ID of the triggered division dropdown
     const divisionDropdown = event.target;
@@ -1005,58 +1203,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('divisionDropdown').addEventListener('change', updateUserDropdown);
 });
 
-
-
-// Edit Modal Handling
-var editPpeModal = document.getElementById("editPpeModal");
-var editPpeOverlay = document.getElementById("editPpeOverlay");
-
-function editPpe(ppe) { 
-    document.getElementById('edit_division').value = ppe.division || 'Select Division';
-    document.getElementById('edit_user').value = ppe.user || '';
-    document.getElementById('edit_property_type').value = ppe.property_type || 'Select Property Type';
-    document.getElementById('edit_article_item').value = ppe.article_item || 'Select Article/Item';
-    document.getElementById('edit_description').value = ppe.description || '';
-    document.getElementById('edit_old_pn').value = ppe.old_pn || '';
-    document.getElementById('edit_new_pn').value = ppe.new_pn || '';
-    document.getElementById('edit_unit_meas').value = ppe.unit_meas || '';
-    document.getElementById('edit_unit_value').value = ppe.unit_value || '';
-    document.getElementById('edit_quantity_property').value = ppe.quantity_property || '';
-    document.getElementById('edit_quantity_physical').value = ppe.quantity_physical || '';
-    document.getElementById('edit_location').value = ppe.location || 'Select Location/Whereabouts';
-    document.getElementById('edit_condition').value = ppe.condition || 'Select Condition';
-    document.getElementById('edit_status').value = ppe.status || 'Select Status';
-    document.getElementById('edit_remarks').value = ppe.remarks || '';
-    document.getElementById('edit_date_acq').value = ppe.date_acq || '';
-
-    // Set the form action dynamically
-    document.getElementById('editForm').action = `/savePpe/${ppe.id}`;
-
-    editPpeModal.style.display = "block";
-    editPpeOverlay.style.display = "block";
-}
-
-function closeEditPopup() {
-    editPpeModal.style.display = "none";
-    editPpeOverlay.style.display = "none";
-}
-
-window.onclick = function(event) {
-    if (event.target == editPpeOverlay) {
-        closeEditPopup();
-    }
-}
-
-
-const rowsPerPage = 10; // Number of rows to display per page
-let currentPage = 1;
-const maxPaginationButtons = 3; // Maximum pagination buttons to display
-let allData = @json($ppes); // Original data from server
-let filteredData = [...allData]; // Default to all data initially
-
-
-
-
 function normalizeString(str) {
     return str
         .toString()
@@ -1080,57 +1226,6 @@ function sortDataTable(data) {
         // Maintain original order if all fields are equal
         return 0;
     });
-}
-
-function showPpeDetails(ppe) {
-    // Populate the modal fields with PPE data
-    document.getElementById('view_division').value = ppe.division || 'Select Division';
-    document.getElementById('view_user').value = ppe.user || '';
-    document.getElementById('view_property_type').value = ppe.property_type || 'Select Property Type';
-    document.getElementById('view_article_item').value = ppe.article_item || 'Select Article/Item';
-    document.getElementById('view_description').value = ppe.description || '';
-    document.getElementById('view_old_pn').value = ppe.old_pn || '';
-    document.getElementById('view_new_pn').value = ppe.new_pn || '';
-    document.getElementById('view_unit_meas').value = ppe.unit_meas || '';
-    document.getElementById('view_unit_value').value = ppe.unit_value || '';
-    document.getElementById('view_quantity_property').value = ppe.quantity_property || '';
-    document.getElementById('view_quantity_physical').value = ppe.quantity_physical || '';
-    document.getElementById('view_location').value = ppe.location || 'Select Location/Whereabouts';
-    document.getElementById('view_condition').value = ppe.condition || 'Select Condition';
-    document.getElementById('view_status').value = ppe.status || 'Select Status';
-    document.getElementById('view_remarks').value = ppe.remarks || '';
-    document.getElementById('view_date_acq').value = ppe.date_acq || '';
-    
-    // Format and populate timestamps
-    document.getElementById('view_created_at').textContent = formatDateTime(ppe.created_at);
-    document.getElementById('view_updated_at').textContent = formatDateTime(ppe.updated_at);
-
-    // Show the modal
-    document.getElementById('ppeModal').style.display = 'block';
-    document.getElementById('viewDvModal').style.display = 'block';
-}
-
-
-// Function to format timestamp properly
-function formatDateTime(dateTime) {
-    if (!dateTime) return 'N/A';
-    let date = new Date(dateTime);
-    return date.toLocaleString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-    });
-}
-
-
-
-// Function to close the modal
-function closeViewPopup() {
-    document.getElementById('ppeModal').style.display = 'none';
-    document.getElementById('viewDvModal').style.display = 'none';
 }
 
 function formatNumber(value) {
@@ -1222,9 +1317,46 @@ function updateUnitValueDisplay(inputElement) {
     inputElement.value = formattedValue;
 }
 
+function showPpeDetails(ppe) {
+    // Populate the modal fields with PPE data
+    document.getElementById('view_division').value = ppe.division || 'Select Division';
+    document.getElementById('view_user').value = ppe.user || '';
+    document.getElementById('view_property_type').value = ppe.property_type || 'Select Property Type';
+    document.getElementById('view_article_item').value = ppe.article_item || 'Select Article/Item';
+    document.getElementById('view_description').value = ppe.description || '';
+    document.getElementById('view_old_pn').value = ppe.old_pn || '';
+    document.getElementById('view_new_pn').value = ppe.new_pn || '';
+    document.getElementById('view_unit_meas').value = ppe.unit_meas || '';
+    document.getElementById('view_unit_value').value = ppe.unit_value || '';
+    document.getElementById('view_quantity_property').value = ppe.quantity_property || '';
+    document.getElementById('view_quantity_physical').value = ppe.quantity_physical || '';
+    document.getElementById('view_location').value = ppe.location || 'Select Location/Whereabouts';
+    document.getElementById('view_condition').value = ppe.condition || 'Select Condition';
+    document.getElementById('view_status').value = ppe.status || 'Select Status';
+    document.getElementById('view_remarks').value = ppe.remarks || '';
+    document.getElementById('view_date_acq').value = ppe.date_acq || '';
+    
+    // Format and populate timestamps
+    document.getElementById('view_created_at').textContent = formatDateTime(ppe.created_at);
+    document.getElementById('view_updated_at').textContent = formatDateTime(ppe.updated_at);
+
+    // Show the modal
+    document.getElementById('ppeModal').style.display = 'block';
+    document.getElementById('viewDvModal').style.display = 'block';
+}
+
+// Function to close the modal
+function closeViewPopup() {
+    document.getElementById('ppeModal').style.display = 'none';
+    document.getElementById('viewDvModal').style.display = 'none';
+}
+
+
+
+
+//Header Functions
 
 //Search function
-
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1250,10 +1382,12 @@ function performSearch(searchValue) {
             console.log(response); // Debugging to verify response
             $('#table-body').empty(); // Clear the table body before appending new rows
 
-            // Loop through the response and append rows
-            response.forEach(function(ppe) {
+            response.forEach(function(ppe, index) {
+                const rowNumber = index + 1; // Dynamic row numbering
+
                 $('#table-body').append(
                     `<tr>
+                        <td>${rowNumber}</td>
                         <td>${ppe.division || ''}</td>
                         <td>${ppe.user || ''}</td>
                         <td>${ppe.property_type || ''}</td>
@@ -1267,7 +1401,6 @@ function performSearch(searchValue) {
                         <td>${ppe.status || ''}</td>
                         <td>
                             <a href="javascript:void(0)" onclick="showPpeDetails(${JSON.stringify(ppe).replace(/"/g, '&quot;')})">
-                                <!-- View SVG -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                                     <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
                                     <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
@@ -1276,7 +1409,6 @@ function performSearch(searchValue) {
                         </td>
                         <td>
                             <a onclick="return confirm('Are you sure you want to delete this?');" href="/deletePpe/${ppe.id}">
-                                <!-- Delete SVG -->
                                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M14 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1288,7 +1420,6 @@ function performSearch(searchValue) {
                         </td>
                         <td>
                             <a href="javascript:void(0);" onclick='editPpe(${JSON.stringify(ppe)})'>
-                                <!-- Edit SVG -->
                                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1309,7 +1440,7 @@ function performSearch(searchValue) {
     });
 }
 
-
+//Date Range function
 function filterByDateRange() {
     const startDateInput = document.getElementById('start-date').value;
     const endDateInput = document.getElementById('end-date').value;
@@ -1362,7 +1493,7 @@ document.addEventListener('DOMContentLoaded', () => {
     generatePaginationButtons(); // Ensure pagination appears at the start
 });
 
-
+//Reset Button function
 function resetFilters() {
     document.getElementById('filterForm').reset();
     filterDataByDateRange();

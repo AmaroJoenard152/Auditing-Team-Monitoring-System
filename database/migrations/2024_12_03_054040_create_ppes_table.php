@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('property_type')->notNull();
             $table->string('article_item')->notNull();
             $table->string('description')->notNull();
-            $table->string('old_pn')->unique()->notNull();
-            $table->string('new_pn')->unique()->notNull();
+            $table->string('old_pn')->notNull();
+            $table->string('new_pn')->notNull();
             $table->string('unit_meas')->notNull();
             $table->string('unit_value')->notNull();
             $table->string('quantity_property')->notNull();

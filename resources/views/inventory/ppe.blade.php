@@ -400,6 +400,7 @@
         <!-- DV TABLE --->
 
 
+    <!-- Footer --->
     <div class="footer-container">
         <div class="autoValues">
             <label for="totalPpe">Total PPE</label>
@@ -489,14 +490,7 @@
 
 
                             <label for="article_item">Article/Item</label>
-                            <select id="article_item" name="article_item" class="input-type-text">
-                                <option selected>Select Article/Item</option>
-                                <option value="Airconditioner">Airconditioner</option>
-                                <option value="Desktop">Desktop</option>
-                                <option value="Laptop">Laptop</option>
-                                <option value="Motorvehicle">Motorvehicle</option>
-                                <option value="Projector">Projector</option>
-                            </select>
+                            <input type="text" id="article_item" name="article_item" class="input-type-text">
                         </div>
 
                         <!-- Second Column -->
@@ -511,13 +505,13 @@
                             <input type="text" id="new_pn" name="new_pn" class="input-type-text">
 
                             <label for="unit_meas">Unit of Meas.</label>
-                            <input type="text" id="unit_meas" name="unit_meas" class="input-type-text" onblur="updateUnitValueDisplay(this)">
+                            <input type="text" id="unit_meas" name="unit_meas" class="input-type-text">
                         </div>
 
                         <!-- Third Column -->
                         <div class="form-column-input"> 
                             <label for="unit_value">Unit Value</label>
-                            <input type="text" id="unit_value" name="unit_value" class="input-type-text">
+                            <input type="text" id="unit_value" name="unit_value" class="input-type-text" onblur="updateUnitValueDisplay(this)">
 
                             <label for="quantity_property">Quantity (Property Card)</label>
                             <input type="text" id="quantity_property" name="quantity_property" class="input-type-text">
@@ -575,31 +569,30 @@
                         <!-- Fourth Column -->
                         <div class="form-column-input"> 
                             <label for="condition">Condition</label>
-                            <select id="condition" name="condition" class="input-type-text">
-                            <option selected>Select Condition</option>
-                            <option value="Disposed" title="Disposed">Disposed</option>
-                            <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
-                            <option value="For Disposal" title="For Disposal">For Disposal</option>
-                            <option value="For Donation" title="For Donation">For Donation</option>
-                            <option value="Good Condition" title="Good Condition">Good Condition</option>
-                            <option value="Need Repair" title="Need Repair">Need Repair</option>
-                            <option value="No Longer Needed" title="No Longer Needed">No Longer Needed</option>
-                            <option value="Poor Condition" title="Poor Condition">Poor Condition</option>
-                            <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
-                            <option value="Very Good" title="Very Good">Very Good</option>
-                            <option value="Not_Available" title="Not Available">Not_Available</option>
-
-                            </select>
+                                <select id="condition" name="condition" class="input-type-text">
+                                <option selected>Select Condition</option>
+                                <option value="Disposed" title="Disposed">Disposed</option>
+                                <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
+                                <option value="For Disposal" title="For Disposal">For Disposal</option>
+                                <option value="For Donation" title="For Donation">For Donation</option>
+                                <option value="Good Condition" title="Good Condition">Good Condition</option>
+                                <option value="Need Repair" title="Need Repair">Need Repair</option>
+                                <option value="No Longer Needed" title="No Longer Needed">No Longer Needed</option>
+                                <option value="Poor Condition" title="Poor Condition">Poor Condition</option>
+                                <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
+                                <option value="Very Good" title="Very Good">Very Good</option>
+                                <option value="Not_Available" title="Not Available">Not_Available</option>
+                                </select>
 
 
                             <label for="status">Status</label>
-                            <select id="status" name="status" class="input-type-text">
-                                <option selected>Select Status</option>
-                                <option value="Checked">Checked</option>
-                                <option value="Found">Found</option>
-                                <option value="Missing">Missing</option>
-                                <option value="Unchecked">Unchecked</option>
-                            </select>
+                                <select id="status" name="status" class="input-type-text">
+                                    <option selected>Select Status</option>
+                                    <option value="Checked">Checked</option>
+                                    <option value="Found">Found</option>
+                                    <option value="Missing">Missing</option>
+                                    <option value="Unchecked">Unchecked</option>
+                                </select>
 
                             <label for="remarks">Remarks</label>
                             <input type="text" id="remarks" name="remarks" class="input-type-text">
@@ -681,16 +674,9 @@
                             <option value="Technical Science Equipment" title="Technical Science Equipment">TSE</option>
                         </select>
 
-
                         <label for="article_item">Article/Item</label>
-                        <select id="view_article_item" name="article_item" class="input-type-text" disabled>
-                            <option selected>Select Article/Item</option>
-                            <option value="Airconditioner">Airconditioner</option>
-                            <option value="Desktop">Desktop</option>
-                            <option value="Laptop">Laptop</option>
-                            <option value="Motorvehicle">Motorvehicle</option>
-                            <option value="Projector">Projector</option>
-                        </select>
+                        <input type="text" id="view_article_item" name="article_item" class="input-type-text" disabled>
+
                     </div>
 
                     <!-- Second Column -->
@@ -711,7 +697,7 @@
                     <!-- Third Column -->
                     <div class="form-column-input"> 
                         <label for="unit_value">Unit Value</label>
-                        <input type="text" id="view_unit_value" name="unit_value" class="input-type-text" disabled>
+                        <input type="text" id="view_unit_value" name="unit_value" class="input-type-text" disabled onblur="updateUnitValueDisplay(this)"> 
 
                         <label for="quantity_property">Quantity (Property Card)</label>
                         <input type="text" id="view_quantity_property" name="quantity_property" class="input-type-text" disabled>
@@ -865,18 +851,9 @@
                                 <option value="Other Structures" title="Other Structures">OS</option>
                                 <option value="Technical Science Equipment" title="Technical Science Equipment">TSE</option>
                             </select>
-
-
+                                                   
                             <label for="article_item">Article/Item</label>
-                            <select id="edit_article_item" name="article_item" class="input-type-text">
-                                <option selected>Select Article/Item</option>
-                                <option value="Airconditioner">Airconditioner</option>
-                                <option value="Desktop">Desktop</option>
-                                <option value="Laptop">Laptop</option>
-                                <option value="Motorvehicle">Motorvehicle</option>
-                                <option value="Projector">Projector</option>
-                                <option value="BI">Building Improvements</option>
-                            </select>
+                            <input type="text" id="edit_article_item" name="article_item" class="input-type-text">
                         </div>
 
                         <!-- Second Column -->
@@ -896,7 +873,7 @@
 
                         <!-- Third Column -->
                         <div class="editForm-column-input">
-                        <label for="unit_value">Unit Value</label>
+                            <label for="unit_value">Unit Value</label>
                             <input type="text" id="edit_unit_value" name="unit_value" class="input-type-text" onblur="updateUnitValueDisplay(this)">
 
                             <label for="quantity_property">Quantity (Property Card)</label>
@@ -1245,7 +1222,7 @@ function updateUserDropdown(event) {
         "Lubang, Sharie Al-Faiha A.", "Macaraeg, John Aaron Mark V.", "Naval, Ervin M.", "Odejar, Fredric M.", 
         "Palma, Ireneo B.", "Panganiban, Joel Norman R.", "Penido, Eiros Colins R.", "Pelegrina, Leilani D.", 
         "Plata, Joan May B.", "Rasgo, Maria Rae Lynne J.", "Recote, Jessa May Q.", "Reyes, Lilia V.", 
-        "Samson, Erika E.", "Sustrina, Brian Angelo R.", "Yebron, Renelle C.", "Not_Available"],
+        "Samson, Erika E.", "Sustrina, Brian Angelo R.", "Valencia, Erwin Cris D.", "Yebron, Renelle C.", "Not_Available"],
 
         "ARMRD": ["Abuan, Catherine R.", "Balbieran, Sarah Hazel M.", "De Guzman, Maria Teresa L.", "Domingo, Ofelia F.", 
         "Evangelista, Misty Mae M.", "Remoquillo, Cynthia P.", "Santiago, Romeo P.", "Villarma, Kathleen Faith Jay O."],
@@ -1508,7 +1485,6 @@ function closeViewPopup() {
     document.getElementById('ppeModal').style.display = 'none';
     document.getElementById('viewDvModal').style.display = 'none';
 }
-
 
 
 

@@ -15,6 +15,9 @@ Route::get('/logbook-incoming', function () {
     return view('logbook/logbook-incoming');
 });
 
+Route::get('/ppe', function () {
+    return view('inventory/ppe');
+});
 
 Route::post('/submitVoucher', [DisbursementVoucherController::class, 'submitVoucher'])->name('monitoring.disbursement-voucher');
 

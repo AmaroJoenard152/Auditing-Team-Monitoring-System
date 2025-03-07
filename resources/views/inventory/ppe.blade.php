@@ -538,7 +538,7 @@
                         <!-- Third Column -->
                         <div class="form-column-input"> 
                             <label for="unit_value">Unit Value</label>
-                            <input type="text" id="unit_value" name="unit_value" class="input-type-text" onblur="updateUnitValueDisplay(this)">
+                            <input type="text" id="unit_value" name="unit_value" class="input-type-text">
 
                             <label for="quantity_property">Quantity (Property Card)</label>
                             <input type="text" id="quantity_property" name="quantity_property" class="input-type-text">
@@ -737,27 +737,45 @@
                             <option selected disabled>Select Location/Whereabouts</option>
                             <option value="ACD">ACD</option>
                             <option value="ARMRD">ARMRD</option>
+                            <option value="AR-TANCO-HALL">AR-TANCO-HALL</option>
+                            <option value="BPI-Grounds">BPI-Grounds</option>
+                            <option value="BPK">BPK</option>
+                            <option value="COA">COA</option>
                             <option value="CRD">CRD</option>
+                            <option value="DPITC">DPITC</option>
+                            <option value="DPITC-ACD">DPITC-ACD</option>
+                            <option value="DPITC-MISD">DPITC-MISD</option>
+                            <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
+                            <option value="DPITC-TTPD">DPITC-TTPD</option>
+                            <option value="E.O-TAN-HALL">E.O-TAN-HALL</option>
                             <option value="FAD-Accounting">FAD-Accounting</option>
                             <option value="FAD-Budget">FAD-Budget</option>
                             <option value="FAD-Cash">FAD-Cash</option>
-                            <option value="FAD-DO">FAD-DO</option>
                             <option value="FAD-GSS">FAD-GSS</option>
+                            <option value="FAD-GSS-Canteen">FAD-GSS-Canteen</option>
+                            <option value="FAD-DO">FAD-DO</option>
                             <option value="FAD-Personnel">FAD-Personnel</option>
                             <option value="FAD-Property">FAD-Property</option>
+                            <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
                             <option value="FERD">FERD</option>
+                            <option value="GSS-Building">GSS-Building</option>
+                            <option value="Grounds-Motorpool">Grounds-Motorpool</option>
+                            <option value="Grounds-Staff Housing">Grounds-Staff Housing</option>
+                            <option value="Grounds-Main">Grounds-Main</option>
+                            <option value="Grounds-Near-Executive-Housing">Grounds-Near-Executive-Housing</option>
                             <option value="IARRD">IARRD</option>
                             <option value="IDD">IDD</option>
                             <option value="LRD">LRD</option>
-                            <option value="MISD">MISD</option>
-                            <option value="MRRD">MRRD</option>
-                            <option value="OED">OED</option>
-                            <option value="OED-ARMSS">OED-ARMSS</option>
-                            <option value="OED-RD">OED-RD</option>
-                            <option value="PCMD">PCMD</option>
-                            <option value="TTPD">TTPD</option>
-                            <option value="SERD">SERD</option>
+                            <option value="MAIN-GATE">MAIN-GATE</option>
+                            <option value="Near-Executive-House#3">Near-Executive-House#3</option>
+                            <option value="Near-Main-Gate">Near-Main-Gate</option>
+                            <option value="PCAARRD-Main">PCAARRD-Main</option>
+                            <option value="Regional-NARC">Regional-NARC</option>
+                            <option value="Service-Area">Service-Area</option>
+                            <option value="Staff-Housing">Staff-Housing</option>
+                            <option value="Not_Available">Not_Available</option>
                         </select>
+
 
                     </div>
 
@@ -765,16 +783,20 @@
                     <div class="form-column-input"> 
                         <label for="condition">Condition</label>
                         <select id="view_condition" name="condition" class="input-type-text" disabled>
-                            <option selected disabled>Select Condition</option>
-                            <option value="For Donation" title="For Donation">FD</option>
-                            <option value="Good Condition" title="Good Condition">GC</option>
-                            <option value="Needs Repair" title="Needs Repair">NR</option>
-                            <option value="No Longer Needed" title="No Longer Needed">NLN</option>
-                            <option value="Poor Condition" title="Poor Condition">PC</option>
-                            <option value="Serviceable w/ Minor Defect" title="Serviceable w/ Minor Defect">SMD</option>
-                            <option value="Unserviceable" title="Unserviceable">Uns</option>
-                            <option value="Very Good" title="Very Good">VG</option>
+                            <option selected>Select Condition</option>
+                            <option value="Disposed" title="Disposed">Disposed</option>
+                            <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
+                            <option value="For Disposal" title="For Disposal">For Disposal</option>
+                            <option value="For Donation" title="For Donation">For Donation</option>
+                            <option value="Good Condition" title="Good Condition">Good Condition</option>
+                            <option value="Need Repair" title="Need Repair">Need Repair</option>
+                            <option value="No Longer Needed" title="No Longer Needed">No Longer Needed</option>
+                            <option value="Poor Condition" title="Poor Condition">Poor Condition</option>
+                            <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
+                            <option value="Very Good" title="Very Good">Very Good</option>
+                            <option value="Not_Available" title="Not Available">Not_Available</option>
                         </select>
+
 
                         <label for="status">Status</label>
                             <select id="view_status" name="status" class="input-type-text" disabled>
@@ -901,7 +923,7 @@
                         <!-- Third Column -->
                         <div class="editForm-column-input">
                             <label for="unit_value">Unit Value</label>
-                            <input type="text" id="edit_unit_value" name="unit_value" class="input-type-text" onblur="updateUnitValueDisplay(this)">
+                            <input type="text" id="edit_unit_value" name="unit_value" class="input-type-text">
 
                             <label for="quantity_property">Quantity (Property Card)</label>
                             <input type="text" id="edit_quantity_property" name="quantity_property" class="input-type-text">
@@ -910,11 +932,14 @@
                             <input type="text" id="edit_quantity_physical" name="quantity_physical" class="input-type-text">
 
                             <label for="location">Location/Whereabouts</label>
+                            
                             <select id="edit_location" name="location" class="input-type-text">
-                                <option selected disabled>Select Location</option>
+                                <option selected disabled>Select Location/Whereabouts</option>
                                 <option value="ACD">ACD</option>
                                 <option value="ARMRD">ARMRD</option>
                                 <option value="AR-TANCO-HALL">AR-TANCO-HALL</option>
+                                <option value="BPI-Grounds">BPI-Grounds</option>
+                                <option value="BPK">BPK</option>
                                 <option value="COA">COA</option>
                                 <option value="CRD">CRD</option>
                                 <option value="DPITC">DPITC</option>
@@ -942,28 +967,34 @@
                                 <option value="IDD">IDD</option>
                                 <option value="LRD">LRD</option>
                                 <option value="MAIN-GATE">MAIN-GATE</option>
+                                <option value="Near-Executive-House#3">Near-Executive-House#3</option>
+                                <option value="Near-Main-Gate">Near-Main-Gate</option>
+                                <option value="PCAARRD-Main">PCAARRD-Main</option>
+                                <option value="Regional-NARC">Regional-NARC</option>
+                                <option value="Service-Area">Service-Area</option>
+                                <option value="Staff-Housing">Staff-Housing</option>
                                 <option value="Not_Available">Not_Available</option>
-
                             </select>
+
                         </div>
 
                         <!-- Fourth Column -->
                         <div class="editForm-column-input">
+
                             <label for="condition">Condition</label>
                             <select id="edit_condition" name="condition" class="input-type-text">
-                            <option selected>Select Condition</option>
-                            <option value="Disposed" title="Disposed">Disposed</option>
-                            <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
-                            <option value="For Disposal" title="For Disposal">For Disposal</option>
-                            <option value="For Donation" title="For Donation">For Donation</option>
-                            <option value="Good Condition" title="Good Condition">Good Condition</option>
-                            <option value="Need Repair" title="Need Repair">Need Repair</option>
-                            <option value="No Longer Needed" title="No Longer Needed">No Longer Needed</option>
-                            <option value="Poor Condition" title="Poor Condition">Poor Condition</option>
-                            <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
-                            <option value="Very Good" title="Very Good">Very Good</option>
-                            <option value="Not_Available" title="Not Available">Not_Available</option>
-
+                                <option selected>Select Condition</option>
+                                <option value="Disposed" title="Disposed">Disposed</option>
+                                <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
+                                <option value="For Disposal" title="For Disposal">For Disposal</option>
+                                <option value="For Donation" title="For Donation">For Donation</option>
+                                <option value="Good Condition" title="Good Condition">Good Condition</option>
+                                <option value="Need Repair" title="Need Repair">Need Repair</option>
+                                <option value="No Longer Needed" title="No Longer Needed">No Longer Needed</option>
+                                <option value="Poor Condition" title="Poor Condition">Poor Condition</option>
+                                <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
+                                <option value="Very Good" title="Very Good">Very Good</option>
+                                <option value="Not_Available" title="Not Available">Not_Available</option>
                             </select>
 
 
@@ -1074,6 +1105,29 @@
         </div>
     </div>
     <!-- View Edit History -->
+
+
+
+     <!-- RPCPPE Summary Table-->
+    <div class="rpcppe-summary-table">
+        <table class="table-content" id="rpcppe-table">
+            <h1 class="h1-date">RPCPPE Summary</h1>
+            <thead>
+                <tr>
+                    <th>Property Type</th>
+                    <th>Checked</th>
+                    <th>Found</th>
+                    <th>Missing</th>
+                    <th>Total Amount</th>
+                </tr>
+            </thead>
+
+            <tbody id="rpcppe-table-body">
+                <!-- Dynamic rows will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
 
 
 
@@ -1471,6 +1525,7 @@ function updateTableRows() {
 }
 
 // Assuming the input fields are dynamically updated
+
 function updateUnitValueDisplay(inputElement) {
     const formattedValue = formatNumber(inputElement.value);
     inputElement.value = formattedValue;
@@ -1656,6 +1711,78 @@ function resetFilters() {
     document.getElementById('filterForm').reset();
     filterDataByDateRange();
 }
+
+
+
+
+
+function displaySummary() {
+    const tableBody = document.getElementById('rpcppe-table-body');
+    tableBody.innerHTML = ''; // Clear table
+
+    // Extract distinct property types, remove nulls, and sort alphabetically
+    const propertyTypes = [...new Set(allData.map(ppe => ppe.property_type))]
+        .filter(type => type)
+        .sort();
+
+    // Variables to store grand totals
+    let grandChecked = 0;
+    let grandFound = 0;
+    let grandMissing = 0;
+    let grandTotalAmount = 0;
+
+    // Iterate over each property type and calculate sums for Checked, Found, Missing, and Total Amount
+    propertyTypes.forEach(type => {
+        const checkedSum = allData
+            .filter(ppe => ppe.property_type === type && ppe.status === 'Checked')
+            .reduce((sum, ppe) => sum + parseFloat(ppe.unit_value || 0), 0);
+
+        const foundSum = allData
+            .filter(ppe => ppe.property_type === type && ppe.status === 'Found')
+            .reduce((sum, ppe) => sum + parseFloat(ppe.unit_value || 0), 0);
+
+        const missingSum = allData
+            .filter(ppe => ppe.property_type === type && ppe.status === 'Missing')
+            .reduce((sum, ppe) => sum + parseFloat(ppe.unit_value || 0), 0);
+
+        // Calculate Total Amount using the formula: Checked + Found - Missing
+        const totalAmount = checkedSum + foundSum + missingSum;
+
+        // Update grand totals
+        grandChecked += checkedSum;
+        grandFound += foundSum;
+        grandMissing += missingSum;
+        grandTotalAmount += totalAmount;
+
+        // Create and append row to the table
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${type}</td>
+            <td>${checkedSum.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            <td>${foundSum.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            <td>${missingSum.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+            <td><strong>${totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    // Append Grand Total row
+    const grandTotalRow = document.createElement('tr');
+    grandTotalRow.innerHTML = `
+        <td><strong>Grand Total</strong></td>
+        <td><strong>${grandChecked.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></td>
+        <td><strong>${grandFound.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></td>
+        <td><strong>${grandMissing.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></td>
+        <td><strong>${grandTotalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></td>
+    `;
+    grandTotalRow.style.fontWeight = 'bold'; // Make the row visually distinct
+    tableBody.appendChild(grandTotalRow);
+}
+
+displaySummary();
+
+
+
 
 
 // Initialize data and pagination

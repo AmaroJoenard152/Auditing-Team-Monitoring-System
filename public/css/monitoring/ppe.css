@@ -161,7 +161,7 @@
     width: 1370px;
     /* margin-left: calc(78px + (100vw - 78px - 1300px) / 2); */
     overflow-y: auto;
-    height: 25vw;
+    height: 20vw;
     border:1px solid #ddd;
 }
 

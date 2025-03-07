@@ -299,3 +299,25 @@ td:nth-child(1) {
     height: 25vw;
     border:1px solid #ddd;
 }
+
+
+
+
+
+
+
+
+.rpcppe-summary-table {
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 5px;
+    width: 800px;
+    /* margin-left: calc(78px + (100vw - 78px - 1300px) / 2); */
+    margin-left: 100px;
+    margin-top:  20px;
+    margin-bottom: 20px;
+    /* overflow-y: auto; */
+    height: 32vw;
+    border:1px solid #ddd;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

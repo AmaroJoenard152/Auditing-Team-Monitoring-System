@@ -743,6 +743,7 @@
                                 <option selected>Select Status</option>
                                 <option value="Found">Found</option>
                                 <option value="Missing">Missing</option>
+                                <option value="Checked">Checked</option>
                                 <option value="Unchecked">Unchecked</option>
                             </select>
 
@@ -811,6 +812,7 @@
                                 <option value="PCMD">PCMD</option>
                                 <option value="TTPD">TTPD</option>
                                 <option value="SERD">SERD</option>
+                                <option value="Not_Available">Not_Available</option>
                             </select>
 
 
@@ -841,6 +843,7 @@
                                 <option value="Laptop">Laptop</option>
                                 <option value="Motorvehicle">Motorvehicle</option>
                                 <option value="Projector">Projector</option>
+                                <option value="BI">Building Improvements</option>
                             </select>
                         </div>
 
@@ -895,6 +898,7 @@
                                 <option value="PCMD">PCMD</option>
                                 <option value="TTPD">TTPD</option>
                                 <option value="SERD">SERD</option>
+                                <option value="Staff Housing">Staff Housing</option>
                             </select>
                         </div>
 
@@ -919,6 +923,7 @@
                                 <option selected>Select Status</option>
                                 <option value="Found">Found</option>
                                 <option value="Missing">Missing</option>
+                                <option value="Checked">Checked</option>
                                 <option value="Unchecked">Unchecked</option>
                             </select>
 

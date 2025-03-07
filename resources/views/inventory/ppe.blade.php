@@ -260,7 +260,7 @@
                                         <option value="Motor Vehicles" title="Motor Vehicles">MV</option>
                                         <option value="Office Equipment" title="Office Equipment">OE</option>
                                         <option value="Other Land Improvement" title="Other Land Improvement">OLI</option>
-                                        <option value="Other Machineries" title="Other Machineries">OM</option>
+                                        <option value="Other Machineries" title="Other Machineries Equipment">OME</option>
                                         <option value="Other Structures" title="Other Structures">OS</option>
                                         <option value="Technical Science Equipment" title="Technical Science Equipment">TSE</option>
                                     </select>
@@ -521,7 +521,7 @@
 
                             <label for="location">Location/Whereabouts</label>
                             <select id="location" name="location" class="input-type-text">
-                                <option selected disabled>Select Location/Whereabouts</option>
+                            <option selected disabled>Select Location/Whereabouts</option>
                                 <option value="ACD">ACD</option>
                                 <option value="ARMRD">ARMRD</option>
                                 <option value="AR-TANCO-HALL">AR-TANCO-HALL</option>
@@ -554,14 +554,21 @@
                                 <option value="IDD">IDD</option>
                                 <option value="LRD">LRD</option>
                                 <option value="MAIN-GATE">MAIN-GATE</option>
+                                <option value="MISD">MISD</option>
+                                <option value="MRRD">MRRD</option>
                                 <option value="Near-Executive-House#3">Near-Executive-House#3</option>
                                 <option value="Near-Main-Gate">Near-Main-Gate</option>
+                                <option value="OED">OED</option>
+                                <option value="OED-ARMSS">OED-ARMSS</option>
+                                <option value="OED-RD">OED-RD</option>
                                 <option value="PCAARRD-Main">PCAARRD-Main</option>
+                                <option value="PCMD">PCMD</option>
                                 <option value="Regional-NARC">Regional-NARC</option>
+                                <option value="SERD">SERD</option>
                                 <option value="Service-Area">Service-Area</option>
                                 <option value="Staff-Housing">Staff-Housing</option>
+                                <option value="TTPD">TTPD</option>
                                 <option value="Not_Available">Not_Available</option>
-
                             </select>
 
                         </div>
@@ -740,16 +747,22 @@
                             <option value="IDD">IDD</option>
                             <option value="LRD">LRD</option>
                             <option value="MAIN-GATE">MAIN-GATE</option>
+                            <option value="MISD">MISD</option>
+                            <option value="MRRD">MRRD</option>
                             <option value="Near-Executive-House#3">Near-Executive-House#3</option>
                             <option value="Near-Main-Gate">Near-Main-Gate</option>
+                            <option value="OED">OED</option>
+                            <option value="OED-ARMSS">OED-ARMSS</option>
+                            <option value="OED-RD">OED-RD</option>
                             <option value="PCAARRD-Main">PCAARRD-Main</option>
+                            <option value="PCMD">PCMD</option>
                             <option value="Regional-NARC">Regional-NARC</option>
+                            <option value="SERD">SERD</option>
                             <option value="Service-Area">Service-Area</option>
                             <option value="Staff-Housing">Staff-Housing</option>
+                            <option value="TTPD">TTPD</option>
                             <option value="Not_Available">Not_Available</option>
                         </select>
-
-
                     </div>
 
                     <!-- Fourth Column -->

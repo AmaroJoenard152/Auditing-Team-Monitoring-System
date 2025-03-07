@@ -210,14 +210,20 @@
                                         <option value="--All Divisions--">--All Divisions--</option>
                                         <option value="ACD">ACD</option>
                                         <option value="ARMRD">ARMRD</option>
+                                        <option value="COA">COA</option>
                                         <option value="CRD">CRD</option>
+                                        <option value="DPITC-ACD">DPITC-ACD</option>
+                                        <option value="DPITC-MISD">DPITC-MISD</option>
+                                        <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
+                                        <option value="DPITC-TTPD">DPITC TTPD</option>
                                         <option value="FAD-Accounting">FAD-Accounting</option>
                                         <option value="FAD-Budget">FAD-Budget</option>
                                         <option value="FAD-Cash">FAD-Cash</option>
-                                        <option value="FAD-DO">FAD-DO</option>
                                         <option value="FAD-GSS">FAD-GSS</option>
+                                        <option value="FAD-DO">FAD-DO</option>
                                         <option value="FAD-Personnel">FAD-Personnel</option>
                                         <option value="FAD-Property">FAD-Property</option>
+                                        <option value="FAD-Property-Stock-Room">FAD-Prop-Stock-Room</option>
                                         <option value="FERD">FERD</option>
                                         <option value="IARRD">IARRD</option>
                                         <option value="IDD">IDD</option>
@@ -228,8 +234,10 @@
                                         <option value="OED-ARMSS">OED-ARMSS</option>
                                         <option value="OED-RD">OED-RD</option>
                                         <option value="PCMD">PCMD</option>
-                                        <option value="TTPD">TTPD</option>
                                         <option value="SERD">SERD</option>
+                                        <option value="TTPD">TTPD</option>
+                                        <option value="Not_Available">Not_Available</option>
+
                                     </select>
                                 </div>
 
@@ -262,14 +270,18 @@
                                     <label for="conditionDropdown" class="date-form-label">Condition</label>
                                     <select id="conditionDropdown" name="condition" class="date-form-input">
                                         <option value="">Select Condition</option>
-                                        <option value="For Donation" title="For Donation">FD</option>
-                                        <option value="Good Condition" title="Good Condition">GC</option>
-                                        <option value="Needs Repair" title="Needs Repair">NR</option>
-                                        <option value="No Longer Needed" title="No Longer Needed">NLN</option>
-                                        <option value="Poor Condition" title="Poor Condition">PC</option>
-                                        <option value="Serviceable w/ Minor Defect" title="Serviceable w/ Minor Defect">SMD</option>
-                                        <option value="Unserviceable" title="Unserviceable">Uns</option>
-                                        <option value="Very Good" title="Very Good">VG</option>
+                                        <option value="Disposed" title="Disposed">Disposed</option>
+                                        <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
+                                        <option value="For Disposal" title="For Disposal">For Disposal</option>
+                                        <option value="For Donation" title="For Donation">For Donation</option>
+                                        <option value="Good Condition" title="Good Condition">Good Condition</option>
+                                        <option value="Need Repair" title="Need Repair">Need Repair</option>
+                                        <option value="No Longer Needed" title="No Longer Needed">No Longer Needed</option>
+                                        <option value="Poor Condition" title="Poor Condition">Poor Condition</option>
+                                        <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
+                                        <option value="Very Good" title="Very Good">Very Good</option>
+                                        <option value="Not_Available" title="Not Available">Not_Available</option>
+
                                     </select>
 
                                 </div>
@@ -278,6 +290,7 @@
                                     <label for="statusDropdown" class="date-form-label">Status</label>
                                     <select id="statusDropdown" name="status" class="date-form-input">
                                         <option value="">Select Status</option>
+                                        <option value="Checked">Checked</option>
                                         <option value="Found">Found</option>
                                         <option value="Missing">Missing</option>
                                         <option value="Unchecked">Unchecked</option>
@@ -451,14 +464,20 @@
                                 <option selected disabled>Select Division</option>
                                 <option value="ACD">ACD</option>
                                 <option value="ARMRD">ARMRD</option>
+                                <option value="COA">COA</option>
                                 <option value="CRD">CRD</option>
+                                <option value="DPITC-ACD">DPITC-ACD</option>
+                                <option value="DPITC-MISD">DPITC-MISD</option>
+                                <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
+                                <option value="DPITC-TTPD">DPITC TTPD</option>
                                 <option value="FAD-Accounting">FAD-Accounting</option>
                                 <option value="FAD-Budget">FAD-Budget</option>
                                 <option value="FAD-Cash">FAD-Cash</option>
-                                <option value="FAD-DO">FAD-DO</option>
                                 <option value="FAD-GSS">FAD-GSS</option>
+                                <option value="FAD-DO">FAD-DO</option>
                                 <option value="FAD-Personnel">FAD-Personnel</option>
                                 <option value="FAD-Property">FAD-Property</option>
+                                <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
                                 <option value="FERD">FERD</option>
                                 <option value="IARRD">IARRD</option>
                                 <option value="IDD">IDD</option>
@@ -469,8 +488,10 @@
                                 <option value="OED-ARMSS">OED-ARMSS</option>
                                 <option value="OED-RD">OED-RD</option>
                                 <option value="PCMD">PCMD</option>
-                                <option value="TTPD">TTPD</option>
                                 <option value="SERD">SERD</option>
+                                <option value="TTPD">TTPD</option>
+                                <option value="Not_Available">Not_Available</option>
+
                             </select>
 
                             <label for="user">User</label>
@@ -536,26 +557,44 @@
                                 <option selected disabled>Select Location/Whereabouts</option>
                                 <option value="ACD">ACD</option>
                                 <option value="ARMRD">ARMRD</option>
+                                <option value="AR-TANCO-HALL">AR-TANCO-HALL</option>
+                                <option value="BPI-Grounds">BPI-Grounds</option>
+                                <option value="BPK">BPK</option>
+                                <option value="COA">COA</option>
                                 <option value="CRD">CRD</option>
+                                <option value="DPITC">DPITC</option>
+                                <option value="DPITC-ACD">DPITC-ACD</option>
+                                <option value="DPITC-MISD">DPITC-MISD</option>
+                                <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
+                                <option value="DPITC-TTPD">DPITC-TTPD</option>
+                                <option value="E.O-TAN-HALL">E.O-TAN-HALL</option>
                                 <option value="FAD-Accounting">FAD-Accounting</option>
                                 <option value="FAD-Budget">FAD-Budget</option>
                                 <option value="FAD-Cash">FAD-Cash</option>
-                                <option value="FAD-DO">FAD-DO</option>
                                 <option value="FAD-GSS">FAD-GSS</option>
+                                <option value="FAD-GSS-Canteen">FAD-GSS-Canteen</option>
+                                <option value="FAD-DO">FAD-DO</option>
                                 <option value="FAD-Personnel">FAD-Personnel</option>
                                 <option value="FAD-Property">FAD-Property</option>
+                                <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
                                 <option value="FERD">FERD</option>
+                                <option value="GSS-Building">GSS-Building</option>
+                                <option value="Grounds-Motorpool">Grounds-Motorpool</option>
+                                <option value="Grounds-Staff Housing">Grounds-Staff Housing</option>
+                                <option value="Grounds-Main">Grounds-Main</option>
+                                <option value="Grounds-Near-Executive-Housing">Grounds-Near-Executive-Housing</option>
                                 <option value="IARRD">IARRD</option>
                                 <option value="IDD">IDD</option>
                                 <option value="LRD">LRD</option>
-                                <option value="MISD">MISD</option>
-                                <option value="MRRD">MRRD</option>
-                                <option value="OED">OED</option>
-                                <option value="OED-ARMSS">OED-ARMSS</option>
-                                <option value="OED-RD">OED-RD</option>
-                                <option value="PCMD">PCMD</option>
-                                <option value="TTPD">TTPD</option>
-                                <option value="SERD">SERD</option>
+                                <option value="MAIN-GATE">MAIN-GATE</option>
+                                <option value="Near-Executive-House#3">Near-Executive-House#3</option>
+                                <option value="Near-Main-Gate">Near-Main-Gate</option>
+                                <option value="PCAARRD-Main">PCAARRD-Main</option>
+                                <option value="Regional-NARC">Regional-NARC</option>
+                                <option value="Service-Area">Service-Area</option>
+                                <option value="Staff-Housing">Staff-Housing</option>
+                                <option value="Not_Available">Not_Available</option>
+
                             </select>
 
                         </div>
@@ -564,21 +603,26 @@
                         <div class="form-column-input"> 
                             <label for="condition">Condition</label>
                             <select id="condition" name="condition" class="input-type-text">
-                                <option selected disabled>Select Condition</option>
-                                <option value="For Donation" title="For Donation">FD</option>
-                                <option value="Good Condition" title="Good Condition">GC</option>
-                                <option value="Needs Repair" title="Needs Repair">NR</option>
-                                <option value="No Longer Needed" title="No Longer Needed">NLN</option>
-                                <option value="Poor Condition" title="Poor Condition">PC</option>
-                                <option value="Serviceable w/ Minor Defect" title="Serviceable w/ Minor Defect">SMD</option>
-                                <option value="Unserviceable" title="Unserviceable">Uns</option>
-                                <option value="Very Good" title="Very Good">VG</option>
+                            <option selected>Select Condition</option>
+                            <option value="Disposed" title="Disposed">Disposed</option>
+                            <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
+                            <option value="For Disposal" title="For Disposal">For Disposal</option>
+                            <option value="For Donation" title="For Donation">For Donation</option>
+                            <option value="Good Condition" title="Good Condition">Good Condition</option>
+                            <option value="Need Repair" title="Need Repair">Need Repair</option>
+                            <option value="No Longer Needed" title="No Longer Needed">No Longer Needed</option>
+                            <option value="Poor Condition" title="Poor Condition">Poor Condition</option>
+                            <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
+                            <option value="Very Good" title="Very Good">Very Good</option>
+                            <option value="Not_Available" title="Not Available">Not_Available</option>
+
                             </select>
 
 
                             <label for="status">Status</label>
                             <select id="status" name="status" class="input-type-text">
                                 <option selected>Select Status</option>
+                                <option value="Checked">Checked</option>
                                 <option value="Found">Found</option>
                                 <option value="Missing">Missing</option>
                                 <option value="Unchecked">Unchecked</option>
@@ -615,14 +659,20 @@
                             <option selected disabled>Select Division</option>
                             <option value="ACD">ACD</option>
                             <option value="ARMRD">ARMRD</option>
+                            <option value="COA">COA</option>
                             <option value="CRD">CRD</option>
+                            <option value="DPITC-ACD">DPITC-ACD</option>
+                            <option value="DPITC-MISD">DPITC-MISD</option>
+                            <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
+                            <option value="DPITC-TTPD">DPITC TTPD</option>
                             <option value="FAD-Accounting">FAD-Accounting</option>
                             <option value="FAD-Budget">FAD-Budget</option>
                             <option value="FAD-Cash">FAD-Cash</option>
-                            <option value="FAD-DO">FAD-DO</option>
                             <option value="FAD-GSS">FAD-GSS</option>
+                            <option value="FAD-DO">FAD-DO</option>
                             <option value="FAD-Personnel">FAD-Personnel</option>
                             <option value="FAD-Property">FAD-Property</option>
+                            <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
                             <option value="FERD">FERD</option>
                             <option value="IARRD">IARRD</option>
                             <option value="IDD">IDD</option>
@@ -633,8 +683,10 @@
                             <option value="OED-ARMSS">OED-ARMSS</option>
                             <option value="OED-RD">OED-RD</option>
                             <option value="PCMD">PCMD</option>
-                            <option value="TTPD">TTPD</option>
                             <option value="SERD">SERD</option>
+                            <option value="TTPD">TTPD</option>
+                            <option value="Not_Available">Not_Available</option>
+
                         </select>
 
 
@@ -792,14 +844,20 @@
                                 <option selected disabled>Select Division</option>
                                 <option value="ACD">ACD</option>
                                 <option value="ARMRD">ARMRD</option>
+                                <option value="COA">COA</option>
                                 <option value="CRD">CRD</option>
+                                <option value="DPITC-ACD">DPITC-ACD</option>
+                                <option value="DPITC-MISD">DPITC-MISD</option>
+                                <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
+                                <option value="DPITC-TTPD">DPITC TTPD</option>
                                 <option value="FAD-Accounting">FAD-Accounting</option>
                                 <option value="FAD-Budget">FAD-Budget</option>
                                 <option value="FAD-Cash">FAD-Cash</option>
-                                <option value="FAD-DO">FAD-DO</option>
                                 <option value="FAD-GSS">FAD-GSS</option>
+                                <option value="FAD-DO">FAD-DO</option>
                                 <option value="FAD-Personnel">FAD-Personnel</option>
                                 <option value="FAD-Property">FAD-Property</option>
+                                <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
                                 <option value="FERD">FERD</option>
                                 <option value="IARRD">IARRD</option>
                                 <option value="IDD">IDD</option>
@@ -810,9 +868,10 @@
                                 <option value="OED-ARMSS">OED-ARMSS</option>
                                 <option value="OED-RD">OED-RD</option>
                                 <option value="PCMD">PCMD</option>
-                                <option value="TTPD">TTPD</option>
                                 <option value="SERD">SERD</option>
+                                <option value="TTPD">TTPD</option>
                                 <option value="Not_Available">Not_Available</option>
+
                             </select>
 
 
@@ -875,30 +934,39 @@
 
                             <label for="location">Location/Whereabouts</label>
                             <select id="edit_location" name="location" class="input-type-text">
-                                <option selected disabled>Select Division</option>
+                                <option selected disabled>Select Location</option>
                                 <option value="ACD">ACD</option>
                                 <option value="ARMRD">ARMRD</option>
+                                <option value="AR-TANCO-HALL">AR-TANCO-HALL</option>
+                                <option value="COA">COA</option>
                                 <option value="CRD">CRD</option>
+                                <option value="DPITC">DPITC</option>
+                                <option value="DPITC-ACD">DPITC-ACD</option>
+                                <option value="DPITC-MISD">DPITC-MISD</option>
+                                <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
+                                <option value="DPITC-TTPD">DPITC-TTPD</option>
+                                <option value="E.O-TAN-HALL">E.O-TAN-HALL</option>
                                 <option value="FAD-Accounting">FAD-Accounting</option>
                                 <option value="FAD-Budget">FAD-Budget</option>
                                 <option value="FAD-Cash">FAD-Cash</option>
-                                <option value="FAD-DO">FAD-DO</option>
                                 <option value="FAD-GSS">FAD-GSS</option>
+                                <option value="FAD-GSS-Canteen">FAD-GSS-Canteen</option>
+                                <option value="FAD-DO">FAD-DO</option>
                                 <option value="FAD-Personnel">FAD-Personnel</option>
                                 <option value="FAD-Property">FAD-Property</option>
+                                <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
                                 <option value="FERD">FERD</option>
+                                <option value="GSS-Building">GSS-Building</option>
+                                <option value="Grounds-Motorpool">Grounds-Motorpool</option>
+                                <option value="Grounds-Staff Housing">Grounds-Staff Housing</option>
+                                <option value="Grounds-Main">Grounds-Main</option>
+                                <option value="Grounds-Near-Executive-Housing">Grounds-Near-Executive-Housing</option>
                                 <option value="IARRD">IARRD</option>
                                 <option value="IDD">IDD</option>
                                 <option value="LRD">LRD</option>
-                                <option value="MISD">MISD</option>
-                                <option value="MRRD">MRRD</option>
-                                <option value="OED">OED</option>
-                                <option value="OED-ARMSS">OED-ARMSS</option>
-                                <option value="OED-RD">OED-RD</option>
-                                <option value="PCMD">PCMD</option>
-                                <option value="TTPD">TTPD</option>
-                                <option value="SERD">SERD</option>
-                                <option value="Staff Housing">Staff Housing</option>
+                                <option value="MAIN-GATE">MAIN-GATE</option>
+                                <option value="Not_Available">Not_Available</option>
+
                             </select>
                         </div>
 
@@ -906,15 +974,19 @@
                         <div class="editForm-column-input">
                             <label for="condition">Condition</label>
                             <select id="edit_condition" name="condition" class="input-type-text">
-                                <option selected>Select Condition</option>
-                                <option value="For Donation" title="For Donation">FD</option>
-                                <option value="Good Condition" title="Good Condition">GC</option>
-                                <option value="Needs Repair" title="Needs Repair">NR</option>
-                                <option value="No Longer Needed" title="No Longer Needed">NLN</option>
-                                <option value="Poor Condition" title="Poor Condition">PC</option>
-                                <option value="Serviceable w/ Minor Defect" title="Serviceable w/ Minor Defect">SMD</option>
-                                <option value="Unserviceable" title="Unserviceable">Uns</option>
-                                <option value="Very Good" title="Very Good">VG</option>
+                            <option selected>Select Condition</option>
+                            <option value="Disposed" title="Disposed">Disposed</option>
+                            <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
+                            <option value="For Disposal" title="For Disposal">For Disposal</option>
+                            <option value="For Donation" title="For Donation">For Donation</option>
+                            <option value="Good Condition" title="Good Condition">Good Condition</option>
+                            <option value="Need Repair" title="Need Repair">Need Repair</option>
+                            <option value="No Longer Needed" title="No Longer Needed">No Longer Needed</option>
+                            <option value="Poor Condition" title="Poor Condition">Poor Condition</option>
+                            <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
+                            <option value="Very Good" title="Very Good">Very Good</option>
+                            <option value="Not_Available" title="Not Available">Not_Available</option>
+
                             </select>
 
 
@@ -1035,7 +1107,7 @@
 
 <script>
 
-const rowsPerPage = 10; // Number of rows to display per page
+const rowsPerPage = 20; // Number of rows to display per page
 let currentPage = 1;
 const maxPaginationButtons = 3; // Maximum pagination buttons to display
 let allData = @json($ppes); // Original data from server
@@ -1193,26 +1265,107 @@ function updateUserDropdown(event) {
 
     // Define division-to-user mapping
     const usersByDivision = {
-        "ACD": ["Boniceli, Jayson Welf N.", "Casimero, Rebmark G.", "Marcon, Angeli May A."],
-        "ARMRD": ["Cosico, Venice Laurence N.", "Regulacion, Jan Wilfred M.", "Evangelista, Misty Mae M."],
-        "CRD": ["Lamano, Netnet D.", "Ignacio, Rhesa Miren A.", "De Castro, Rosemaries A."],
-        "FAD-Accounting": ["Manacop, Michelin B.", "Estanislao, Jenylou A.", "Balagat, Maeanne Lois H."],
-        "FAD-Budget": ["Banasihan, Samantha L.", "Vega, Mary Jane M.", "Bing"],
-        "FAD-Cash": ["Daza, Van Eric L.", "Ramos, Heidi", "Dory"],
-        "FAD-DO": ["Ocier, Mary Jane", "Balita, Maria Lea Preciosa E.", "Amaro, Joenard M."],
-        "FAD-GSS": ["Anda, Zoilo E.", "Balagat, Marion Clark H.", "Gregorio, Edicel C."],
-        "FAD-Personnel": ["Maglalang, Jasmin Rose D.", "Sobrevega Jr., Marcelino V.", "Reyes, Hannah Joy D."],
-        "FAD-Property": ["ManabaT Jr., Narciso M.", "Bello, Mark Anthony M.", "Revera, Jovan B."],
-        "FERD": ["Lee, Sanica Louise O."],
-        "IARRD": ["Sudayan, Gabrielle E."],
-        "IDD": ["Abad, Ma. Kimberly T.", "Paclibar, Leovil N.", "Manaay, Jannete G."],
-        "MISD": ["Villar, Normaine T.", "Cambay, Jan Andrei V.", "Quintos, JC Carlo DG."],
-        "OED": ["Abella, Rothciv R.", "Vallejo, Martha Lois O."],
-        "OED-ARMSS": ["Adique, Micah Angelica V.", "Arellano, Christhaline A."],
-        "OED-RD": ["De los Santos, Ainjel M.", "Escala, Tristan Jayson"],
-        "PCMD": ["Caraca, Maria Virginia F."],
-        "TTPD": ["Eugenio, Eunice E."],
-        "SERD": ["Tandang, Jhoanna Imee L."]
+
+        "ACD": ["Alberto, Pepito G.", "Belen, Maria Adelia C.", "Caparas, Pauline Davis E.", "De Castro, Rosemarie A.", 
+        "De Guzman, Kristine Joy P.", "Deseo, Nenet B.", "Deseo, Netnet B.", "Ibarra, Alissa Carol M.", 
+        "Ignacio, Rhesa Miren A.", "Lambio, Roscelia M.", "Locsin, Kimberly Zarah B.", "Lubang, Sahrie Al-Faiha A.", 
+        "Lubang, Sharie Al-Faiha A.", "Macaraeg, John Aaron Mark V.", "Naval, Ervin M.", "Odejar, Fredric M.", 
+        "Palma, Ireneo B.", "Panganiban, Joel Norman R.", "Penido, Eiros Colins R.", "Pelegrina, Leilani D.", 
+        "Plata, Joan May B.", "Rasgo, Maria Rae Lynne J.", "Recote, Jessa May Q.", "Reyes, Lilia V.", 
+        "Samson, Erika E.", "Sustrina, Brian Angelo R.", "Yebron, Renelle C.", "Not_Available"],
+
+        "ARMRD": ["Abuan, Catherine R.", "Balbieran, Sarah Hazel M.", "De Guzman, Maria Teresa L.", "Domingo, Ofelia F.", 
+        "Evangelista, Misty Mae M.", "Remoquillo, Cynthia P.", "Santiago, Romeo P.", "Villarma, Kathleen Faith Jay O."],
+
+        "COA": ["Abordo, Cindy Faith R.", "Rosete, Edlyne A."],
+
+        "CRD": ["Alberto, Pepito G.", "Belen, Maria Adelia C.", "Caparas, Pauline Davis E.", "De Castro, Rosemarie A.", 
+        "De Guzman, Kristine Joy P.", "Deseo, Netnet B.", "Ibarra, Alissa Carol M.", "Ignacio, Rhesa Miren A.", 
+        "Lambio, Roscelia M.", "Locsin, Kimberly Zarah B.", "Lubang, Sharie Al-Faiha A.", "Macaraeg, John Aaron Mark V.", 
+        "Naval, Ervin M.", "Odejar, Fredric M.", "Palma, Ireneo B.", "Panganiban, Joel Norman R.", 
+        "Penido, Eiros Colins R.", "Pelegrina, Leilani D.", "Plata, Joan May B.", "Rasgo, Maria Rae Lynne J.", 
+        "Recote, Jessa May Q.", "Reyes, Lilia V.", "Samson, Erika E.", "Sustrina, Brian Angelo R.", 
+        "Yebron, Renelle C.", "Not_Available"], 
+
+        "DPITC-ACD": ["Borcena, Bhia Mitchie T.", "De Ramos, Marina T.", "Longamen, Juan Carlo J.", "Leron, Paul Jersey G.", 
+        "Valencia, Erwin Cris D."],
+
+        "DPITC-MISD": ["Dalisay, Richard O."],
+
+        "DPITC-OED-ARMSS": ["No Names Available"],
+
+        "DPITC-TTPD": ["Dalisay, Richard O."],
+
+        "FAD-Accounting": ["Balagat, Maeanne Lois H.", "Estanislao, Jenylou A.", "Manacop, Michelin B.", "Manalang, Eugene S.", 
+        "Tabadero, Jaivee Ann M"],
+
+        "FAD-Budget": ["Banasihan, Samantha L.", "Garcia, Susan G.", "Lapitan, Ma. Eleanor S.", "Vega, Mary Jane M."],
+
+        "FAD-Cash": ["Camposano, Rhodora G.", "Daza, Van Eric L.", "Lajara, Ma. Ester Catalina V.", "Ramos, Heidi"],
+
+        "FAD-DO": ["Amaro, Joenard M.", "Balita, Maria Lea Preciosa E.", "Ocier, Mary Jane" ],
+
+        "FAD-GSS": ["Anda, Zoilo E.", "Balagat, Marion Clark H.", "Gregorio, Edicel C.", "Oleta, Armand J."],
+        
+        "FAD-Personnel": ["Lawas, Georgia M.", "Maglalang, Jasmin Rose D.", "Reyes, Hannah Joy D.", "Sobrevega Jr., Marcelino V.", 
+        "Visperas, Rommel V."],
+
+        "FAD-Property": ["Bello, Mark Anthony M.", "Carpio, Jovenette L.", "ManabaT Jr., Narciso M.", "Manalo, Jose Raymond A.", 
+        "Revera, Jovan B."],
+
+        "FAD-Property-Stock-Room": ["Alo, Anna Marie P.", "Batalon, Juanito T.", "Dalisay, Richard O.", "Delos Reyes, Shein Ann R.", 
+        "Santiago, Christine D.", "Torreta, Nimfa K."],
+
+        "FERD": ["Almanza, Rosemarie L.", "Cabral, Dalisay E.", "Opeña, Aster H.", "Martinez, Jenna Mae R.", "Santiago, Christine D.", 
+        "Torreta, Nimfa K.", "Zuñiga, John Benrich M."],
+
+        "IARRD": ["Almazan, Cynthia V.", "Calpe, Adelaida T.", "Gahon, Shirley", "Igcasan, Mary Ann A.", "Mero, Fedelia Flor C.", 
+        "Not_Available", "Olaer, Geraldin Mae D.", "Ramonan, Rizza B.", "Salac, Virna G.", "Tandang, Kristine Joy L.", 
+        "Valguna, Janet Jane S."],
+
+        "IDD": ["Alcantara, Victor P.", "Asilo, Eriza", "Baguio, Synan S.", "Buenaobra, Salvador S.", 
+        "Caparas, Michelle P.", "Decena, Fezoil Luz C.", "Delos Reyes, Sherwin R.", "Lastimosa, Wilmar J.", "Laranas, Jesselle S.", 
+        "Laquinon, Rowena Rita B.", "Libit, Precious D.", "Manacsa, Jemuel I.", "Oleta, Armand J.", "Paclibar, Leovil N.", 
+        "Pasuquin, Donnalyn M.", "Saluta, Joseph T.", "Sumiran, Darryl C.", "Tanqueco, Ruel Carlo L."],
+
+        "LRD": ["Alo, Anna Marie P.", "Baguio, Synan S.", "Catelo, Ariane Shane DC", "Collado, Aleli A.", "Cristobal, Adrian P.", 
+        "De Castro, Ronilo O.", "Dayo, Marites R.", "Fule, Glenda P.", "Llamas, Rundolfo P.", "Mendoza, Stephen A.", 
+        "Parungao, Alfredo Ryenel M.", "Perez, Eric P."],
+
+        "MISD": ["Amansec, Richard E.", "Camposano, John Ross L.", "Cambay, Jan Andrei V.", "Dalisay, Richard O.", 
+        "Diaz, Mark Anthony M.", "Leaño, Cecilia B.", "Legaspi, Paula Mari M.", "Manzanilla, Ricaredo V.", "Mulimbayan, Rick Adrian A.", 
+        "Pasuquin, Marielle J.", "Supan, Kris Marion R."],
+
+        "MRRD": ["Acedera, Mari-Ann M.", "Asajar, Jerwin D.", "Barrion, Dan Carlo B.", "Barrion, Dan Carlo N.", "Corpuz, Ma. Adela C.", 
+        "De Vera, Michelle A.", "Escarez, Rosalinda D.", "Odemer, Hannah May B.", "Redera, Eileen M.", "Samonte, Preciosa C.", 
+        "Trinidad, Jaypee G."],
+
+        "OED": ["Afalla Jr., Eugenio G.", "Ebora, Reynaldo V.", "Garcia Jr., Norberto", "Leyciso, Maria Cecilia R.", 
+        "Peralta, Victoria Athena D.", "Suarez, Dolores N.", "Vallejo, Martha Lois O.", 
+        "Zuraek, Jobelle Mae L."],
+
+        "OED-ARMSS": ["Adique, Micah Angelica V.", "Carlos, Melvin B.", "Centeno, Pamela Marie A.", "Falcon, Fermella Emily B.", 
+        "Garcia, Marjorie M.", "Gonzaga, Janela Rances R.", "Lamano, Ronald John L.", "Lapitan, Aileen L.", "Legaspi Jr., Pascasio", 
+        "Limosinero, Renelaine E.", "Nuñez, Mia M.", "Panganiban, Jeremie", "Palacpac, Lyanne B.", "Surara, Christie A."],
+
+        "OED-RD": ["Afalla, Monaliza B.", "Bandong, Esther Gayle M.", "Gallarte, Lino", "Lameyra, Leandro C.", 
+        "Lebornio, Charmi Uellin P.", "Reyes, Ruth Danica A.", "Samonte, Anna Cristina R.", "San Luis, Josette B.", 
+        "Tandang, Jean Camille V.", "Tandang, Pamela Anne V."],
+
+
+        "PCMD": ["Banganan, Azel Glory C.", "Bebis Jr., Alfredo I.", "Bondoc, Lilian G.", "Lim, Cyrill E.", "Parducho, Rowena A.", 
+        "Sabarias, Mussaenda G.", "Tamis, Alexandra E."],
+
+        "SERD": ["Abeleda, Meliza F.", "Bandoles, Genny G.", "Bautista, Charisse C.", "Brown, Ernesto O.", "Castillo, Monica B.", 
+        "Colobong, Shaliemae L. (R. Candano)", "Colobong, Shalimae L.", "Correa, Aleta Belissa D. (V. Fernandez)", 
+        "Curibot, Janine P.", "Dimagiba, Ezequiel R.", "Fernandez, Vincent M.", "Gevaña, Mikaela Marie B.", 
+        "Horigue, Malen Maree A.", "Inoceno, Rochelle L.", "Lapitan, Emil Rey B.", "Madrigal, El Vic R.", 
+        "Manzano, Christian John M.", "Morada, Kyle Cristel D.", "Puntanar, Jennifer", "Salem, Kalthem Salem B.", 
+        "Suizo, Maritoni B.", "Tamis, Alexandra E.", "Tobias, Annette M.", "Trillana, Charmaine Angela B.", "Zara, John Ceddrix."],
+
+        "TTPD": ["Borja, Alexander John D.", "Dagaas, Mae A.", "Diaz, Analiza C.", "Lalican, Engelbert D.", "Lizaba, Ma. Alexie D.", 
+        "Resuello, Rubiriza DC.", "Tandang, Imelda L.", "Tanyag, Yolanda M."]
+
     };
 
     // Populate dropdown with users based on selected division

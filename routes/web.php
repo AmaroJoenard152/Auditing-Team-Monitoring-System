@@ -41,3 +41,7 @@ Route::get('/ppe', [PpeController::class, 'showPpe'])->name('inventory.ppe');
 Route::get('/deletePpe/{id}', [PpeController::class, 'deletePpe'])->name('inventory.ppe');
 Route::get('/updatePpe/{id}', [PpeController::class, 'updatePpe'])->name('inventory.ppe');
 Route::post('/savePpe/{id}', [PpeController::class, 'savePpe'])->name('inventory.ppe');
+<<<<<<< HEAD
+=======
+Route::get('/searchPpe', [PpeController::class, 'searchPpe'])->name('inventory.ppe');
+>>>>>>> feature/INT-16

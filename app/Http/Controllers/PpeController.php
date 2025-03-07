@@ -92,4 +92,46 @@ class PpeController extends Controller
     
         return redirect('/ppe');
     }
+
+
+
+    public function searchPpe(Request $request)
+    {
+        $searchValue = $request->input('search_ppe');
+    
+        // Retrieve the PPE records based on the search criteria
+        $ppes = Ppe::where('division', 'LIKE', "%$searchValue%")
+            ->orWhere('user', 'LIKE', "%$searchValue%")
+            ->orWhere('property_type', 'LIKE', "%$searchValue%")
+            ->orWhere('article_item', 'LIKE', "%$searchValue%")
+            ->orWhere('description', 'LIKE', "%$searchValue%")
+            ->orWhere('new_pn', 'LIKE', "%$searchValue%")
+            ->orWhere('unit_value', 'LIKE', "%$searchValue%")
+            ->orWhere('quantity_property', 'LIKE', "%$searchValue%")
+            ->orWhere('quantity_physical', 'LIKE', "%$searchValue%")
+            ->orWhere('condition', 'LIKE', "%$searchValue%")
+            ->orWhere('status', 'LIKE', "%$searchValue%")
+            ->get()
+            ->map(function ($ppe) {
+                return [
+                    'division' => $ppe->division,
+                    'user' => $ppe->user,
+                    'property_type' => $ppe->property_type,
+                    'article_item' => $ppe->article_item,
+                    'description' => $ppe->description,
+                    'new_pn' => $ppe->new_pn,
+                    'unit_value' => $ppe->unit_value,
+                    'quantity_property' => $ppe->quantity_property,
+                    'quantity_physical' => $ppe->quantity_physical,
+                    'condition' => $ppe->condition,
+                    'status' => $ppe->status,
+                    'id' => $ppe->id,
+                ];
+            });
+    
+        return response()->json($ppes);
+    }
+    
+
+
 }

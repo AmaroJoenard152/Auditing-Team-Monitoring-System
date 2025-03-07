@@ -47,8 +47,8 @@
     padding: 10px 0px 10px 0px;
     border: 2px solid #ddd;
     /* width: fit-content; */
-    width: 950px;
-    height: 450px;
+    width: 900px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -69,23 +69,23 @@
 .input-type-text {
     width: 90%;
     padding: 8px 10px;
-    margin: 10px 0;
+    margin: 15px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    height: 12%;
+    height: 10%;
 }
 
 .input-type-date {
     width: 90%;
     padding: 8px 10px;
-    margin: 10px 0;
+    margin: 15px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    height: 12%;
+    height: 10%;
 }
 
 

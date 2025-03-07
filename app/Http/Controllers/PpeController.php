@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ppe;
+use App\Models\PpeHistory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+
 
 class PpeController extends Controller
 {
@@ -37,13 +39,12 @@ class PpeController extends Controller
 
     public function showPpe()
     {
-        // Fetch all vouchers from the database
         $ppes = Ppe::all();
-
-        // Pass the vouchers to the view
-        return view('inventory.ppe', ['ppes' => $ppes]);
+        $editHistory = PpeHistory::orderBy('edited_at', 'desc')->get();
+    
+        return view('inventory.ppe', compact('ppes', 'editHistory'));
     }
-
+    
     public function deletePpe($id)
     {
         $ppe = Ppe::find($id);
@@ -188,6 +189,7 @@ class PpeController extends Controller
     
         return Response::stream($callback, 200, $headers);
     }
-     
+
+    
 
 }

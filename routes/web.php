@@ -37,8 +37,8 @@ Route::get('/searchVoucher', [DisbursementVoucherController::class, 'searchVouch
 
 
 Route::post('/submitPpe', [PpeController::class, 'submitPpe'])->name('inventory.ppe');
-Route::get('/ppe', [PpeController::class, 'showPpe'])->name('inventory.ppe');
 Route::get('/deletePpe/{id}', [PpeController::class, 'deletePpe'])->name('inventory.ppe');
 Route::get('/updatePpe/{id}', [PpeController::class, 'updatePpe'])->name('inventory.ppe');
 Route::post('/savePpe/{id}', [PpeController::class, 'savePpe'])->name('inventory.ppe');
 Route::get('/searchPpe', [PpeController::class, 'searchPpe'])->name('inventory.ppe');
+Route::get('/ppe/history', [PpeController::class, 'showPpe']); // Use the same function for showPpe and showPpeHistory

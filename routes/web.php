@@ -38,4 +38,8 @@ Route::get('/searchVoucher', [DisbursementVoucherController::class, 'searchVouch
 
 Route::post('/submitPpe', [PpeController::class, 'submitPpe'])->name('inventory.ppe');
 Route::get('/ppe', [PpeController::class, 'showPpe'])->name('inventory.ppe');
+<<<<<<< HEAD
 Route::get('/deletePpe/{id}', [PpeController::class, 'deletePpe'])->name('inventory.ppe');
+=======
+Route::get('/deletePpe/{id}', [PpeController::class, 'deletePpe'])->name('inventory.ppe');
+>>>>>>> feature/INT-12

@@ -251,64 +251,58 @@
         <!-- DV TABLE --->
 
         <div class="div-table-container">
-        <table class="table-content" id="ppe-table">
-            <thead>
-                <tr>
-                    <th>Division</th>
-                    <th>User</th>
-                    <th>Property Type</th>
-                    <th>Article/Item</th>
-                    <th>Description</th>
-                    <th>Old PN Number</th>
-                    <th>New PN Number</th>
-                    <!-- <th>Unit of Meas.</th> -->
-                    <th>Unit Value</th>
-                    <th>Quantity (Property Card)</th>
-                    <!-- <th>Quantity (Physical Count)</th> -->
-                    <!-- <th>Previous Location/Whereabouts</th> -->
-                    <th>Current Location/Whereabouts</th>
-                    <th>Condition</th>
-                    <!-- <th>Remarks</th> -->
-                    <!-- <th>Date Acquired</th> -->
-                    <th>View</th>
-                    <th>Delete</th>
-                    <th>Update</th>
-                </tr>
-            </thead>
+            <table class="table-content" id="ppe-table">
+                <thead>
+                    <tr>
+                        <th>Division</th>
+                        <th>User</th>
+                        <th>Property Type</th>
+                        <th>Article/Item</th>
+                        <th>Description</th>
+                        <th>Old PN Number</th>
+                        <th>New PN Number</th>
+                        <!-- <th>Unit of Meas.</th> -->
+                        <th>Unit Value</th>
+                        <th>Quantity (Property Card)</th> 
+                        <!-- <th>Quantity (Physical Count)</th> -->
+                        <!-- <th>Previous Location/Whereabouts</th> -->
+                        <th>Current Location/Whereabouts</th>
+                        <th>Condition</th>
+                        <!-- <th>Remarks</th> -->
+                        <!-- <th>Date Acquired</th> -->
+                        <th>View</th>
+                        <th>Delete</th>
+                        <th>Update</th>
+                    </tr>
+                </thead>
 
-            <tbody id="table-body">
-                @foreach($ppes as $ppe)
-                <tr>
-                    <td>${ppe.division || ''}</td>
-                    <td>${ppe.user || ''}</td>
-                    <td>${ppe.property_type || ''}</td>
-                    <td>${ppe.article_item || ''}</td>
-                    <td>${ppe.description || ''}</td>
-                    <td>${ppe.old_pn || ''}</td>
-                    <td>${ppe.new_pn || ''}</td>
-                    <td>${ppe.unit_meas || ''}</td>
-                    <td>${ppe.unit_value || ''}</td>
-                    <td>${ppe.quantity_property || ''}</td>
-                    <td>${ppe.location || ''}</td>
-                    <td>${ppe.condition || ''}</td>
+                <tbody id="table-body">
+                    @foreach($ppes as $ppe)
+                    <tr>
+                        <td>{{$ppe->division}}</td>
+                        <td>{{$ppe->user}}</td>
+                        <td>{{$ppe->property_type}}</td>
+                        <td>{{$ppe->article_item}}</td>
+                        <td>{{$ppe->description}}</td>
+                        <td>{{$ppe->old_pn}}</td>
+                        <td>{{$ppe->new_pn}}</td>
+                        <!-- <td>{{$ppe->unit_meas}}</td> -->
+                        <td>{{$ppe->unit_value}}</td>
+                        <td>{{$ppe->quantity_property}}</td>
+                        <!-- <td>{{$ppe->quantity_physical}}</td> -->
+                        <td>{{$ppe->location}}</td>
+                        <td>{{$ppe->condition}}</td>
+                        <!-- <td>{{$ppe->remarks}}</td> -->
+                        <!-- <td>{{$ppe->date_acq}}</td> -->
 
-                    <td>
-                        <a href="javascript:void(0)" onclick="showPpeDetails(${JSON.stringify(ppe).replace(/"/g, '&quot;')})">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                            </svg>
-                        </a>
-                    </td>
 
-<<<<<<< HEAD
                         <td> 
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                        </svg>
-
+                            <a onclick="">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                                </svg>
+                            </a>
                         </td>
 
                         <td>
@@ -356,24 +350,6 @@
                     @endforeach
                 </tbody>
             </table>
-=======
-                    <td>
-                        <a onclick="return confirm('Are you sure you want to delete this?');" href="/deletePpe/${ppe.id}">
-                            <!-- Delete SVG -->
-                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M14 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
->>>>>>> feature/INT-12
         </div>
 
         <!-- DV TABLE --->
@@ -490,100 +466,78 @@
 
 
 
+    
+    <!-- Edit Modal -->
+    <div class="overlay" id="editOverlay"></div>
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <form id="editForm" method="POST" action="">
+                @csrf
+                <input type="hidden" name="id" id="editVoucherId">
 
-    <!-- View Modal -->
-    <div class="overlay" id="ppeModal"></div>
-        <div id="viewDvModal" class="modal">
-        <div class="modal-content">  
-            <div class="input-dv-container">
-                <span class="close" onclick="closeViewPopup()">&times;</span>
-                <div class="form-row-input">
-                    <!-- First Column -->
-                    <div class="form-column-input"> 
-                        <label for="division">Division</label>
-                        <select id="view_division" name="division" class="input-type-text" disabled>
-                            <option selected>Select Division</option>
-                            <option value="FAD-Personnel">FAD-Personnel</option>
-                            <option value="FAD-Accounting">FAD-Accounting</option>
-                            <option value="FAD-DO">FAD-DO</option>
-                            <option value="FAD-Property">FAD-Property</option>
-                        </select>
+                <div class="editForm-input-container">
+                    <span class="close" onclick="closeEditPopup()">&times;</span>
+                    <div class="editForm-row-input">
+                        <div class="editForm-column-input">
+                            <label>Month</label>
+                            <select id="edit_month_" name="month_" class="input-type-text">
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
 
-                        <label for="user">User</label>
-                        <input type="text" id="view_user" name="user" class="input-type-text" disabled>
+                            <label>Document Type</label>
+                            <select id="edit_doc_" name="doc_" class="input-type-text">
+                                <option value="CD">CD</option>
+                                <option value="RCD">RCD</option>
+                                <option value="LCA">LCA</option>
+                                <option value="GJ">GJ</option>
+                                <option value="RCI">RCI</option>
+                                <option value="MCB">MCB</option>
+                                <option value="SPR">SPR</option>
+                            </select>
 
-                        <label for="property_type">Property Type</label>
-                        <select id="view_property_type" name="property_type" class="input-type-text" disabled>
-                            <option selected>Select Property Type</option>
-                            <option value="ICT">ICT</option>
-                            <option value="Office Equipment">Office Equipment</option>
-                        </select>
 
-                        <label for="article_item">Article/Item</label>
-                        <select id="view_article_item" name="article_item" class="input-type-text" disabled>
-                            <option selected>Select Article/Item</option>
-                            <option value="Laptop">Laptop</option>
-                            <option value="Desktop">Desktop</option>
-                        </select>
-                    </div>
+                            <label>Code</label>
+                            <input type="text" id="edit_code_no" name="code_no" class="input-type-text">
 
-                    <!-- Second Column -->
-                    <div class="form-column-input"> 
-                        <label for="description">Description</label>
-                        <input type="text" id="view_description" name="description" class="input-type-text" disabled>
+                            <label>Folder No.</label>
+                            <input type="text" id="edit_folder" name="folder" class="input-type-text">
 
-                        <label for="old_pn">Old PN Number</label>
-                        <input type="text" id="view_old_pn" name="old_pn" class="input-type-text" disabled>
+                            <label>Account No.</label>
+                            <input type="text" id="edit_account_no" name="account_no" class="input-type-text">
+                        </div>
 
-                        <label for="new_pn">New PN Number</label>
-                        <input type="text" id="view_new_pn" name="new_pn" class="input-type-text" disabled>
+                        <div class="editForm-column-input">
+                            <label>RADAI/RCI Report No.</label>
+                            <input type="text" id="edit_radai" name="radai" class="input-type-text">
 
-                        <label for="unit_meas">Unit of Meas.</label>
-                        <input type="text" id="view_unit_meas" name="unit_meas" class="input-type-text" disabled>
-                    </div>
+                            <label>LDDAP-ADA / Check No.</label>
+                            <input type="text" id="edit_lddap" name="lddap" class="input-type-text">
 
-                    <!-- Third Column -->
-                    <div class="form-column-input"> 
-                        <label for="unit_value">Unit Value</label>
-                        <input type="text" id="view_unit_value" name="unit_value" class="input-type-text" disabled>
+                            <label>Total Amount</label>
+                            <input type="text" id="edit_total_amount" name="total_amount" class="input-type-text">
 
-                        <label for="quantity_property">Quantity (Property Card)</label>
-                        <input type="text" id="view_quantity_property" name="quantity_property" class="input-type-text" disabled>
+                            <label>Date Received</label>
+                            <input type="date" id="edit_date_received" name="date_received" class="input-type-date">
 
-                        <label for="quantity_physical">Quantity (Physical Count)</label>
-                        <input type="text" id="view_quantity_physical" name="quantity_physical" class="input-type-text" disabled>
-
-                        <label for="location">Location/Whereabouts</label>
-                        <select id="view_location" name="location" class="input-type-text" disabled>
-                            <option selected>Select Location/Whereabouts</option>
-                            <option value="FAD-Personnel">FAD-Personnel</option>
-                            <option value="FAD-Accounting">FAD-Accounting</option>
-                            <option value="FAD-DO">FAD-DO</option>
-                            <option value="FAD-Property">FAD-Property</option>
-                        </select>
-                    </div>
-
-                    <!-- Fourth Column -->
-                    <div class="form-column-input"> 
-                        <label for="condition">Condition</label>
-                        <select id="view_condition" name="condition" class="input-type-text" disabled>
-                            <option selected>Select Condition</option>
-                            <option value="Good Condition">Good Condition</option>
-                            <option value="Unserviceable">Unserviceable</option>
-                        </select>
-
-                        <label for="remarks">Remarks</label>
-                        <input type="text" id="view_remarks" name="remarks" class="input-type-text" disabled>
-
-                        <label for="date_acq">Date Acquired</label>
-                        <input type="date" id="view_date_acq" name="date_acq" class="input-type-date" disabled>
+                            <input type="submit" value="Save" class="dv-submit-button">
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-    <!-- View Modal -->
-
+    <!-- Edit Modal -->
 
 
 </body>
@@ -612,6 +566,40 @@ window.onclick = function(event) {
     }
 }
 
+// Edit Modal Handling
+var editModal = document.getElementById("editModal");
+var editOverlay = document.getElementById("editOverlay");
+
+function editVoucher(voucher) {
+    document.getElementById('editVoucherId').value = voucher.id;
+    document.getElementById('edit_month_').value = voucher.month_;
+    document.getElementById('edit_doc_').value = voucher.doc_;
+    document.getElementById('edit_code_no').value = voucher.code_no;
+    document.getElementById('edit_folder').value = voucher.folder;
+    document.getElementById('edit_account_no').value = voucher.account_no;
+    document.getElementById('edit_radai').value = voucher.radai;
+    document.getElementById('edit_lddap').value = voucher.lddap;
+    document.getElementById('edit_total_amount').value = voucher.total_amount;
+    document.getElementById('edit_date_received').value = voucher.date_received;
+
+    // Set the form action dynamically
+    document.getElementById('editForm').action = `/saveVoucher/${voucher.id}`;
+
+    editModal.style.display = "block";
+    editOverlay.style.display = "block";
+}
+
+
+function closeEditPopup() {
+    editModal.style.display = "none";
+    editOverlay.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == editOverlay) {
+        closeEditPopup();
+    }
+}
 
 
 const rowsPerPage = 5;  // Adjust the number of rows to display per page
@@ -647,47 +635,19 @@ function sortDataTable(data) {
     });
 }
 
-function showPpeDetails(ppe) {
-        // Populate the modal fields with PPE data
-        document.getElementById('view_division').value = ppe.division || 'Select Division';
-        document.getElementById('view_user').value = ppe.user || '';
-        document.getElementById('view_property_type').value = ppe.property_type || 'Select Property Type';
-        document.getElementById('view_article_item').value = ppe.article_item || 'Select Article/Item';
-        document.getElementById('view_description').value = ppe.description || '';
-        document.getElementById('view_old_pn').value = ppe.old_pn || '';
-        document.getElementById('view_new_pn').value = ppe.new_pn || '';
-        document.getElementById('view_unit_meas').value = ppe.unit_meas || '';
-        document.getElementById('view_unit_value').value = ppe.unit_value || '';
-        document.getElementById('view_quantity_property').value = ppe.quantity_property || '';
-        document.getElementById('view_quantity_physical').value = ppe.quantity_physical || '';
-        document.getElementById('view_location').value = ppe.location || 'Select Location/Whereabouts';
-        document.getElementById('view_condition').value = ppe.condition || 'Select Condition';
-        document.getElementById('view_remarks').value = ppe.remarks || '';
-        document.getElementById('view_date_acq').value = ppe.date_acq || '';
-    
-        // Show the modal
-        document.getElementById('ppeModal').style.display = 'block';
-        document.getElementById('viewDvModal').style.display = 'block';
-    }
-    
-    // Function to close the modal
-    function closeViewPopup() {
-        document.getElementById('ppeModal').style.display = 'none';
-        document.getElementById('viewDvModal').style.display = 'none';
-    }
-
 function updateTableRows() {
     const tableBody = document.getElementById('table-body');
-    tableBody.innerHTML = ''; // Clear current table rows
+    tableBody.innerHTML = '';  // Clear current table rows
 
     const sortedData = sortDataTable(filteredData);
 
     const start = (currentPage - 1) * rowsPerPage;
     const end = start + rowsPerPage;
-    const paginatedData = sortedData.slice(start, end);
+    const paginatedData = sortedData.slice(start, end);  // Paginate the sorted data
 
-    paginatedData.forEach((ppe) => {
+    paginatedData.forEach(ppe => {
         const row = document.createElement('tr');
+
         row.innerHTML = `
             <td>${ppe.division || ''}</td>
             <td>${ppe.user || ''}</td>
@@ -701,7 +661,6 @@ function updateTableRows() {
             <td>${ppe.location || ''}</td>
             <td>${ppe.condition || ''}</td>
             <td>
-<<<<<<< HEAD
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
                     <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
                     <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
@@ -721,44 +680,18 @@ function updateTableRows() {
                 </a>
             </td>
                 <!-- Edit SVG -->
-=======
-                <a href="javascript:void(0)" onclick="showPpeDetails(${JSON.stringify(ppe).replace(/"/g, '&quot;')})">
-                    <!-- View SVG -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                    </svg>
-                </a>
->>>>>>> feature/INT-12
             </td>
-                    <td>
-                        <a onclick="return confirm('Are you sure you want to delete this?');" href="/deletePpe/${ppe.id}">
-                            <!-- Delete SVG -->
-                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M14 11V17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M4 7H20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
-                    </td>
         `;
+
         tableBody.appendChild(row);
     });
 }
 
 // Initialize data and pagination
-<<<<<<< HEAD
 filteredData = initialData.slice();  // Clone the data
 updateTableRows();
 generatePaginationButtons();
 
-=======
-filteredData = initialData.slice(); // Clone the data
-updateTableRows();
-generatePaginationButtons();
->>>>>>> feature/INT-12
 
 
 </script>

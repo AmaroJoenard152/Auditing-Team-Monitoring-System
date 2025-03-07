@@ -52,8 +52,6 @@ class PpeController extends Controller
 
         return redirect()->back();
     }
-<<<<<<< HEAD
-=======
     
     public function updatePpe($id)
     {
@@ -72,9 +70,6 @@ class PpeController extends Controller
             $ppe = new Ppe();
         }
     
-<<<<<<< HEAD
->>>>>>> feature/INT-12
-=======
         $ppe->division = $request->division;
         $ppe->user = $request->user;
         $ppe->property_type = $request->property_type;
@@ -95,5 +90,4 @@ class PpeController extends Controller
     
         return redirect('/ppe');
     }
->>>>>>> feature/INT-13
 }

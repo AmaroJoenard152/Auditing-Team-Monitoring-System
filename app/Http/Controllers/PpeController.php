@@ -35,7 +35,6 @@ class PpeController extends Controller
         return redirect()->back();
     }
 
-
     public function showPpe()
     {
         // Fetch all vouchers from the database
@@ -93,8 +92,6 @@ class PpeController extends Controller
         return redirect('/ppe');
     }
 
-
-
     public function searchPpe(Request $request)
     {
         $searchValue = $request->input('search_ppe');
@@ -131,7 +128,66 @@ class PpeController extends Controller
     
         return response()->json($ppes);
     }
-    
 
+    public function dvExportCSV(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $division = $request->input('division');
+        $propertyType = $request->input('property_type');
+        $condition = $request->input('condition');
+        $status = $request->input('status');
+    
+        // Query the data based on the filters
+        $query = DB::table('ppes'); // Adjust to match your actual table
+    
+        if ($startDate && $endDate) {
+            $query->whereBetween('date_received', [$startDate, $endDate]);
+        }
+    
+        if ($division && $division !== '--All Divisions--') { // Only filter division if not "All"
+            $query->where('division', $division);
+        }
+    
+        if ($propertyType) {
+            $query->where('property_type', $propertyType);
+        }
+    
+        if ($condition) {
+            $query->where('condition', $condition);
+        }
+    
+        if ($status) {
+            $query->where('status', $status);
+        }
+    
+        $data = $query->get();
+    
+        // Generate dynamic filename
+        $filename = 'PPE_Data_' . date('Ymd') . '.csv';
+    
+        $headers = [
+            'Content-type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename=' . $filename,
+            'Pragma' => 'no-cache',
+            'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+            'Expires' => '0'
+        ];
+    
+        // Prepare the CSV for download
+        $callback = function() use ($data) {
+            $file = fopen('php://output', 'w');
+            if (!$data->isEmpty()) {
+                fputcsv($file, array_keys((array) $data[0])); // Add headers
+            }
+            foreach ($data as $row) {
+                fputcsv($file, (array) $row); // Add data
+            }
+            fclose($file);
+        };
+    
+        return Response::stream($callback, 200, $headers);
+    }
+     
 
 }

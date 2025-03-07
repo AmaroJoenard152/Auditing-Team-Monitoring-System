@@ -177,79 +177,81 @@
                 <div class="date-flex-container">
                     <!-- Left Side: Sort and Search Form -->
                     <div class="left-form-container">
-                    <form id="filterForm" method="GET" action="{{ route('export.csv') }}" class="date-form-wrapper">
+                        <form id="filterForm" class="date-form-wrapper">
                             <div class="daterange-group">
                                 <label for="search_ppe" class="date-form-label">Search</label>
                                 <input type="text" id="search_ppe" name="search_ppe" class="date-form-input">
-                                <button id="search-btn" class="form-btn submit">Search</button>
+                                <button type="button" id="search-btn" class="form-btn submit">Search</button>
                             </div>
                             <div class="daterange-group">
                                 <label for="start_date" class="date-form-label">Start Date:</label>
-                                <input type="date" id="ppe_start_date" name="start_date" class="date-form-input">
+                                <input type="date" id="start-date" name="start-date" class="date-form-input">
                             </div>
-
                             <div class="daterange-group">
                                 <label for="end_date" class="date-form-label">End Date:</label>
-                                <input type="date" id="ppe_end_date" name="end_date" class="date-form-input">
+                                <input type="date" id="end-date" name="end-date" class="date-form-input">
                             </div>
                         </form>
                     </div>
 
+
                     <!-- Right Side: Filter Form -->
                     <div class="right-form-container">
+                        <form id="filterForm" method="GET" action="{{ route('export.csv') }}" class="date-form-wrapper">
+                            <div class="date-container">
 
-                    <div class="date-container">
+                                <div class="daterange-group">
+                                    <label for="divisionDropdown" class="date-form-label">Division</label>
+                                    <select id="divisionDropdown" name="division" class="date-form-input" onchange="updateUserDropdown()">
+                                        <option selected disabled>Select Division</option>
+                                        <option value="--All Divisions--">--All Divisions--</option>
+                                        <option value="FAD-Personnel">FAD-Personnel</option>
+                                        <option value="FAD-Accounting">FAD-Accounting</option>
+                                        <option value="FAD-DO">FAD-DO</option>
+                                        <option value="FAD-Property">FAD-Property</option>
+                                    </select>
+                                </div>
 
-                            <div class="daterange-group">
-                                <label for="docDropdownSort" class="date-form-label">Division</label>
-                                <select id="divisionDropdown" name="doc" class="date-form-input">
-                                    <option value="">Select Doc</option>
-                                    <option value="FAD-Personnel" title="FAD-Personnel">FAD-Personnel</option>
-                                    <option value="FAD-Accounting" title="FAD-Accounting">FAD-Accounting</option>
-                                    <option value="FAD-DO" title="FAD-DO">FAD-DO</option>
-                                    <option value="FAD-Property" title="FAD-Property">FAD-Property</option>
-                                </select>
+
+                                <!-- <div class="daterange-group">
+                                    <label for="userDropdown" class="date-form-label">User</label>
+                                    <select id="userDropdown" name="user" class="date-form-input" disabled>
+                                        <option selected disabled>Select User</option>
+                                    </select>
+                                </div> -->
+
+
+                                <div class="daterange-group">
+                                    <label for="ptDropdown" class="date-form-label">Property Type</label>
+                                    <select id="ptDropdown" name="property_type" class="date-form-input">
+                                        <option value="">Select Property Type</option>
+                                        <option value="ICT">ICT</option>
+                                        <option value="Office Equipment">Office Equipment</option>
+                                    </select>
+                                </div>
+
+                                <div class="daterange-group">
+                                    <label for="conditionDropdown" class="date-form-label">Condition</label>
+                                    <select id="conditionDropdown" name="condition" class="date-form-input">
+                                        <option value="">Select Condition</option>
+                                        <option value="Good Condition">Good Condition</option>
+                                        <option value="Unserviceable">Unserviceable</option>
+                                    </select>
+                                </div>
+                                <div class="daterange-group">
+                                    <label for="statusDropdown" class="date-form-label">Status</label>
+                                    <select id="statusDropdown" name="status" class="date-form-input">
+                                        <option value="">Select Status</option>
+                                        <option value="Found">Found</option>
+                                        <option value="Missing">Missing</option>
+                                        <option value="Unchecked">Unchecked</option>
+                                    </select>
+                                    <button type="button" onclick="filterByDateRange()" class="form-btn submit">Apply</button>
+                                    <button onclick="dvDownloadCSV()" class="form-btn submit">Download</button>
+                                    <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
+                                </div>
                             </div>
-
-
-                            <div class="daterange-group">
-                                <label for="docDropdownSort" class="date-form-label">Property Type</label>
-                                <select id="ptDropdown" name="doc" class="date-form-input">
-                                    <option value="">Select Doc</option>
-                                    <option value="ICT" title="ICT">ICT</option>
-                                    <option value="Office Equipment" title="Office Equipment">Office Equipment</option>
-                                </select>
-                            </div>
-
-
-                            <div class="daterange-group">
-                            <label for="docDropdown" class="date-form-label">Condition</label>
-                                <select id="conditionDropdown" name="doc" class="date-form-input">
-                                    <option value="">Select Doc</option>
-                                    <option value="Good Condition" title="Good Condition">Good Condition</option>
-                                    <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
-                                </select>
-                            </div>
-                                
-                                
-                            <div class="daterange-group">
-                            <label for="docDropdown" class="date-form-label">Status</label>
-                                <select id="conditionDropdown" name="doc" class="date-form-input">
-                                    <option selected>Select Status</option>
-                                    <option value="Found">Found</option>
-                                    <option value="Missing">Missing</option>
-                                    <option value="Unchecked">Unchecked</option>
-                                </select>
-
-                                <button type="button" onclick="" class="form-btn submit">Apply</button>
-                                <button onclick="" class="form-btn submit">Download</button>
-                                <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
-
-                                
-                                <div id="tooltip" class="tooltip"></div>
-                            </div>
-
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -715,6 +717,7 @@
 var inputModal = document.getElementById("inputDvModal");
 var inputOverlay = document.getElementById("inputOverlay");
 
+
 function inputDvModal() {
     inputModal.style.display = "block";
     inputOverlay.style.display = "block";
@@ -733,37 +736,55 @@ window.onclick = function(event) {
 
 
 
-function updateUserDropdown() {
-        const division = document.getElementById('division').value;
-        const userDropdown = document.getElementById('user');
+function updateUserDropdown(event) {
+    // Get the ID of the triggered division dropdown
+    const divisionDropdown = event.target;
+    const selectedDivision = divisionDropdown.value;
 
-        // Clear previous options
-        userDropdown.innerHTML = '<option selected disabled>Select User</option>';
-
-        // Enable the dropdown
-        userDropdown.disabled = false;
-
-        // Define division-to-user mapping
-        const usersByDivision = {
-            "FAD-Personnel": ["Jas", "Marci", "Tina"],
-            "FAD-Accounting": ["MaeAnne", "Jen", "Jaivee"],
-            "FAD-DO": ["Jane", "Precious", "Joenard"],
-            "FAD-Property": ["Nars", "Aileen", "Nette"]
-        };
-
-        // Populate dropdown with users based on selected division
-        if (usersByDivision[division]) {
-            usersByDivision[division].forEach(user => {
-                const option = document.createElement('option');
-                option.value = user;
-                option.textContent = user;
-                userDropdown.appendChild(option);
-            });
-        } else {
-            // Disable dropdown if no valid division selected
-            userDropdown.disabled = true;
-        }
+    // Determine the corresponding user dropdown
+    let userDropdown;
+    if (divisionDropdown.id === 'division') {
+        userDropdown = document.getElementById('user');
+    } else if (divisionDropdown.id === 'divisionDropdown') {
+        userDropdown = document.getElementById('userDropdown');
     }
+
+    if (!userDropdown) return;
+
+    // Clear previous options
+    userDropdown.innerHTML = '<option selected disabled>Select User</option>';
+
+    // Enable the dropdown
+    userDropdown.disabled = false;
+
+    // Define division-to-user mapping
+    const usersByDivision = {
+        "FAD-Personnel": ["Jas", "Marci", "Tina"],
+        "FAD-Accounting": ["MaeAnne", "Jen", "Jaivee"],
+        "FAD-DO": ["Jane", "Precious", "Joenard"],
+        "FAD-Property": ["Nars", "Aileen", "Nette"]
+    };
+
+    // Populate dropdown with users based on selected division
+    if (usersByDivision[selectedDivision]) {
+        usersByDivision[selectedDivision].forEach(user => {
+            const option = document.createElement('option');
+            option.value = user;
+            option.textContent = user;
+            userDropdown.appendChild(option);
+        });
+    } else {
+        // Disable dropdown if no valid division is selected
+        userDropdown.disabled = true;
+    }
+}
+
+// Attach event listeners to both division dropdowns
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById('division').addEventListener('change', updateUserDropdown);
+    document.getElementById('divisionDropdown').addEventListener('change', updateUserDropdown);
+});
+
 
 
 
@@ -808,14 +829,14 @@ window.onclick = function(event) {
 }
 
 
-
-
-const rowsPerPage = 5;  // Adjust the number of rows to display per page
+const rowsPerPage = 10; // Number of rows to display per page
 let currentPage = 1;
-const maxPaginationButtons = 3;
+const maxPaginationButtons = 3; // Maximum pagination buttons to display
+let allData = @json($ppes); // Original data from server
+let filteredData = [...allData]; // Default to all data initially
 
-let filteredData = [];  // To hold filtered data
-const initialData = @json($ppes);  // Original data from the server
+
+
 
 function normalizeString(str) {
     return str
@@ -931,6 +952,7 @@ function updateTableRows() {
     });
 }
 
+
 //Search function
 
 $.ajaxSetup({
@@ -1015,6 +1037,65 @@ function performSearch(searchValue) {
             console.error(error);
         }
     });
+}
+
+
+function filterByDateRange() {
+    const startDateInput = document.getElementById('start-date').value;
+    const endDateInput = document.getElementById('end-date').value;
+    const divisionValue = document.getElementById('divisionDropdown').value || null;
+    const propertyTypeValue = document.getElementById('ptDropdown').value || null;
+    const conditionValue = document.getElementById('conditionDropdown').value || null;
+    const statusValue = document.getElementById('statusDropdown').value || null;
+
+    // Parse dates if inputs are provided
+    let startDate = startDateInput ? new Date(startDateInput) : null;
+    let endDate = endDateInput ? new Date(endDateInput) : null;
+
+    // Ensure valid date range selection
+    if (startDate && endDate && startDate > endDate) {
+        alert('Start date cannot be after the end date.');
+        return;
+    }
+
+    // Filter the data
+    filteredData = allData.filter(item => {
+        const itemDate = new Date(item.date_acq);
+
+        // Date filtering logic
+        const isDateValid =
+            (!startDate && !endDate) ||
+            (startDate && !endDate && itemDate >= startDate) ||
+            (!startDate && endDate && itemDate <= endDate) ||
+            (startDate && endDate && itemDate >= startDate && itemDate <= endDate);
+
+        // Division filtering logic: Include all divisions if '--All Divisions--' is selected
+        const isDivisionValid = !divisionValue || divisionValue === "--All Divisions--" || item.division === divisionValue;
+        
+        // Other dropdown filtering logic
+        const isPropertyTypeValid = !propertyTypeValue || item.property_type === propertyTypeValue;
+        const isConditionValid = !conditionValue || item.condition === conditionValue;
+        const isStatusValid = !statusValue || item.status === statusValue;
+
+        // Combine all filters
+        return isDateValid && isDivisionValid && isPropertyTypeValid && isConditionValid && isStatusValid;
+    });
+
+    // Reset to the first page after filtering
+    currentPage = 1;
+    updateTableRows();
+    generatePaginationButtons();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateTableRows();
+    generatePaginationButtons(); // Ensure pagination appears at the start
+});
+
+
+function resetFilters() {
+    document.getElementById('filterForm').reset();
+    filterDataByDateRange();
 }
 
 

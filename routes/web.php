@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DisbursementVoucherController; 
+use App\Http\Controllers\PpeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,3 +34,7 @@ Route::get('/export-csv', [DisbursementVoucherController::class, 'dvExportCSV'])
 
 Route::get('/searchVoucher', [DisbursementVoucherController::class, 'searchVoucher'])->name('monitoring.disbursement-voucher');
 
+
+
+Route::post('/submitPpe', [PpeController::class, 'submitPpe'])->name('inventory.ppe');
+Route::get('/ppe', [PpeController::class, 'showPpe'])->name('inventory.ppe');

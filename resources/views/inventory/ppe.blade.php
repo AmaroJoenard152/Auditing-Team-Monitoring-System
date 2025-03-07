@@ -772,6 +772,7 @@ window.onclick = function(event) {
 
 
 
+<<<<<<< HEAD
 const rowsPerPage = 5;  // Adjust the number of rows to display per page
 let currentPage = 1;
 const maxPaginationButtons = 3;
@@ -899,6 +900,19 @@ generatePaginationButtons();
 filteredData = initialData.slice(); // Clone the data
 updateTableRows();
 generatePaginationButtons();
+=======
+
+
+
+let currentPage = 1;
+const rowsPerPage = 10;  // Adjust the number of rows you want to display per page
+const maxPaginationButtons = 3; // Maximum number of pagination buttons to display
+
+let filteredData = [];  // To hold the filtered data
+const initialData = @json($ppes);  // Original data from server
+
+
+>>>>>>> bugfix/BUG-01
 </script>
 
 

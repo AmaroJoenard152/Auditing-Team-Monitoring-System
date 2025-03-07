@@ -254,7 +254,7 @@
         <!-- DV TABLE --->
 
         <div class="div-table-container">
-            <table class="table-content" id="voucher-table">
+            <table class="table-content" id="ppe-table">
                 <thead>
                     <tr>
                         <th>Division</th>
@@ -606,6 +606,85 @@ window.onclick = function(event) {
         closeEditPopup();
     }
 }
+
+
+const rowsPerPage = 5;  // Adjust the number of rows to display per page
+let currentPage = 1;
+let filteredData = [];  // To hold filtered data
+const initialData = @json($ppes);  // Original data from the server
+
+function normalizeString(str) {
+    return str
+        .toString()
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, '') // Remove special characters
+        .trim();
+}
+
+function sortDataTable(data) {
+    return data.sort((a, b) => {
+        const fieldsToSort = ['division', 'user', 'property_type', 'article_item'];
+
+        for (const field of fieldsToSort) {
+            const valA = normalizeString(a[field] || '');
+            const valB = normalizeString(b[field] || '');
+
+            if (valA > valB) return 1;
+            if (valA < valB) return -1;
+        }
+
+        // Maintain original order if all fields are equal
+        return 0;
+    });
+}
+
+function updateTableRows() {
+    const tableBody = document.getElementById('table-body');
+    tableBody.innerHTML = '';  // Clear current table rows
+
+    const sortedData = sortDataTable(filteredData);
+
+    const start = (currentPage - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const paginatedData = sortedData.slice(start, end);  // Paginate the sorted data
+
+    paginatedData.forEach(ppe => {
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${ppe.division || ''}</td>
+            <td>${ppe.user || ''}</td>
+            <td>${ppe.property_type || ''}</td>
+            <td>${ppe.article_item || ''}</td>
+            <td>${ppe.description || ''}</td>
+            <td>${ppe.old_pn || ''}</td>
+            <td>${ppe.new_pn || ''}</td>
+            <td>${ppe.unit_value || ''}</td>
+            <td>${ppe.quantity_property || ''}</td>
+            <td>${ppe.location || ''}</td>
+            <td>${ppe.condition || ''}</td>
+            <td>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                </svg>
+            </td>
+            <td>
+                <!-- Delete SVG -->
+            </td>
+            <td>
+                <!-- Edit SVG -->
+            </td>
+        `;
+
+        tableBody.appendChild(row);
+    });
+}
+
+// Initial setup
+filteredData = initialData.slice();  // Clone the data
+updateTableRows();
+
 
 
 </script>

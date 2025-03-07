@@ -1381,7 +1381,9 @@ function updateUserDropdown(event) {
         "Suizo, Maritoni B.", "Tamis, Alexandra E.", "Tobias, Annette M.", "Trillana, Charmaine Angela B.", "Zara, John Ceddrix."],
 
         "TTPD": ["Borja, Alexander John D.", "Dagaas, Mae A.", "Diaz, Analiza C.", "Lalican, Engelbert D.", "Lizaba, Ma. Alexie D.", 
-        "Resuello, Rubiriza DC.", "Tandang, Imelda L.", "Tanyag, Yolanda M."]
+        "Resuello, Rubiriza DC.", "Tandang, Imelda L.", "Tanyag, Yolanda M."],
+
+        "Not_Available": ["Not_Available"]
 
     };
 

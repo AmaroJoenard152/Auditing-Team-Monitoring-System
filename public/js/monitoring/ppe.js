@@ -24,22 +24,20 @@ function toggleFullScreen() {
     }
 }
 
-
 function resetFilters() {
     // Reset the date inputs
-    document.getElementById("div_start_date").value = "";
-    document.getElementById("div_end_date").value = "";
-    document.getElementById("search_voucher").value = "";
+    document.getElementById("ppe_start_date").value = "";
+    document.getElementById("ppe_end_date").value = "";
+    document.getElementById("search_ppe").value = "";
 
     // Reset the dropdown to its default value
-    document.getElementById("docDropdown").selectedIndex = 0;
+    document.getElementById("divisionDropdown").selectedIndex = 0;
+    document.getElementById("ptDropdown").selectedIndex = 0;
+    document.getElementById("conditionDropdown").selectedIndex = 0;
 
     // Optionally, trigger the function to reload all data
-    dvsearchByDateRange();
+    ppeSearchByDateRange();
 }
-
-
-
 
 function generatePaginationButtons() {
     const paginationContainer = document.getElementById('pagination-btns');

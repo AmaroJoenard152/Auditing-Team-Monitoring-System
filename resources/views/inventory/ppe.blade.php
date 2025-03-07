@@ -199,19 +199,35 @@
                     <div class="right-form-container">
                         <form id="filterForm" method="GET" action="{{ route('export.csv') }}" class="date-form-wrapper">
                             <div class="date-container">
-
                                 <div class="daterange-group">
                                     <label for="divisionDropdown" class="date-form-label">Division</label>
                                     <select id="divisionDropdown" name="division" class="date-form-input" onchange="updateUserDropdown()">
                                         <option selected disabled>Select Division</option>
                                         <option value="--All Divisions--">--All Divisions--</option>
-                                        <option value="FAD-Personnel">FAD-Personnel</option>
+                                        <option value="ACD">ACD</option>
+                                        <option value="ARMRD">ARMRD</option>
+                                        <option value="CRD">CRD</option>
                                         <option value="FAD-Accounting">FAD-Accounting</option>
+                                        <option value="FAD-Budget">FAD-Budget</option>
+                                        <option value="FAD-Cash">FAD-Cash</option>
                                         <option value="FAD-DO">FAD-DO</option>
+                                        <option value="FAD-GSS">FAD-GSS</option>
+                                        <option value="FAD-Personnel">FAD-Personnel</option>
                                         <option value="FAD-Property">FAD-Property</option>
+                                        <option value="FERD">FERD</option>
+                                        <option value="IARRD">IARRD</option>
+                                        <option value="IDD">IDD</option>
+                                        <option value="LRD">LRD</option>
+                                        <option value="MISD">MISD</option>
+                                        <option value="MRRD">MRRD</option>
+                                        <option value="OED">OED</option>
+                                        <option value="OED-ARMSS">OED-ARMSS</option>
+                                        <option value="OED-RD">OED-RD</option>
+                                        <option value="PCMD">PCMD</option>
+                                        <option value="TTPD">TTPD</option>
+                                        <option value="SERD">SERD</option>
                                     </select>
                                 </div>
-
 
                                 <!-- <div class="daterange-group">
                                     <label for="userDropdown" class="date-form-label">User</label>
@@ -225,8 +241,16 @@
                                     <label for="ptDropdown" class="date-form-label">Property Type</label>
                                     <select id="ptDropdown" name="property_type" class="date-form-input">
                                         <option value="">Select Property Type</option>
-                                        <option value="ICT">ICT</option>
-                                        <option value="Office Equipment">Office Equipment</option>
+                                        <option value="Building" title="Building">Bldng.</option>
+                                        <option value="Communication Equipment" title="Communication Equipment">CE</option>
+                                        <option value="Furniture and Fixture" title="Furniture and Fixture">FF</option>
+                                        <option value="ICT" title="Information Communication Technology">ICT</option>
+                                        <option value="Motor Vehicles" title="Motor Vehicles">MV</option>
+                                        <option value="Office Equipment" title="Office Equipment">OE</option>
+                                        <option value="Other Land Improvement" title="Other Land Improvement">OLI</option>
+                                        <option value="Other Machineries" title="Other Machineries">OM</option>
+                                        <option value="Other Structures" title="Other Structures">OS</option>
+                                        <option value="Technical Science Equipment" title="Technical Science Equipment">TSE</option>
                                     </select>
                                 </div>
 
@@ -234,10 +258,18 @@
                                     <label for="conditionDropdown" class="date-form-label">Condition</label>
                                     <select id="conditionDropdown" name="condition" class="date-form-input">
                                         <option value="">Select Condition</option>
-                                        <option value="Good Condition">Good Condition</option>
-                                        <option value="Unserviceable">Unserviceable</option>
+                                        <option value="For Donation" title="For Donation">FD</option>
+                                        <option value="Good Condition" title="Good Condition">GC</option>
+                                        <option value="Needs Repair" title="Needs Repair">NR</option>
+                                        <option value="No Longer Needed" title="No Longer Needed">NLN</option>
+                                        <option value="Poor Condition" title="Poor Condition">PC</option>
+                                        <option value="Serviceable w/ Minor Defect" title="Serviceable w/ Minor Defect">SMD</option>
+                                        <option value="Unserviceable" title="Unserviceable">Uns</option>
+                                        <option value="Very Good" title="Very Good">VG</option>
                                     </select>
+
                                 </div>
+
                                 <div class="daterange-group">
                                     <label for="statusDropdown" class="date-form-label">Status</label>
                                     <select id="statusDropdown" name="status" class="date-form-input">
@@ -246,10 +278,13 @@
                                         <option value="Missing">Missing</option>
                                         <option value="Unchecked">Unchecked</option>
                                     </select>
+
                                     <button type="button" onclick="filterByDateRange()" class="form-btn submit">Apply</button>
                                     <button onclick="dvDownloadCSV()" class="form-btn submit">Download</button>
                                     <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
                                 </div>
+
+                                <div id="tooltip" class="tooltip"></div>
                             </div>
                         </form>
                     </div>
@@ -376,21 +411,17 @@
         <!-- DV TABLE --->
 
 
-
     <div class="footer-container">
         <div class="autoValues">
-            <label for="totalPpe">Total PPE:</label>
+            <label for="totalPpe">Total PPE</label>
             <input type="text" id="totalPpe" name="totalPpe" class="autoValue" disabled>
 
-            <label for="totalAmount">Total Amount:</label>
+            <label for="totalAmount">Total Amount</label>
             <input type="text" id="totalAmount" name="totalAmount" class="autoValue" disabled>
         </div>
 
         <div id="pagination-btns" class="pagination"></div>
     </div>
-
-
-
 
 
     </div>
@@ -415,10 +446,28 @@
                             <label for="division">Division</label>
                             <select id="division" name="division" class="input-type-text" onchange="updateUserDropdown()">
                                 <option selected disabled>Select Division</option>
-                                <option value="FAD-Personnel">FAD-Personnel</option>
+                                <option value="ACD">ACD</option>
+                                <option value="ARMRD">ARMRD</option>
+                                <option value="CRD">CRD</option>
                                 <option value="FAD-Accounting">FAD-Accounting</option>
+                                <option value="FAD-Budget">FAD-Budget</option>
+                                <option value="FAD-Cash">FAD-Cash</option>
                                 <option value="FAD-DO">FAD-DO</option>
+                                <option value="FAD-GSS">FAD-GSS</option>
+                                <option value="FAD-Personnel">FAD-Personnel</option>
                                 <option value="FAD-Property">FAD-Property</option>
+                                <option value="FERD">FERD</option>
+                                <option value="IARRD">IARRD</option>
+                                <option value="IDD">IDD</option>
+                                <option value="LRD">LRD</option>
+                                <option value="MISD">MISD</option>
+                                <option value="MRRD">MRRD</option>
+                                <option value="OED">OED</option>
+                                <option value="OED-ARMSS">OED-ARMSS</option>
+                                <option value="OED-RD">OED-RD</option>
+                                <option value="PCMD">PCMD</option>
+                                <option value="TTPD">TTPD</option>
+                                <option value="SERD">SERD</option>
                             </select>
 
                             <label for="user">User</label>
@@ -428,16 +477,28 @@
 
                             <label for="property_type">Property Type</label>
                             <select id="property_type" name="property_type" class="input-type-text">
-                                <option selected>Select Property Type</option>
-                                <option value="ICT">ICT</option>
-                                <option value="Office Equipment">Office Equipment</option>
+                                <option selected disabled>Select Property Type</option>
+                                <option value="Building" title="Building">Bldng.</option>
+                                <option value="Communication Equipment" title="Communication Equipment">CE</option>
+                                <option value="Furniture and Fixture" title="Furniture and Fixture">FF</option>
+                                <option value="ICT" title="Information Communication Technology">ICT</option>
+                                <option value="Motor Vehicles" title="Motor Vehicles">MV</option>
+                                <option value="Office Equipment" title="Office Equipment">OE</option>
+                                <option value="Other Land Improvement" title="Other Land Improvement">OLI</option>
+                                <option value="Other Machineries" title="Other Machineries">OM</option>
+                                <option value="Other Structures" title="Other Structures">OS</option>
+                                <option value="Technical Science Equipment" title="Technical Science Equipment">TSE</option>
                             </select>
+
 
                             <label for="article_item">Article/Item</label>
                             <select id="article_item" name="article_item" class="input-type-text">
                                 <option selected>Select Article/Item</option>
-                                <option value="Laptop">Laptop</option>
+                                <option value="Airconditioner">Airconditioner</option>
                                 <option value="Desktop">Desktop</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Motorvehicle">Motorvehicle</option>
+                                <option value="Projector">Projector</option>
                             </select>
                         </div>
 
@@ -469,22 +530,48 @@
 
                             <label for="location">Location/Whereabouts</label>
                             <select id="location" name="location" class="input-type-text">
-                                <option selected>Select Location/Whereabouts</option>
-                                <option value="FAD-Personnel">FAD-Personnel</option>
+                                <option selected disabled>Select Location/Whereabouts</option>
+                                <option value="ACD">ACD</option>
+                                <option value="ARMRD">ARMRD</option>
+                                <option value="CRD">CRD</option>
                                 <option value="FAD-Accounting">FAD-Accounting</option>
+                                <option value="FAD-Budget">FAD-Budget</option>
+                                <option value="FAD-Cash">FAD-Cash</option>
                                 <option value="FAD-DO">FAD-DO</option>
+                                <option value="FAD-GSS">FAD-GSS</option>
+                                <option value="FAD-Personnel">FAD-Personnel</option>
                                 <option value="FAD-Property">FAD-Property</option>
+                                <option value="FERD">FERD</option>
+                                <option value="IARRD">IARRD</option>
+                                <option value="IDD">IDD</option>
+                                <option value="LRD">LRD</option>
+                                <option value="MISD">MISD</option>
+                                <option value="MRRD">MRRD</option>
+                                <option value="OED">OED</option>
+                                <option value="OED-ARMSS">OED-ARMSS</option>
+                                <option value="OED-RD">OED-RD</option>
+                                <option value="PCMD">PCMD</option>
+                                <option value="TTPD">TTPD</option>
+                                <option value="SERD">SERD</option>
                             </select>
+
                         </div>
 
                         <!-- Fourth Column -->
                         <div class="form-column-input"> 
                             <label for="condition">Condition</label>
                             <select id="condition" name="condition" class="input-type-text">
-                                <option selected>Select Condition</option>
-                                <option value="Good Condition">Good Condition</option>
-                                <option value="Unserviceable">Unserviceable</option>
+                                <option selected disabled>Select Condition</option>
+                                <option value="For Donation" title="For Donation">FD</option>
+                                <option value="Good Condition" title="Good Condition">GC</option>
+                                <option value="Needs Repair" title="Needs Repair">NR</option>
+                                <option value="No Longer Needed" title="No Longer Needed">NLN</option>
+                                <option value="Poor Condition" title="Poor Condition">PC</option>
+                                <option value="Serviceable w/ Minor Defect" title="Serviceable w/ Minor Defect">SMD</option>
+                                <option value="Unserviceable" title="Unserviceable">Uns</option>
+                                <option value="Very Good" title="Very Good">VG</option>
                             </select>
+
 
                             <label for="status">Status</label>
                             <select id="status" name="status" class="input-type-text">
@@ -522,28 +609,59 @@
                     <div class="form-column-input"> 
                         <label for="division">Division</label>
                         <select id="view_division" name="division" class="input-type-text" disabled>
-                            <option selected>Select Division</option>
-                            <option value="FAD-Personnel">FAD-Personnel</option>
+                            <option selected disabled>Select Division</option>
+                            <option value="ACD">ACD</option>
+                            <option value="ARMRD">ARMRD</option>
+                            <option value="CRD">CRD</option>
                             <option value="FAD-Accounting">FAD-Accounting</option>
+                            <option value="FAD-Budget">FAD-Budget</option>
+                            <option value="FAD-Cash">FAD-Cash</option>
                             <option value="FAD-DO">FAD-DO</option>
+                            <option value="FAD-GSS">FAD-GSS</option>
+                            <option value="FAD-Personnel">FAD-Personnel</option>
                             <option value="FAD-Property">FAD-Property</option>
+                            <option value="FERD">FERD</option>
+                            <option value="IARRD">IARRD</option>
+                            <option value="IDD">IDD</option>
+                            <option value="LRD">LRD</option>
+                            <option value="MISD">MISD</option>
+                            <option value="MRRD">MRRD</option>
+                            <option value="OED">OED</option>
+                            <option value="OED-ARMSS">OED-ARMSS</option>
+                            <option value="OED-RD">OED-RD</option>
+                            <option value="PCMD">PCMD</option>
+                            <option value="TTPD">TTPD</option>
+                            <option value="SERD">SERD</option>
                         </select>
+
 
                         <label for="user">User</label>
                         <input type="text" id="view_user" name="user" class="input-type-text" disabled>
 
                         <label for="property_type">Property Type</label>
                         <select id="view_property_type" name="property_type" class="input-type-text" disabled>
-                            <option selected>Select Property Type</option>
-                            <option value="ICT">ICT</option>
-                            <option value="Office Equipment">Office Equipment</option>
+                            <option selected disabled>Select Property Type</option>
+                            <option value="Building" title="Building">Bldng.</option>
+                            <option value="Communication Equipment" title="Communication Equipment">CE</option>
+                            <option value="Furniture and Fixture" title="Furniture and Fixture">FF</option>
+                            <option value="ICT" title="Information Communication Technology">ICT</option>
+                            <option value="Motor Vehicles" title="Motor Vehicles">MV</option>
+                            <option value="Office Equipment" title="Office Equipment">OE</option>
+                            <option value="Other Land Improvement" title="Other Land Improvement">OLI</option>
+                            <option value="Other Machineries" title="Other Machineries">OM</option>
+                            <option value="Other Structures" title="Other Structures">OS</option>
+                            <option value="Technical Science Equipment" title="Technical Science Equipment">TSE</option>
                         </select>
+
 
                         <label for="article_item">Article/Item</label>
                         <select id="view_article_item" name="article_item" class="input-type-text" disabled>
                             <option selected>Select Article/Item</option>
-                            <option value="Laptop">Laptop</option>
+                            <option value="Airconditioner">Airconditioner</option>
                             <option value="Desktop">Desktop</option>
+                            <option value="Laptop">Laptop</option>
+                            <option value="Motorvehicle">Motorvehicle</option>
+                            <option value="Projector">Projector</option>
                         </select>
                     </div>
 
@@ -575,22 +693,47 @@
 
                         <label for="location">Location/Whereabouts</label>
                         <select id="view_location" name="location" class="input-type-text" disabled>
-                            <option selected>Select Location/Whereabouts</option>
-                            <option value="FAD-Personnel">FAD-Personnel</option>
+                            <option selected disabled>Select Location/Whereabouts</option>
+                            <option value="ACD">ACD</option>
+                            <option value="ARMRD">ARMRD</option>
+                            <option value="CRD">CRD</option>
                             <option value="FAD-Accounting">FAD-Accounting</option>
+                            <option value="FAD-Budget">FAD-Budget</option>
+                            <option value="FAD-Cash">FAD-Cash</option>
                             <option value="FAD-DO">FAD-DO</option>
+                            <option value="FAD-GSS">FAD-GSS</option>
+                            <option value="FAD-Personnel">FAD-Personnel</option>
                             <option value="FAD-Property">FAD-Property</option>
+                            <option value="FERD">FERD</option>
+                            <option value="IARRD">IARRD</option>
+                            <option value="IDD">IDD</option>
+                            <option value="LRD">LRD</option>
+                            <option value="MISD">MISD</option>
+                            <option value="MRRD">MRRD</option>
+                            <option value="OED">OED</option>
+                            <option value="OED-ARMSS">OED-ARMSS</option>
+                            <option value="OED-RD">OED-RD</option>
+                            <option value="PCMD">PCMD</option>
+                            <option value="TTPD">TTPD</option>
+                            <option value="SERD">SERD</option>
                         </select>
+
                     </div>
 
                     <!-- Fourth Column -->
                     <div class="form-column-input"> 
                         <label for="condition">Condition</label>
-                            <select id="view_condition" name="condition" class="input-type-text" disabled>
-                                <option selected>Select Condition</option>
-                                <option value="Good Condition">Good Condition</option>
-                                <option value="Unserviceable">Unserviceable</option>
-                            </select>
+                        <select id="view_condition" name="condition" class="input-type-text" disabled>
+                            <option selected disabled>Select Condition</option>
+                            <option value="For Donation" title="For Donation">FD</option>
+                            <option value="Good Condition" title="Good Condition">GC</option>
+                            <option value="Needs Repair" title="Needs Repair">NR</option>
+                            <option value="No Longer Needed" title="No Longer Needed">NLN</option>
+                            <option value="Poor Condition" title="Poor Condition">PC</option>
+                            <option value="Serviceable w/ Minor Defect" title="Serviceable w/ Minor Defect">SMD</option>
+                            <option value="Unserviceable" title="Unserviceable">Uns</option>
+                            <option value="Very Good" title="Very Good">VG</option>
+                        </select>
 
                         <label for="status">Status</label>
                             <select id="view_status" name="status" class="input-type-text" disabled>
@@ -627,30 +770,61 @@
 
                         <!-- First Column -->
                         <div class="editForm-column-input">
-                        <label for="division">Division</label>
+                            <label for="division">Division</label>
                             <select id="edit_division" name="division" class="input-type-text">
-                                <option selected>Select Division</option>
-                                <option value="FAD-Personnel">FAD-Personnel</option>
+                                <option selected disabled>Select Division</option>
+                                <option value="ACD">ACD</option>
+                                <option value="ARMRD">ARMRD</option>
+                                <option value="CRD">CRD</option>
                                 <option value="FAD-Accounting">FAD-Accounting</option>
+                                <option value="FAD-Budget">FAD-Budget</option>
+                                <option value="FAD-Cash">FAD-Cash</option>
                                 <option value="FAD-DO">FAD-DO</option>
+                                <option value="FAD-GSS">FAD-GSS</option>
+                                <option value="FAD-Personnel">FAD-Personnel</option>
                                 <option value="FAD-Property">FAD-Property</option>
+                                <option value="FERD">FERD</option>
+                                <option value="IARRD">IARRD</option>
+                                <option value="IDD">IDD</option>
+                                <option value="LRD">LRD</option>
+                                <option value="MISD">MISD</option>
+                                <option value="MRRD">MRRD</option>
+                                <option value="OED">OED</option>
+                                <option value="OED-ARMSS">OED-ARMSS</option>
+                                <option value="OED-RD">OED-RD</option>
+                                <option value="PCMD">PCMD</option>
+                                <option value="TTPD">TTPD</option>
+                                <option value="SERD">SERD</option>
                             </select>
+
 
                             <label for="user">User</label>
                             <input type="text" id="edit_user" name="user" class="input-type-text">
 
                             <label for="property_type">Property Type</label>
                             <select id="edit_property_type" name="property_type" class="input-type-text">
-                                <option selected>Select Property Type</option>
-                                <option value="ICT">ICT</option>
-                                <option value="Office Equipment">Office Equipment</option>
+                                <option selected disabled>Select Property Type</option>
+                                <option value="Building" title="Building">Bldng.</option>
+                                <option value="Communication Equipment" title="Communication Equipment">CE</option>
+                                <option value="Furniture and Fixture" title="Furniture and Fixture">FF</option>
+                                <option value="ICT" title="Information Communication Technology">ICT</option>
+                                <option value="Motor Vehicles" title="Motor Vehicles">MV</option>
+                                <option value="Office Equipment" title="Office Equipment">OE</option>
+                                <option value="Other Land Improvement" title="Other Land Improvement">OLI</option>
+                                <option value="Other Machineries" title="Other Machineries">OM</option>
+                                <option value="Other Structures" title="Other Structures">OS</option>
+                                <option value="Technical Science Equipment" title="Technical Science Equipment">TSE</option>
                             </select>
+
 
                             <label for="article_item">Article/Item</label>
                             <select id="edit_article_item" name="article_item" class="input-type-text">
                                 <option selected>Select Article/Item</option>
-                                <option value="Laptop">Laptop</option>
+                                <option value="Airconditioner">Airconditioner</option>
                                 <option value="Desktop">Desktop</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Motorvehicle">Motorvehicle</option>
+                                <option value="Projector">Projector</option>
                             </select>
                         </div>
 
@@ -682,11 +856,29 @@
 
                             <label for="location">Location/Whereabouts</label>
                             <select id="edit_location" name="location" class="input-type-text">
-                                <option selected>Select Location/Whereabouts</option>
-                                <option value="FAD-Personnel">FAD-Personnel</option>
+                                <option selected disabled>Select Division</option>
+                                <option value="ACD">ACD</option>
+                                <option value="ARMRD">ARMRD</option>
+                                <option value="CRD">CRD</option>
                                 <option value="FAD-Accounting">FAD-Accounting</option>
+                                <option value="FAD-Budget">FAD-Budget</option>
+                                <option value="FAD-Cash">FAD-Cash</option>
                                 <option value="FAD-DO">FAD-DO</option>
+                                <option value="FAD-GSS">FAD-GSS</option>
+                                <option value="FAD-Personnel">FAD-Personnel</option>
                                 <option value="FAD-Property">FAD-Property</option>
+                                <option value="FERD">FERD</option>
+                                <option value="IARRD">IARRD</option>
+                                <option value="IDD">IDD</option>
+                                <option value="LRD">LRD</option>
+                                <option value="MISD">MISD</option>
+                                <option value="MRRD">MRRD</option>
+                                <option value="OED">OED</option>
+                                <option value="OED-ARMSS">OED-ARMSS</option>
+                                <option value="OED-RD">OED-RD</option>
+                                <option value="PCMD">PCMD</option>
+                                <option value="TTPD">TTPD</option>
+                                <option value="SERD">SERD</option>
                             </select>
                         </div>
 
@@ -695,9 +887,16 @@
                             <label for="condition">Condition</label>
                             <select id="edit_condition" name="condition" class="input-type-text">
                                 <option selected>Select Condition</option>
-                                <option value="Good Condition">Good Condition</option>
-                                <option value="Unserviceable">Unserviceable</option>
+                                <option value="For Donation" title="For Donation">FD</option>
+                                <option value="Good Condition" title="Good Condition">GC</option>
+                                <option value="Needs Repair" title="Needs Repair">NR</option>
+                                <option value="No Longer Needed" title="No Longer Needed">NLN</option>
+                                <option value="Poor Condition" title="Poor Condition">PC</option>
+                                <option value="Serviceable w/ Minor Defect" title="Serviceable w/ Minor Defect">SMD</option>
+                                <option value="Unserviceable" title="Unserviceable">Uns</option>
+                                <option value="Very Good" title="Very Good">VG</option>
                             </select>
+
 
                             <label for="status">Status</label>
                             <select id="edit_status" name="status" class="input-type-text">
@@ -752,7 +951,6 @@ window.onclick = function(event) {
 }
 
 
-
 function updateUserDropdown(event) {
     // Get the ID of the triggered division dropdown
     const divisionDropdown = event.target;
@@ -776,10 +974,26 @@ function updateUserDropdown(event) {
 
     // Define division-to-user mapping
     const usersByDivision = {
-        "FAD-Personnel": ["Jas", "Marci", "Tina"],
-        "FAD-Accounting": ["MaeAnne", "Jen", "Jaivee"],
-        "FAD-DO": ["Jane", "Precious", "Joenard"],
-        "FAD-Property": ["Nars", "Aileen", "Nette"]
+        "ACD": ["Boniceli, Jayson Welf N.", "Casimero, Rebmark G.", "Marcon, Angeli May A."],
+        "ARMRD": ["Cosico, Venice Laurence N.", "Regulacion, Jan Wilfred M.", "Evangelista, Misty Mae M."],
+        "CRD": ["Lamano, Netnet D.", "Ignacio, Rhesa Miren A.", "De Castro, Rosemaries A."],
+        "FAD-Accounting": ["Manacop, Michelin B.", "Estanislao, Jenylou A.", "Balagat, Maeanne Lois H."],
+        "FAD-Budget": ["Banasihan, Samantha L.", "Vega, Mary Jane M.", "Bing"],
+        "FAD-Cash": ["Daza, Van Eric L.", "Ramos, Heidi", "Dory"],
+        "FAD-DO": ["Ocier, Mary Jane", "Balita, Maria Lea Preciosa E.", "Amaro, Joenard M."],
+        "FAD-GSS": ["Anda, Zoilo E.", "Balagat, Marion Clark H.", "Gregorio, Edicel C."],
+        "FAD-Personnel": ["Maglalang, Jasmin Rose D.", "Sobrevega Jr., Marcelino V.", "Reyes, Hannah Joy D."],
+        "FAD-Property": ["ManabaT Jr., Narciso M.", "Bello, Mark Anthony M.", "Revera, Jovan B."],
+        "FERD": ["Lee, Sanica Louise O."],
+        "IARRD": ["Sudayan, Gabrielle E."],
+        "IDD": ["Abad, Ma. Kimberly T.", "Paclibar, Leovil N.", "Manaay, Jannete G."],
+        "MISD": ["Villar, Normaine T.", "Cambay, Jan Andrei V.", "Quintos, JC Carlo DG."],
+        "OED": ["Abella, Rothciv R.", "Vallejo, Martha Lois O."],
+        "OED-ARMSS": ["Adique, Micah Angelica V.", "Arellano, Christhaline A."],
+        "OED-RD": ["De los Santos, Ainjel M.", "Escala, Tristan Jayson"],
+        "PCMD": ["Caraca, Maria Virginia F."],
+        "TTPD": ["Eugenio, Eunice E."],
+        "SERD": ["Tandang, Jhoanna Imee L."]
     };
 
     // Populate dropdown with users based on selected division
@@ -801,7 +1015,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('division').addEventListener('change', updateUserDropdown);
     document.getElementById('divisionDropdown').addEventListener('change', updateUserDropdown);
 });
-
 
 
 
@@ -995,8 +1208,6 @@ function updateUnitValueDisplay(inputElement) {
     const formattedValue = formatNumber(inputElement.value);
     inputElement.value = formattedValue;
 }
-
-
 
 
 //Search function

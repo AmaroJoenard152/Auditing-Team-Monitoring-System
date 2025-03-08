@@ -9,6 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
     public function up(): void
     {
         Schema::create('ppes', function (Blueprint $table) {
@@ -18,18 +19,23 @@ return new class extends Migration
             $table->string('property_type')->notNull();
             $table->string('article_item')->notNull();
             $table->string('description')->notNull();
-            $table->string('old_pn')->not_null()->unique();
-            $table->string('new_pn')->not_null()->unique();
+            $table->string('old_pn')->notNull();
+            $table->string('new_pn')->notNull();
             $table->string('unit_meas')->notNull();
             $table->string('unit_value')->notNull();
             $table->string('quantity_property')->notNull();
             $table->string('quantity_physical')->notNull();
             $table->string('location')->notNull();
             $table->string('condition')->notNull();
+            $table->string('status')->notNull();
             $table->string('remarks')->notNull();
             $table->date('date_acq')->notNull();
+            $table->timestamps(); 
         });
     }
+
+
+
 
     /**
      * Reverse the migrations.

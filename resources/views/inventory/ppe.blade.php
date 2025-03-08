@@ -1644,6 +1644,7 @@ function performSearch(searchValue) {
     });
 }
 
+
 //Date Range function
 function filterByDateRange() {
     const startDateInput = document.getElementById('start-date').value;

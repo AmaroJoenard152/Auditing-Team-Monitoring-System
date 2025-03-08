@@ -1579,16 +1579,19 @@ function performSearch(searchValue) {
     $.ajax({
         url: '/searchPpe',
         type: 'GET',
-        data: {
-            search_ppe: searchValue
-        },
+        data: { search_ppe: searchValue },
         success: function(response) {
             console.log(response); // Debugging to verify response
             $('#table-body').empty(); // Clear the table body before appending new rows
 
-            response.forEach(function(ppe, index) {
-                const rowNumber = index + 1; // Dynamic row numbering
+            let totalPpe = 0; // Initialize total PPE count
+            let totalAmount = 0; // Initialize total Amount sum
 
+            response.forEach(function(ppe, index) {
+                totalPpe += 1; // Count each row
+                totalAmount += parseFloat(ppe.unit_value) || 0; // Sum the unit values
+
+                const rowNumber = index + 1; // Dynamic row numbering
                 $('#table-body').append(
                     `<tr>
                         <td>${rowNumber}</td>
@@ -1598,7 +1601,7 @@ function performSearch(searchValue) {
                         <td>${ppe.article_item || ''}</td>
                         <td>${ppe.description || ''}</td>
                         <td>${ppe.new_pn || ''}</td>
-                        <td>${ppe.unit_value || ''}</td>
+                        <td>${ppe.unit_value ? formatNumber(ppe.unit_value) : ''}</td>
                         <td>${ppe.quantity_property || ''}</td>
                         <td>${ppe.quantity_physical || ''}</td>
                         <td>${ppe.condition || ''}</td>
@@ -1634,6 +1637,10 @@ function performSearch(searchValue) {
                 );
             });
 
+            // Update Total PPE and Total Amount fields
+            $('#totalPpe').val(totalPpe); 
+            $('#totalAmount').val(formatNumber(totalAmount));
+
             // Reset pagination (if applicable)
             currentPage = 1;
             generatePaginationButtons();
@@ -1643,6 +1650,12 @@ function performSearch(searchValue) {
         }
     });
 }
+
+// Helper function to format numbers with commas
+function formatNumber(value) {
+    return new Intl.NumberFormat().format(value);
+}
+
 
 
 //Date Range function

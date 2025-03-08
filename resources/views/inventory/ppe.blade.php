@@ -298,7 +298,7 @@
 
                                     <button type="button" onclick="filterByDateRange()" class="form-btn submit">Apply</button>
                                     <button onclick="dvDownloadCSV()" class="form-btn submit">Download</button>
-                                    <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
+                                    <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="resetPPEFilters()">Reset</button>
                                 </div>
 
                                 <div id="tooltip" class="tooltip"></div>
@@ -607,7 +607,7 @@
                             <label for="date_acq">Date Acquired</label>
                             <input type="date" id="date_acq" name="date_acq" class="input-type-date">
 
-                            <button type="button" id="dvReloadBtn" class="date-form-btn-cancel" onclick="resetDVInput()">Reset</button>
+                            <button type="button" id="dvReloadBtn" class="date-form-btn-cancel" onclick="resetPPEInput()">Reset</button>
                             <input type="submit" value="Submit" class="dv-submit-button">
                         </div>
                     </div>

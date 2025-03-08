@@ -24,20 +24,49 @@ function toggleFullScreen() {
     }
 }
 
-function resetFilters() {
+function resetPPEFilters() {
     // Reset the date inputs
-    document.getElementById("ppe_start_date").value = "";
-    document.getElementById("ppe_end_date").value = "";
+    document.getElementById("start-date").value = "";
+    document.getElementById("end-date").value = "";
     document.getElementById("search_ppe").value = "";
 
-    // Reset the dropdown to its default value
+    // Reset dropdowns to default
     document.getElementById("divisionDropdown").selectedIndex = 0;
     document.getElementById("ptDropdown").selectedIndex = 0;
     document.getElementById("conditionDropdown").selectedIndex = 0;
-
+    document.getElementById("statusDropdown").selectedIndex = 0;
+    
     // Optionally, trigger the function to reload all data
-    ppeSearchByDateRange();
+    // ppeSearchByDateRange();
 }
+
+
+function resetPPEInput() {
+    // Reset text inputs
+    document.getElementById("article_item").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("old_pn").value = "";
+    document.getElementById("new_pn").value = "";
+    document.getElementById("unit_meas").value = "";
+    document.getElementById("unit_value").value = "";
+    document.getElementById("quantity_property").value = "";
+    document.getElementById("quantity_physical").value = "";
+    document.getElementById("remarks").value = "";
+    document.getElementById("date_acq").value = "";
+    
+    // Reset dropdowns to default
+    document.getElementById("division").selectedIndex = 0;
+    document.getElementById("user").selectedIndex = 0;
+    document.getElementById("property_type").selectedIndex = 0;
+    document.getElementById("location").selectedIndex = 0;
+    document.getElementById("condition").selectedIndex = 0;
+    document.getElementById("status").selectedIndex = 0;
+    
+    // Disable user dropdown
+    document.getElementById("user").disabled = true;
+}
+
+
 
 function generatePaginationButtons() {
     const paginationContainer = document.getElementById('pagination-btns');

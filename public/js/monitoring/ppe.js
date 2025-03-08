@@ -112,3 +112,57 @@ function generatePaginationButtons() {
 
 
 
+function populateUserDropdownForEdit(selectedDivision) {
+    const userDropdown = document.getElementById("edit_user");
+    userDropdown.innerHTML = '<option selected disabled>Select User</option>'; // Reset dropdown
+    userDropdown.disabled = true; // Disable dropdown initially
+
+    // Define division-to-user mapping
+    const usersByDivision = {
+        "ACD": ["Alberto, Pepito G.", "Belen, Maria Adelia C.", "Caparas, Pauline Davis E."],
+        "ARMRD": ["Abuan, Catherine R.", "Balbieran, Sarah Hazel M.", "De Guzman, Maria Teresa L."],
+        "COA": ["Abordo, Cindy Faith R.", "Rosete, Edlyne A."],
+        "CRD": ["Alberto, Pepito G.", "Belen, Maria Adelia C.", "Caparas, Pauline Davis E."],
+        "DPITC-ACD": ["Borcena, Bhia Mitchie T.", "De Ramos, Marina T.", "Longamen, Juan Carlo J."],
+        "DPITC-MISD": ["Dalisay, Richard O."],
+        "DPITC-OED-ARMSS": ["No Names Available"],
+        "DPITC-TTPD": ["Dalisay, Richard O."],
+        "FAD-Accounting": ["Balagat, Maeanne Lois H.", "Estanislao, Jenylou A.", "Manacop, Michelin B."],
+        "FAD-Budget": ["Banasihan, Samantha L.", "Garcia, Susan G.", "Lapitan, Ma. Eleanor S."],
+        "FAD-Cash": ["Camposano, Rhodora G.", "Daza, Van Eric L.", "Lajara, Ma. Ester Catalina V."],
+        "FAD-DO": ["Amaro, Joenard M.", "Balita, Maria Lea Preciosa E.", "Ocier, Mary Jane"],
+        "FAD-GSS": ["Anda, Zoilo E.", "Balagat, Marion Clark H.", "Gregorio, Edicel C."],
+        "FAD-Personnel": ["Lawas, Georgia M.", "Maglalang, Jasmin Rose D.", "Reyes, Hannah Joy D."],
+        "FAD-Property": ["Bello, Mark Anthony M.", "Carpio, Jovenette L.", "Manabat Jr., Narciso M."],
+        "FAD-Property-Stock-Room": ["Alo, Anna Marie P.", "Batalon, Juanito T.", "Dalisay, Richard O."],
+        "FERD": ["Almanza, Rosemarie L.", "Cabral, Dalisay E.", "Opeña, Aster H."],
+        "IARRD": ["Almazan, Cynthia V.", "Calpe, Adelaida T.", "Gahon, Shirley"],
+        "IDD": ["Alcantara, Victor P.", "Asilo, Eriza", "Baguio, Synan S."],
+        "LRD": ["Alo, Anna Marie P.", "Baguio, Synan S.", "Catelo, Ariane Shane DC"],
+        "MISD": ["Amansec, Richard E.", "Camposano, John Ross L.", "Cambay, Jan Andrei V."],
+        "MRRD": ["Acedera, Mari-Ann M.", "Asajar, Jerwin D.", "Barrion, Dan Carlo B."],
+        "OED": ["Afalla Jr., Eugenio G.", "Ebora, Reynaldo V.", "Garcia Jr., Norberto"],
+        "OED-ARMSS": ["Adique, Micah Angelica V.", "Carlos, Melvin B.", "Centeno, Pamela Marie A."],
+        "OED-RD": ["Afalla, Monaliza B.", "Bandong, Esther Gayle M.", "Gallarte, Lino"],
+        "PCMD": ["Name1", "Name2"],
+        "SERD": ["Name1", "Name2"],
+        "TTPD": ["Name1", "Name2"],
+        "Not_Available": ["Not Available"]
+    };
+
+    // Get users for the selected division
+    const users = usersByDivision[selectedDivision] || [];
+
+    // Add users to dropdown
+    users.forEach(user => {
+        const option = document.createElement("option");
+        option.value = user;
+        option.textContent = user;
+        userDropdown.appendChild(option);
+    });
+
+    // Enable dropdown if users are available
+    if (users.length > 0) {
+        userDropdown.disabled = false;
+    }
+}

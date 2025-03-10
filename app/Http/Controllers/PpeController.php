@@ -109,27 +109,40 @@ class PpeController extends Controller
             ->orWhere('quantity_physical', 'LIKE', "%$searchValue%")
             ->orWhere('condition', 'LIKE', "%$searchValue%")
             ->orWhere('status', 'LIKE', "%$searchValue%")
+            ->orWhere('old_pn', 'LIKE', "%$searchValue%")
+            ->orWhere('unit_meas', 'LIKE', "%$searchValue%")
+            ->orWhere('remarks', 'LIKE', "%$searchValue%")
+            ->orWhere('date_acq', 'LIKE', "%$searchValue%")
+            ->orWhere('created_at', 'LIKE', "%$searchValue%")
+            ->orWhere('updated_at', 'LIKE', "%$searchValue%")
             ->get()
             ->map(function ($ppe) {
                 return [
+                    'id' => $ppe->id,
                     'division' => $ppe->division,
                     'user' => $ppe->user,
                     'property_type' => $ppe->property_type,
                     'article_item' => $ppe->article_item,
                     'description' => $ppe->description,
+                    'old_pn' => $ppe->old_pn,  // Added
                     'new_pn' => $ppe->new_pn,
+                    'unit_meas' => $ppe->unit_meas, // Added
                     'unit_value' => $ppe->unit_value,
                     'quantity_property' => $ppe->quantity_property,
                     'quantity_physical' => $ppe->quantity_physical,
+                    'location' => $ppe->location,
                     'condition' => $ppe->condition,
                     'status' => $ppe->status,
-                    'id' => $ppe->id,
+                    'remarks' => $ppe->remarks, // Added
+                    'date_acq' => $ppe->date_acq, // Added
+                    'created_at' => $ppe->created_at, // Added
+                    'updated_at' => $ppe->updated_at, // Added
                 ];
             });
     
         return response()->json($ppes);
     }
-
+    
     public function dvExportCSV(Request $request)
     {
         $startDate = $request->input('start_date');

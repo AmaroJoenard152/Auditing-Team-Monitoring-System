@@ -1526,7 +1526,7 @@ function showPpeDetails(ppe) {
     document.getElementById('view_old_pn').value = ppe.old_pn || '';
     document.getElementById('view_new_pn').value = ppe.new_pn || '';
     document.getElementById('view_unit_meas').value = ppe.unit_meas || '';
-    document.getElementById('view_unit_value').value = ppe.unit_value || '';
+    document.getElementById('view_unit_value').value = ppe.unit_value ? formatNumber(ppe.unit_value) : '';
     document.getElementById('view_quantity_property').value = ppe.quantity_property || '';
     document.getElementById('view_quantity_physical').value = ppe.quantity_physical || '';
     document.getElementById('view_location').value = ppe.location || 'Select Location/Whereabouts';

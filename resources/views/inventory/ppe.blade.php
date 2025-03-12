@@ -586,7 +586,8 @@
                                 </select>
 
 
-                            <label for="status">Status</label>
+                            
+                                <label for="status">Status</label>
                                 <select id="status" name="status" class="input-type-text">
                                     <option selected>Select Status</option>
                                     <option value="Checked">Checked</option>
@@ -864,7 +865,7 @@
 
 
                             <label for="user">User</label>
-                            <select id="edit_user" name="user" class="input-type-text" disabled>
+                            <select id="edit_user" name="user" class="input-type-text">
                                 <option selected disabled>Select User</option>
                             </select>
 
@@ -1215,11 +1216,12 @@ function formatDateTime(dateTime) {
 var editPpeModal = document.getElementById("editPpeModal");
 var editPpeOverlay = document.getElementById("editPpeOverlay");
 
-function editPpe(ppe) { 
+function editPpe(ppe) {
     document.getElementById('edit_division').value = ppe.division || 'Select Division';
-    document.getElementById('edit_user').value = ppe.user || '';
+    populateUserDropdownForEdit(ppe.division, ppe.user);  // Dynamically populate and select the user
+
     document.getElementById('edit_property_type').value = ppe.property_type || 'Select Property Type';
-    document.getElementById('edit_article_item').value = ppe.article_item || 'Select Article/Item';
+    document.getElementById('edit_article_item').value = ppe.article_item || '';
     document.getElementById('edit_description').value = ppe.description || '';
     document.getElementById('edit_old_pn').value = ppe.old_pn || '';
     document.getElementById('edit_new_pn').value = ppe.new_pn || '';
@@ -1233,7 +1235,6 @@ function editPpe(ppe) {
     document.getElementById('edit_remarks').value = ppe.remarks || '';
     document.getElementById('edit_date_acq').value = ppe.date_acq || '';
 
-    // Set the form action dynamically
     document.getElementById('editForm').action = `/savePpe/${ppe.id}`;
 
     editPpeModal.style.display = "block";

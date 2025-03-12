@@ -828,7 +828,7 @@
                         <!-- First Column -->
                         <div class="editForm-column-input">
                             <label for="division">Division</label>
-                            <select id="edit_division" name="division" class="input-type-text">
+                            <select id="edit_division" name="division" class="input-type-text" onchange="populateUserDropdownForEdit(this.value)">
                                 <option selected disabled>Select Division</option>
                                 <option value="ACD">ACD</option>
                                 <option value="ARMRD">ARMRD</option>
@@ -864,7 +864,9 @@
 
 
                             <label for="user">User</label>
-                            <input type="text" id="edit_user" name="user" class="input-type-text">
+                            <select id="edit_user" name="user" class="input-type-text" disabled>
+                                <option selected disabled>Select User</option>
+                            </select>
 
                             <label for="property_type">Property Type</label>
                             <select id="edit_property_type" name="property_type" class="input-type-text">

@@ -1558,6 +1558,7 @@ function closeViewPopup() {
 //Header Functions
 
 //Search function
+// Setup CSRF and search button click event
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -1572,6 +1573,7 @@ $(document).ready(function() {
     });
 });
 
+// Search function with AJAX
 function performSearch(searchValue) {
     $.ajax({
         url: '/searchPpe',
@@ -1579,14 +1581,18 @@ function performSearch(searchValue) {
         data: { search_ppe: searchValue },
         success: function(response) {
             console.log(response); // Debugging to verify response
-            $('#table-body').empty(); // Clear the table body before appending new rows
 
-            let totalPpe = 0; // Initialize total PPE count
-            let totalAmount = 0; // Initialize total Amount sum
+            // Update global filteredData used for pagination
+            filteredData = response;
+
+            $('#table-body').empty(); // Clear the table before appending new rows
+
+            let totalPpe = 0;
+            let totalAmount = 0;
 
             response.forEach(function(ppe, index) {
-                totalPpe += 1; // Count each row
-                totalAmount += parseFloat(ppe.unit_value) || 0; // Sum the unit values
+                totalPpe++; // Count each row
+                totalAmount += parseFloat(ppe.unit_value) || 0;
 
                 const rowNumber = index + 1; // Dynamic row numbering
                 $('#table-body').append(
@@ -1634,11 +1640,11 @@ function performSearch(searchValue) {
                 );
             });
 
-            // Update Total PPE and Total Amount fields
+            // Update totals
             $('#totalPpe').val(totalPpe); 
             $('#totalAmount').val(formatNumber(totalAmount));
 
-            // Reset pagination (if applicable)
+            // Reset pagination and update table rows
             currentPage = 1;
             generatePaginationButtons();
         },
@@ -1647,6 +1653,8 @@ function performSearch(searchValue) {
         }
     });
 }
+
+
 
 // Helper function to format numbers with commas
 function formatNumber(value) {
@@ -1713,9 +1721,6 @@ function resetFilters() {
     document.getElementById('filterForm').reset();
     filterDataByDateRange();
 }
-
-
-
 
 
 function displaySummary() {

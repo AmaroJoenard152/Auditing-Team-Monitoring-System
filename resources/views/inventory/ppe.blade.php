@@ -201,11 +201,11 @@
 
                     <!-- Right Side: Filter Form -->
                     <div class="right-form-container">
-                        <form id="filterForm" method="GET" action="{{ route('export.csv') }}" class="date-form-wrapper">
+                        <form id="csvExportForm" method="GET" action="{{ route('export.csv') }}" class="date-form-wrapper">
                             <div class="date-container">
                                 <div class="daterange-group">
                                     <label for="divisionDropdown" class="date-form-label">Division</label>
-                                    <select id="divisionDropdown" name="division" class="date-form-input" onchange="updateUserDropdown()">
+                                    <select id="divisionDropdown" name="division" class="date-form-input">
                                         <option selected disabled>Select Division</option>
                                         <option value="--All Divisions--">--All Divisions--</option>
                                         <option value="ACD">ACD</option>
@@ -237,17 +237,8 @@
                                         <option value="SERD">SERD</option>
                                         <option value="TTPD">TTPD</option>
                                         <option value="Not_Available">Not_Available</option>
-
                                     </select>
                                 </div>
-
-                                <!-- <div class="daterange-group">
-                                    <label for="userDropdown" class="date-form-label">User</label>
-                                    <select id="userDropdown" name="user" class="date-form-input" disabled>
-                                        <option selected disabled>Select User</option>
-                                    </select>
-                                </div> -->
-
 
                                 <div class="daterange-group">
                                     <label for="ptDropdown" class="date-form-label">Property Type</label>
@@ -270,6 +261,7 @@
                                     <label for="conditionDropdown" class="date-form-label">Condition</label>
                                     <select id="conditionDropdown" name="condition" class="date-form-input">
                                         <option value="">Select Condition</option>
+                                        <option value="">Select Condition</option>
                                         <option value="Disposed" title="Disposed">Disposed</option>
                                         <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
                                         <option value="For Disposal" title="For Disposal">For Disposal</option>
@@ -281,9 +273,7 @@
                                         <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
                                         <option value="Very Good" title="Very Good">Very Good</option>
                                         <option value="Not_Available" title="Not Available">Not_Available</option>
-
                                     </select>
-
                                 </div>
 
                                 <div class="daterange-group">
@@ -296,8 +286,12 @@
                                         <option value="Unchecked">Unchecked</option>
                                     </select>
 
+                                    <!-- Hidden inputs for dates -->
+                                    <input type="hidden" id="export-start-date" name="start_date">
+                                    <input type="hidden" id="export-end-date" name="end_date">
+
                                     <button type="button" onclick="filterByDateRange()" class="form-btn submit">Apply</button>
-                                    <button onclick="dvDownloadCSV()" class="form-btn submit">Download</button>
+                                    <button type="button" onclick="prepareCSVExport()" class="form-btn submit">Download</button>
                                     <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="resetPPEFilters()">Reset</button>
                                 </div>
 
@@ -1789,6 +1783,16 @@ function displaySummary() {
 displaySummary();
 
 
+
+
+// Prepares and submits the export form with applied filters
+function prepareCSVExport() {
+    document.getElementById('export-start-date').value = document.getElementById('start-date').value;
+    document.getElementById('export-end-date').value = document.getElementById('end-date').value;
+    
+    // Submit the form with all filter values
+    document.getElementById('csvExportForm').submit();
+}
 
 
 

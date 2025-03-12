@@ -152,14 +152,14 @@ class PpeController extends Controller
         $condition = $request->input('condition');
         $status = $request->input('status');
     
-        // Query the data based on the filters
-        $query = DB::table('ppes'); // Adjust to match your actual table
+        // Build the query with filters
+        $query = DB::table('ppes');
     
         if ($startDate && $endDate) {
-            $query->whereBetween('date_received', [$startDate, $endDate]);
+            $query->whereBetween('date_acq', [$startDate, $endDate]);
         }
     
-        if ($division && $division !== '--All Divisions--') { // Only filter division if not "All"
+        if ($division && $division !== '--All Divisions--') {
             $query->where('division', $division);
         }
     
@@ -176,8 +176,8 @@ class PpeController extends Controller
         }
     
         $data = $query->get();
+        $totalAmount = $data->sum('unit_value'); // Compute total amount
     
-        // Generate dynamic filename
         $filename = 'PPE_Data_' . date('Ymd') . '.csv';
     
         $headers = [
@@ -188,20 +188,63 @@ class PpeController extends Controller
             'Expires' => '0'
         ];
     
-        // Prepare the CSV for download
-        $callback = function() use ($data) {
+        $callback = function() use ($data, $totalAmount) {
             $file = fopen('php://output', 'w');
-            if (!$data->isEmpty()) {
-                fputcsv($file, array_keys((array) $data[0])); // Add headers
-            }
+    
+            // CSV Headers
+            fputcsv($file, [
+                'No.', 'Division', 'User', 'Property Type', 'Article/Item', 'Description',
+                'Old PN', 'New PN', 'Unit Measure', 'Unit Value', 'Quantity Property',
+                'Quantity Physical', 'Location', 'Condition', 'Status', 'Remarks',
+                'Date Acquired', 'Created At', 'Updated At'
+            ]);
+    
+            // Data rows with automated numbering
+            $counter = 1;
             foreach ($data as $row) {
-                fputcsv($file, (array) $row); // Add data
+                fputcsv($file, [
+                    $counter++,
+                    $row->division,
+                    $row->user,
+                    $row->property_type,
+                    $row->article_item,
+                    $row->description,
+                    $row->old_pn,
+                    $row->new_pn,
+                    $row->unit_meas,
+                    number_format($row->unit_value, 2, '.', ','), // Format unit_value
+                    $row->quantity_property,
+                    $row->quantity_physical,
+                    $row->location,
+                    $row->condition,
+                    $row->status,
+                    $row->remarks,
+                    $row->date_acq,
+                    $row->created_at,
+                    $row->updated_at
+                ]);
             }
+    
+            // Blank row before total
+            fputcsv($file, []);
+    
+            // Total row
+            fputcsv($file, [
+                '', '', '', '', '', '', '', '', 'Total',
+                number_format($totalAmount, 2, '.', ','), '', '', '', '', '', '', '', '', ''
+            ]);
+    
             fclose($file);
         };
     
         return Response::stream($callback, 200, $headers);
     }
+    
+    
+    
+    
+    
+    
 
     
 

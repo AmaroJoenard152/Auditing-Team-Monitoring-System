@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +33,14 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <!-- Data Visualization ---->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('js/ppe-visualization/visualization.js') }}" defer></script>
+
+
+
 </head>
 <body>
 
@@ -1112,6 +1122,28 @@
     </div>
 
 
+    <div class="ppe-chart-container">
+        <div class="ppe-chart-row">
+            <div class="ppe-chart-wrapper">
+                <canvas id="ppeDivisionChart"></canvas>
+            </div>
+
+            <div class="ppe-pie-chart-wrapper">
+                <canvas id="statusPieChart"></canvas>
+            </div>
+        </div>
+
+        <div class="ppe-chart-row">
+            <div class="ppe-chart-wrapper">
+                <canvas id="ppeYearChart"></canvas>
+            </div>
+
+            <div class="ppe-pie-chart-wrapper">
+                <canvas id="conditionPieChart"></canvas>
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -1120,6 +1152,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+
 
 const rowsPerPage = 20; // Number of rows to display per page
 let currentPage = 1;
@@ -1790,7 +1823,6 @@ displaySummary();
 
 
 
-
 // Prepares and submits the export form with applied filters
 function prepareCSVExport() {
     document.getElementById('export-start-date').value = document.getElementById('start-date').value;
@@ -1799,7 +1831,6 @@ function prepareCSVExport() {
     // Submit the form with all filter values
     document.getElementById('csvExportForm').submit();
 }
-
 
 
 // Initialize data and pagination

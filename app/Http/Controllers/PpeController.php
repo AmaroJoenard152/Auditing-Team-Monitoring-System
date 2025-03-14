@@ -251,4 +251,28 @@ class PpeController extends Controller
         return Response::stream($callback, 200, $headers);
     }
 
+    public function getDivisionCount()
+    {
+        $data = DB::table('ppes')
+            ->select('division', DB::raw('COUNT(*) as count'))
+            ->groupBy('division')
+            ->get();
+
+        return response()->json($data);
+    }
+
+
+    public function getYearCount()
+    {
+        $data = DB::table('ppes')
+            ->select(DB::raw('YEAR(date_acq) as year'), DB::raw('COUNT(*) as count'))
+            ->whereNotNull('date_acq') // Ensure only valid dates are considered
+            ->groupBy(DB::raw('YEAR(date_acq)'))
+            ->orderBy('year')
+            ->get();
+
+        return response()->json($data);
+    }
+
+
 }

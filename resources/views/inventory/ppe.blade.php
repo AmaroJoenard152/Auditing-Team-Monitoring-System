@@ -28,7 +28,8 @@
     <!-- End Header -->
 
     <!-- Pagination ---->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Pagination ---->
 
 
@@ -1101,25 +1102,25 @@
 
 
 
-     <!-- RPCPPE Summary Table-->
-    <div class="rpcppe-summary-table">
-        <table class="table-content" id="rpcppe-table">
-            <h1 class="h1-date">RPCPPE Summary</h1>
-            <thead>
-                <tr>
-                    <th>Property Type</th>
-                    <th>Checked</th>
-                    <th>Found</th>
-                    <th>Missing</th>
-                    <th>Unchecked</th>
-                    <th>Total Amount</th>
-                </tr>
-            </thead>
-
-            <tbody id="rpcppe-table-body">
-                <!-- Dynamic rows will be inserted here by JavaScript -->
-            </tbody>
-        </table>
+    <div class="rpcppe-summary-container">
+        <h1 class="h1-date">RPCPPE Summary</h1>
+        <div class="rpcppe-summary-table">
+            <table class="summary-table-content" id="rpcppe-table">
+                <thead>
+                    <tr>
+                        <th>Property Type</th>
+                        <th>Checked</th>
+                        <th>Found</th>
+                        <th>Missing</th>
+                        <th>Unchecked</th>
+                        <th>Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="rpcppe-table-body">
+                    <!-- Dynamic rows will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
 

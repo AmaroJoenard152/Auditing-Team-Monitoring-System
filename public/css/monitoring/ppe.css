@@ -304,7 +304,7 @@ td:nth-child(1) {
 
 
 
-/* Container */
+/* Summary Table */
 .rpcppe-summary-container {
     text-align: center;
     margin: 20px auto;
@@ -313,8 +313,8 @@ td:nth-child(1) {
 
 /* Title */
 .h1-date {
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 500;
     color: #333;
     margin-bottom: 10px;
 }
@@ -343,7 +343,7 @@ td:nth-child(1) {
 
 .summary-table-content th, 
 .summary-table-content td {
-    padding: 10px;
+    padding: 8px;
     text-align: center;
     border: 1px solid #ddd;
 }
@@ -363,7 +363,7 @@ td:nth-child(1) {
     .summary-table-content th, 
     .summary-table-content td {
         padding: 8px;
-        font-size: 14px;
+        font-size: 12px;
     }
 }
 

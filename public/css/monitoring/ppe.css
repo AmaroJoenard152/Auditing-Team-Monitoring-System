@@ -304,20 +304,70 @@ td:nth-child(1) {
 
 
 
-.rpcppe-summary-table {
-    background-color: #fff;
-    box-sizing: border-box;
-    padding: 5px;
-    width: 800px;
-    /* margin-left: calc(78px + (100vw - 78px - 1300px) / 2); */
-    margin-left: 100px;
-    margin-top:  20px;
-    margin-bottom: 20px;
-    /* overflow-y: auto; */
-    height: 32vw;
-    border:1px solid #ddd;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+/* Container */
+.rpcppe-summary-container {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 900px;
 }
+
+/* Title */
+.h1-date {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Table Wrapper */
+.rpcppe-summary-table {
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+/* Table */
+.summary-table-content {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Table Headers */
+.summary-table-content thead tr {
+    background-color: #17a2b8;
+    color: white;
+    font-weight: bold;
+}
+
+.summary-table-content th, 
+.summary-table-content td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+/* Alternate Row Colors */
+.summary-table-content tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover Effect */
+.summary-table-content tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .summary-table-content th, 
+    .summary-table-content td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+
 
 
 

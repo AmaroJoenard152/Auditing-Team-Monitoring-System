@@ -1,4 +1,4 @@
-.entire-dv-wrapper{
+.entire-ppe-wrapper{
     background-color: #fff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     width: 1410px;
@@ -36,7 +36,7 @@
     cursor: pointer;
 }
 
-.input-dv-container {
+.input-ppe-container {
     box-sizing: border-box;
     background-color: #fff;
     position: fixed;
@@ -99,7 +99,7 @@
     cursor: pointer;
 }
 
-.dv-submit-button {
+.ppe-submit-button {
     width: 40%;
     background-color: #17a2b8;
     color: white;
@@ -111,7 +111,7 @@
 }
 
 
-.dv-submit-button:hover {
+.ppe-submit-button:hover {
     background-color: #a1c5f0;
   }
   
@@ -179,7 +179,7 @@
 
 
 
-.div-table-container {
+.ppe-table-container {
     background-color: #fff;
     box-sizing: border-box;
     padding: 5px;

@@ -78,7 +78,7 @@ class DisbursementVoucherController extends Controller
         return redirect('/disbursement-voucher');
     }
 
-    public function dvExportCSV(Request $request)
+    public function dvDownloadCSV(Request $request)
     {
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');

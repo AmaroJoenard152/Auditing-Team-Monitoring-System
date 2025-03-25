@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap');
 
-.dv-input-wrapper {
+.input-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -19,7 +19,7 @@
     background-color: #fff;
 }
 
-.newDvButton {
+.popup-button {
     padding: 10px 20px;
     font-weight: bold;
     border-radius: 10px;

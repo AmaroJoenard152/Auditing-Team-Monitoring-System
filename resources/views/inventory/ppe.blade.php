@@ -416,178 +416,173 @@
 
     <!-- Input Form Modal Pop-up --->
     <div class="overlay" id="inputOverlay"></div>
-    <div id="inputPPEModal" class="modal">
-        <div class="modal-content">  
-            <form action="{{url('/submitPpe')}}" method="Post">
-                @csrf
-                <input type="hidden" name="id" id="voucherId">
+        <div id="inputPPEModal" class="modal">
+            <div class="modal-content">
+                <form action="{{url('/submitPpe')}}" method="Post">
+                    @csrf
+                    <input type="hidden" name="id" id="voucherId">
 
-                <div class="input-ppe-container">
-                    <span class="close" onclick="closeInputPopup()">&times;</span>
-                    <div class="form-row-input">
+                    <div class="input-ppe-container">
+                        <span class="close" onclick="closeInputPopup()">&times;</span>
+                        <div class="form-row-input">
 
-                        <!-- First Column -->
-                        <div class="form-column-input"> 
-                            <label for="division">Division</label>
-                            <select id="division" name="division" class="input-type-text" onchange="updateUserDropdown()">
-                                <option selected disabled>Select Division</option>
-                                <option value="ACD">ACD</option>
-                                <option value="ARMRD">ARMRD</option>
-                                <option value="COA">COA</option>
-                                <option value="CRD">CRD</option>
-                                <option value="DPITC-ACD">DPITC-ACD</option>
-                                <option value="DPITC-MISD">DPITC-MISD</option>
-                                <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
-                                <option value="DPITC-TTPD">DPITC TTPD</option>
-                                <option value="FAD-Accounting">FAD-Accounting</option>
-                                <option value="FAD-Budget">FAD-Budget</option>
-                                <option value="FAD-Cash">FAD-Cash</option>
-                                <option value="FAD-GSS">FAD-GSS</option>
-                                <option value="FAD-DO">FAD-DO</option>
-                                <option value="FAD-Personnel">FAD-Personnel</option>
-                                <option value="FAD-Property">FAD-Property</option>
-                                <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
-                                <option value="FERD">FERD</option>
-                                <option value="IARRD">IARRD</option>
-                                <option value="IDD">IDD</option>
-                                <option value="LRD">LRD</option>
-                                <option value="MISD">MISD</option>
-                                <option value="MRRD">MRRD</option>
-                                <option value="OED">OED</option>
-                                <option value="OED-ARMSS">OED-ARMSS</option>
-                                <option value="OED-RD">OED-RD</option>
-                                <option value="PCMD">PCMD</option>
-                                <option value="SERD">SERD</option>
-                                <option value="TTPD">TTPD</option>
-                                <option value="Not_Available">Not_Available</option>
-
-                            </select>
-
-                            <label for="user">User</label>
-                            <select id="user" name="user" class="input-type-text" disabled>
-                                <option selected disabled>Select User</option>
-                            </select>
-
-                            <label for="property_type">Property Type</label>
-                            <select id="property_type" name="property_type" class="input-type-text">
-                                <option selected disabled>Select Property Type</option>
-                                <option value="Building" title="Building">Bldng.</option>
-                                <option value="Communication Equipment" title="Communication Equipment">CE</option>
-                                <option value="Furniture and Fixture" title="Furniture and Fixture">FF</option>
-                                <option value="ICT" title="Information Communication Technology">ICT</option>
-                                <option value="Motor Vehicles" title="Motor Vehicles">MV</option>
-                                <option value="Office Equipment" title="Office Equipment">OE</option>
-                                <option value="Other Land Improvement" title="Other Land Improvement">OLI</option>
-                                <option value="Other Machineries" title="Other Machineries">OM</option>
-                                <option value="Other Structures" title="Other Structures">OS</option>
-                                <option value="Technical Science Equipment" title="Technical Science Equipment">TSE</option>
-                            </select>
-
-
-                            <label for="article_item">Article/Item</label>
-                            <input type="text" id="article_item" name="article_item" class="input-type-text">
-                        </div>
-
-                        <!-- Second Column -->
-                        <div class="form-column-input"> 
-                            <label for="description">Description</label>
-                            <input type="text" id="description" name="description" class="input-type-text">
-
-                            <label for="old_pn">Old PN Number</label>
-                            <input type="text" id="old_pn" name="old_pn" class="input-type-text">
-
-                            <label for="new_pn">New PN Number</label>
-                            <input type="text" id="new_pn" name="new_pn" class="input-type-text">
-
-                            <label for="unit_meas">Unit of Meas.</label>
-                            <input type="text" id="unit_meas" name="unit_meas" class="input-type-text">
-                        </div>
-
-                        <!-- Third Column -->
-                        <div class="form-column-input"> 
-                            <label for="unit_value">Unit Value</label>
-                            <input type="text" id="unit_value" name="unit_value" class="input-type-text">
-
-                            <label for="quantity_property">Quantity (Property Card)</label>
-                            <input type="text" id="quantity_property" name="quantity_property" class="input-type-text">
-
-                            <label for="quantity_physical">Quantity (Physical Count)</label>
-                            <input type="text" id="quantity_physical" name="quantity_physical" class="input-type-text">
-
-                            <label for="location">Location/Whereabouts</label>
-                            <select id="location" name="location" class="input-type-text">
-                            <option selected disabled>Select Location/Whereabouts</option>
-                                <option value="ACD">ACD</option>
-                                <option value="ARMRD">ARMRD</option>
-                                <option value="AR-TANCO-HALL">AR-TANCO-HALL</option>
-                                <option value="BPI-Grounds">BPI-Grounds</option>
-                                <option value="BPK">BPK</option>
-                                <option value="COA">COA</option>
-                                <option value="CRD">CRD</option>
-                                <option value="DPITC">DPITC</option>
-                                <option value="DPITC-ACD">DPITC-ACD</option>
-                                <option value="DPITC-MISD">DPITC-MISD</option>
-                                <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
-                                <option value="DPITC-TTPD">DPITC-TTPD</option>
-                                <option value="E.O-TAN-HALL">E.O-TAN-HALL</option>
-                                <option value="FAD-Accounting">FAD-Accounting</option>
-                                <option value="FAD-Budget">FAD-Budget</option>
-                                <option value="FAD-Cash">FAD-Cash</option>
-                                <option value="FAD-GSS">FAD-GSS</option>
-                                <option value="FAD-GSS-Canteen">FAD-GSS-Canteen</option>
-                                <option value="FAD-DO">FAD-DO</option>
-                                <option value="FAD-Personnel">FAD-Personnel</option>
-                                <option value="FAD-Property">FAD-Property</option>
-                                <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
-                                <option value="FERD">FERD</option>
-                                <option value="GSS-Building">GSS-Building</option>
-                                <option value="Grounds-Motorpool">Grounds-Motorpool</option>
-                                <option value="Grounds-Staff Housing">Grounds-Staff Housing</option>
-                                <option value="Grounds-Main">Grounds-Main</option>
-                                <option value="Grounds-Near-Executive-Housing">Grounds-Near-Executive-Housing</option>
-                                <option value="IARRD">IARRD</option>
-                                <option value="IDD">IDD</option>
-                                <option value="LRD">LRD</option>
-                                <option value="MAIN-GATE">MAIN-GATE</option>
-                                <option value="MISD">MISD</option>
-                                <option value="MRRD">MRRD</option>
-                                <option value="Near-Executive-House#3">Near-Executive-House#3</option>
-                                <option value="Near-Main-Gate">Near-Main-Gate</option>
-                                <option value="OED">OED</option>
-                                <option value="OED-ARMSS">OED-ARMSS</option>
-                                <option value="OED-RD">OED-RD</option>
-                                <option value="PCAARRD-Main">PCAARRD-Main</option>
-                                <option value="PCMD">PCMD</option>
-                                <option value="Regional-NARC">Regional-NARC</option>
-                                <option value="SERD">SERD</option>
-                                <option value="Service-Area">Service-Area</option>
-                                <option value="Staff-Housing">Staff-Housing</option>
-                                <option value="TTPD">TTPD</option>
-                                <option value="Not_Available">Not_Available</option>
-                            </select>
-
-                        </div>
-
-                        <!-- Fourth Column -->
-                        <div class="form-column-input"> 
-                            <label for="condition">Condition</label>
-                                <select id="condition" name="condition" class="input-type-text">
-                                <option selected>Select Condition</option>
-                                <option value="Disposed" title="Disposed">Disposed</option>
-                                <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
-                                <option value="For Disposal" title="For Disposal">For Disposal</option>
-                                <option value="For Donation" title="For Donation">For Donation</option>
-                                <option value="Good Condition" title="Good Condition">Good Condition</option>
-                                <option value="Need Repair" title="Need Repair">Need Repair</option>
-                                <option value="No Longer Needed" title="No Longer Needed">No Longer Needed</option>
-                                <option value="Poor Condition" title="Poor Condition">Poor Condition</option>
-                                <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
-                                <option value="Very Good" title="Very Good">Very Good</option>
-                                <option value="Not_Available" title="Not Available">Not_Available</option>
+                            <!-- First Column -->
+                            <div class="form-column-input">
+                                <label for="division">Division</label>
+                                <select id="division" name="division" class="input-type-text" onchange="updateUserDropdown()">
+                                    <option selected disabled>Select Division</option>
+                                    <option value="ACD">ACD</option>
+                                    <option value="ARMRD">ARMRD</option>
+                                    <option value="COA">COA</option>
+                                    <option value="CRD">CRD</option>
+                                    <option value="DPITC-ACD">DPITC-ACD</option>
+                                    <option value="DPITC-MISD">DPITC-MISD</option>
+                                    <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
+                                    <option value="DPITC-TTPD">DPITC TTPD</option>
+                                    <option value="FAD-Accounting">FAD-Accounting</option>
+                                    <option value="FAD-Budget">FAD-Budget</option>
+                                    <option value="FAD-Cash">FAD-Cash</option>
+                                    <option value="FAD-GSS">FAD-GSS</option>
+                                    <option value="FAD-DO">FAD-DO</option>
+                                    <option value="FAD-Personnel">FAD-Personnel</option>
+                                    <option value="FAD-Property">FAD-Property</option>
+                                    <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
+                                    <option value="FERD">FERD</option>
+                                    <option value="IARRD">IARRD</option>
+                                    <option value="IDD">IDD</option>
+                                    <option value="LRD">LRD</option>
+                                    <option value="MISD">MISD</option>
+                                    <option value="MRRD">MRRD</option>
+                                    <option value="OED">OED</option>
+                                    <option value="OED-ARMSS">OED-ARMSS</option>
+                                    <option value="OED-RD">OED-RD</option>
+                                    <option value="PCMD">PCMD</option>
+                                    <option value="SERD">SERD</option>
+                                    <option value="TTPD">TTPD</option>
+                                    <option value="Not_Available">Not_Available</option>
                                 </select>
 
+                                <label for="user">User</label>
+                                <select id="user" name="user" class="input-type-text" disabled>
+                                    <option selected disabled>Select User</option>
+                                </select>
 
-                            
+                                <label for="property_type">Property Type</label>
+                                <select id="property_type" name="property_type" class="input-type-text">
+                                    <option selected disabled>Select Property Type</option>
+                                    <option value="Building" title="Building">Bldng.</option>
+                                    <option value="Communication Equipment" title="Communication Equipment">CE</option>
+                                    <option value="Furniture and Fixture" title="Furniture and Fixture">FF</option>
+                                    <option value="ICT" title="Information Communication Technology">ICT</option>
+                                    <option value="Motor Vehicles" title="Motor Vehicles">MV</option>
+                                    <option value="Office Equipment" title="Office Equipment">OE</option>
+                                    <option value="Other Land Improvement" title="Other Land Improvement">OLI</option>
+                                    <option value="Other Machineries" title="Other Machineries">OM</option>
+                                    <option value="Other Structures" title="Other Structures">OS</option>
+                                    <option value="Technical Science Equipment" title="Technical Science Equipment">TSE</option>
+                                </select>
+
+                                <label for="article_item">Article/Item</label>
+                                <input type="text" id="article_item" name="article_item" class="input-type-text">
+                            </div>
+
+                            <!-- Second Column -->
+                            <div class="form-column-input">
+                                <label for="description">Description</label>
+                                <input type="text" id="description" name="description" class="input-type-text">
+
+                                <label for="old_pn">Old PN Number</label>
+                                <input type="text" id="old_pn" name="old_pn" class="input-type-text">
+
+                                <label for="new_pn">New PN Number</label>
+                                <input type="text" id="new_pn" name="new_pn" class="input-type-text">
+
+                                <label for="unit_meas">Unit of Meas.</label>
+                                <input type="text" id="unit_meas" name="unit_meas" class="input-type-text">
+                            </div>
+
+                            <!-- Third Column -->
+                            <div class="form-column-input">
+                                <label for="unit_value">Unit Value</label>
+                                <input type="text" id="unit_value" name="unit_value" class="input-type-text">
+
+                                <label for="quantity_property">Quantity (Property Card)</label>
+                                <input type="text" id="quantity_property" name="quantity_property" class="input-type-text">
+
+                                <label for="quantity_physical">Quantity (Physical Count)</label>
+                                <input type="text" id="quantity_physical" name="quantity_physical" class="input-type-text">
+
+                                <label for="location">Location/Whereabouts</label>
+                                <select id="location" name="location" class="input-type-text">
+                                    <option selected disabled>Select Location/Whereabouts</option>
+                                    <option value="ACD">ACD</option>
+                                    <option value="ARMRD">ARMRD</option>
+                                    <option value="AR-TANCO-HALL">AR-TANCO-HALL</option>
+                                    <option value="BPI-Grounds">BPI-Grounds</option>
+                                    <option value="BPK">BPK</option>
+                                    <option value="COA">COA</option>
+                                    <option value="CRD">CRD</option>
+                                    <option value="DPITC">DPITC</option>
+                                    <option value="DPITC-ACD">DPITC-ACD</option>
+                                    <option value="DPITC-MISD">DPITC-MISD</option>
+                                    <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
+                                    <option value="DPITC-TTPD">DPITC-TTPD</option>
+                                    <option value="E.O-TAN-HALL">E.O-TAN-HALL</option>
+                                    <option value="FAD-Accounting">FAD-Accounting</option>
+                                    <option value="FAD-Budget">FAD-Budget</option>
+                                    <option value="FAD-Cash">FAD-Cash</option>
+                                    <option value="FAD-GSS">FAD-GSS</option>
+                                    <option value="FAD-GSS-Canteen">FAD-GSS-Canteen</option>
+                                    <option value="FAD-DO">FAD-DO</option>
+                                    <option value="FAD-Personnel">FAD-Personnel</option>
+                                    <option value="FAD-Property">FAD-Property</option>
+                                    <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
+                                    <option value="FERD">FERD</option>
+                                    <option value="GSS-Building">GSS-Building</option>
+                                    <option value="Grounds-Motorpool">Grounds-Motorpool</option>
+                                    <option value="Grounds-Staff Housing">Grounds-Staff Housing</option>
+                                    <option value="Grounds-Main">Grounds-Main</option>
+                                    <option value="Grounds-Near-Executive-Housing">Grounds-Near-Executive-Housing</option>
+                                    <option value="IARRD">IARRD</option>
+                                    <option value="IDD">IDD</option>
+                                    <option value="LRD">LRD</option>
+                                    <option value="MAIN-GATE">MAIN-GATE</option>
+                                    <option value="MISD">MISD</option>
+                                    <option value="MRRD">MRRD</option>
+                                    <option value="Near-Executive-House#3">Near-Executive-House#3</option>
+                                    <option value="Near-Main-Gate">Near-Main-Gate</option>
+                                    <option value="OED">OED</option>
+                                    <option value="OED-ARMSS">OED-ARMSS</option>
+                                    <option value="OED-RD">OED-RD</option>
+                                    <option value="PCAARRD-Main">PCAARRD-Main</option>
+                                    <option value="PCMD">PCMD</option>
+                                    <option value="Regional-NARC">Regional-NARC</option>
+                                    <option value="SERD">SERD</option>
+                                    <option value="Service-Area">Service-Area</option>
+                                    <option value="Staff-Housing">Staff-Housing</option>
+                                    <option value="TTPD">TTPD</option>
+                                    <option value="Not_Available">Not_Available</option>
+                                </select>
+                            </div>
+
+                            <!-- Fourth Column -->
+                            <div class="form-column-input">
+                                <label for="condition">Condition</label>
+                                <select id="condition" name="condition" class="input-type-text">
+                                    <option selected>Select Condition</option>
+                                    <option value="Disposed" title="Disposed">Disposed</option>
+                                    <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
+                                    <option value="For Disposal" title="For Disposal">For Disposal</option>
+                                    <option value="For Donation" title="For Donation">For Donation</option>
+                                    <option value="Good Condition" title="Good Condition">Good Condition</option>
+                                    <option value="Need Repair" title="Need Repair">Need Repair</option>
+                                    <option value="No Longer Needed" title="No Longer Needed">No Longer Needed</option>
+                                    <option value="Poor Condition" title="Poor Condition">Poor Condition</option>
+                                    <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
+                                    <option value="Very Good" title="Very Good">Very Good</option>
+                                    <option value="Not_Available" title="Not Available">Not_Available</option>
+                                </select>
+
                                 <label for="status">Status</label>
                                 <select id="status" name="status" class="input-type-text">
                                     <option selected>Select Status</option>
@@ -597,237 +592,34 @@
                                     <option value="Unchecked">Unchecked</option>
                                 </select>
 
-                            <label for="remarks">Remarks</label>
-                            <input type="text" id="remarks" name="remarks" class="input-type-text">
+                                <label for="remarks">Remarks</label>
+                                <input type="text" id="remarks" name="remarks" class="input-type-text">
 
-                            <label for="date_acq">Date Acquired</label>
-                            <input type="date" id="date_acq" name="date_acq" class="input-type-date">
+                                <label for="date_acq">Date Acquired</label>
+                                <input type="date" id="date_acq" name="date_acq" class="input-type-date">
 
-                            <button type="button" class="date-form-btn-cancel" onclick="resetPPEInput()">Reset</button>
-                            <input type="submit" value="Submit" class="ppe-submit-button">
+                                <button type="button" class="date-form-btn-cancel" onclick="resetPPEInput()">Reset</button>
+                                <input type="submit" value="Submit" class="ppe-submit-button">
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
     <!-- Input Form Modal Pop-up --->
+
 
     <!-- View Modal -->
     <div class="overlay" id="ppeModal"></div>
         <div id="viewDvModal" class="modal">
-        <div class="modal-content">  
-            <div class="input-ppe-container">
-                <span class="close" onclick="closeViewPopup()">&times;</span>
-                <div class="form-row-input">
-                    <!-- First Column -->
-                    <div class="form-column-input"> 
-                        <label for="division">Division</label>
-                        <select id="view_division" name="division" class="input-type-text" disabled>
-                            <option selected disabled>Select Division</option>
-                            <option value="ACD">ACD</option>
-                            <option value="ARMRD">ARMRD</option>
-                            <option value="COA">COA</option>
-                            <option value="CRD">CRD</option>
-                            <option value="DPITC-ACD">DPITC-ACD</option>
-                            <option value="DPITC-MISD">DPITC-MISD</option>
-                            <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
-                            <option value="DPITC-TTPD">DPITC TTPD</option>
-                            <option value="FAD-Accounting">FAD-Accounting</option>
-                            <option value="FAD-Budget">FAD-Budget</option>
-                            <option value="FAD-Cash">FAD-Cash</option>
-                            <option value="FAD-GSS">FAD-GSS</option>
-                            <option value="FAD-DO">FAD-DO</option>
-                            <option value="FAD-Personnel">FAD-Personnel</option>
-                            <option value="FAD-Property">FAD-Property</option>
-                            <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
-                            <option value="FERD">FERD</option>
-                            <option value="IARRD">IARRD</option>
-                            <option value="IDD">IDD</option>
-                            <option value="LRD">LRD</option>
-                            <option value="MISD">MISD</option>
-                            <option value="MRRD">MRRD</option>
-                            <option value="OED">OED</option>
-                            <option value="OED-ARMSS">OED-ARMSS</option>
-                            <option value="OED-RD">OED-RD</option>
-                            <option value="PCMD">PCMD</option>
-                            <option value="SERD">SERD</option>
-                            <option value="TTPD">TTPD</option>
-                            <option value="Not_Available">Not_Available</option>
-
-                        </select>
-
-
-                        <label for="user">User</label>
-                        <input type="text" id="view_user" name="user" class="input-type-text" disabled>
-
-                        <label for="property_type">Property Type</label>
-                        <select id="view_property_type" name="property_type" class="input-type-text" disabled>
-                            <option selected disabled>Select Property Type</option>
-                            <option value="Building" title="Building">Bldng.</option>
-                            <option value="Communication Equipment" title="Communication Equipment">CE</option>
-                            <option value="Furniture and Fixture" title="Furniture and Fixture">FF</option>
-                            <option value="ICT" title="Information Communication Technology">ICT</option>
-                            <option value="Motor Vehicles" title="Motor Vehicles">MV</option>
-                            <option value="Office Equipment" title="Office Equipment">OE</option>
-                            <option value="Other Land Improvement" title="Other Land Improvement">OLI</option>
-                            <option value="Other Machineries" title="Other Machineries">OM</option>
-                            <option value="Other Structures" title="Other Structures">OS</option>
-                            <option value="Technical Science Equipment" title="Technical Science Equipment">TSE</option>
-                        </select>
-
-                        <label for="article_item">Article/Item</label>
-                        <input type="text" id="view_article_item" name="article_item" class="input-type-text" disabled>
-
-                    </div>
-
-                    <!-- Second Column -->
-                    <div class="form-column-input"> 
-                        <label for="description">Description</label>
-                        <input type="text" id="view_description" name="description" class="input-type-text" disabled>
-
-                        <label for="old_pn">Old PN Number</label>
-                        <input type="text" id="view_old_pn" name="old_pn" class="input-type-text" disabled>
-
-                        <label for="new_pn">New PN Number</label>
-                        <input type="text" id="view_new_pn" name="new_pn" class="input-type-text" disabled>
-
-                        <label for="unit_meas">Unit of Meas.</label>
-                        <input type="text" id="view_unit_meas" name="unit_meas" class="input-type-text" disabled>
-                    </div>
-
-                    <!-- Third Column -->
-                    <div class="form-column-input"> 
-                        <label for="unit_value">Unit Value</label>
-                        <input type="text" id="view_unit_value" name="unit_value" class="input-type-text" disabled onblur="updateUnitValueDisplay(this)"> 
-
-                        <label for="quantity_property">Quantity (Property Card)</label>
-                        <input type="text" id="view_quantity_property" name="quantity_property" class="input-type-text" disabled>
-
-                        <label for="quantity_physical">Quantity (Physical Count)</label>
-                        <input type="text" id="view_quantity_physical" name="quantity_physical" class="input-type-text" disabled>
-
-                        <label for="location">Location/Whereabouts</label>
-                        <select id="view_location" name="location" class="input-type-text" disabled>
-                            <option selected disabled>Select Location/Whereabouts</option>
-                            <option value="ACD">ACD</option>
-                            <option value="ARMRD">ARMRD</option>
-                            <option value="AR-TANCO-HALL">AR-TANCO-HALL</option>
-                            <option value="BPI-Grounds">BPI-Grounds</option>
-                            <option value="BPK">BPK</option>
-                            <option value="COA">COA</option>
-                            <option value="CRD">CRD</option>
-                            <option value="DPITC">DPITC</option>
-                            <option value="DPITC-ACD">DPITC-ACD</option>
-                            <option value="DPITC-MISD">DPITC-MISD</option>
-                            <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
-                            <option value="DPITC-TTPD">DPITC-TTPD</option>
-                            <option value="E.O-TAN-HALL">E.O-TAN-HALL</option>
-                            <option value="FAD-Accounting">FAD-Accounting</option>
-                            <option value="FAD-Budget">FAD-Budget</option>
-                            <option value="FAD-Cash">FAD-Cash</option>
-                            <option value="FAD-GSS">FAD-GSS</option>
-                            <option value="FAD-GSS-Canteen">FAD-GSS-Canteen</option>
-                            <option value="FAD-DO">FAD-DO</option>
-                            <option value="FAD-Personnel">FAD-Personnel</option>
-                            <option value="FAD-Property">FAD-Property</option>
-                            <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
-                            <option value="FERD">FERD</option>
-                            <option value="GSS-Building">GSS-Building</option>
-                            <option value="Grounds-Motorpool">Grounds-Motorpool</option>
-                            <option value="Grounds-Staff Housing">Grounds-Staff Housing</option>
-                            <option value="Grounds-Main">Grounds-Main</option>
-                            <option value="Grounds-Near-Executive-Housing">Grounds-Near-Executive-Housing</option>
-                            <option value="IARRD">IARRD</option>
-                            <option value="IDD">IDD</option>
-                            <option value="LRD">LRD</option>
-                            <option value="MAIN-GATE">MAIN-GATE</option>
-                            <option value="MISD">MISD</option>
-                            <option value="MRRD">MRRD</option>
-                            <option value="Near-Executive-House#3">Near-Executive-House#3</option>
-                            <option value="Near-Main-Gate">Near-Main-Gate</option>
-                            <option value="OED">OED</option>
-                            <option value="OED-ARMSS">OED-ARMSS</option>
-                            <option value="OED-RD">OED-RD</option>
-                            <option value="PCAARRD-Main">PCAARRD-Main</option>
-                            <option value="PCMD">PCMD</option>
-                            <option value="Regional-NARC">Regional-NARC</option>
-                            <option value="SERD">SERD</option>
-                            <option value="Service-Area">Service-Area</option>
-                            <option value="Staff-Housing">Staff-Housing</option>
-                            <option value="TTPD">TTPD</option>
-                            <option value="Not_Available">Not_Available</option>
-                        </select>
-                    </div>
-
-                    <!-- Fourth Column -->
-                    <div class="form-column-input"> 
-                        <label for="condition">Condition</label>
-                        <select id="view_condition" name="condition" class="input-type-text" disabled>
-                            <option selected>Select Condition</option>
-                            <option value="Disposed" title="Disposed">Disposed</option>
-                            <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
-                            <option value="For Disposal" title="For Disposal">For Disposal</option>
-                            <option value="For Donation" title="For Donation">For Donation</option>
-                            <option value="Good Condition" title="Good Condition">Good Condition</option>
-                            <option value="Need Repair" title="Need Repair">Need Repair</option>
-                            <option value="No Longer Needed" title="No Longer Needed">No Longer Needed</option>
-                            <option value="Poor Condition" title="Poor Condition">Poor Condition</option>
-                            <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
-                            <option value="Very Good" title="Very Good">Very Good</option>
-                            <option value="Not_Available" title="Not Available">Not_Available</option>
-                        </select>
-
-
-                        <label for="status">Status</label>
-                            <select id="view_status" name="status" class="input-type-text" disabled>
-                                <option selected>Select Status</option>
-                                <option value="Found">Found</option>
-                                <option value="Missing">Missing</option>
-                                <option value="Checked">Checked</option>
-                                <option value="Unchecked">Unchecked</option>
-                            </select>
-
-                        <label for="remarks">Remarks</label>
-                        <input type="text" id="view_remarks" name="remarks" class="input-type-text" disabled>
-
-                        <label for="date_acq">Date Acquired</label>
-                        <input type="date" id="view_date_acq" name="date_acq" class="input-type-date" disabled>
-                    </div>
-                </div>
-
-
-                <div class="form-column-input-flex">
-                    <div class="form-group-item">
-                        <label for="created_at">Date Created</label>
-                        <span id="view_created_at" class="input-type-text" disabled></span>
-                    </div>
-                    <div class="form-group-item">
-                        <label for="updated_at">Last Updated</label>
-                        <span id="view_updated_at" class="input-type-text" disabled></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- View Modal -->
-
-    <!-- Edit Modal -->
-    <div class="overlay" id="editPpeOverlay"></div>
-    <div id="editPpeModal" class="modal">
-        <div class="modal-content">
-            <form id="editForm" method="POST" action="/savePpe/{{ $ppe->id }}">
-                @csrf
-                <input type="hidden" name="id" id="editPpeId">
-
-                <div class="editForm-input-container">
-                    <span class="close" onclick="closeEditPopup()">&times;</span>
-                    <div class="editForm-row-input">
-
+            <div class="modal-content">  
+                <div class="input-ppe-container">
+                    <span class="close" onclick="closeViewPopup()">&times;</span>
+                    <div class="form-row-input">
                         <!-- First Column -->
-                        <div class="editForm-column-input">
+                        <div class="form-column-input"> 
                             <label for="division">Division</label>
-                            <select id="edit_division" name="division" class="input-type-text" onchange="populateUserDropdownForEdit(this.value)">
+                            <select id="view_division" name="division" class="input-type-text" disabled>
                                 <option selected disabled>Select Division</option>
                                 <option value="ACD">ACD</option>
                                 <option value="ARMRD">ARMRD</option>
@@ -863,12 +655,10 @@
 
 
                             <label for="user">User</label>
-                            <select id="edit_user" name="user" class="input-type-text">
-                                <option selected disabled>Select User</option>
-                            </select>
+                            <input type="text" id="view_user" name="user" class="input-type-text" disabled>
 
                             <label for="property_type">Property Type</label>
-                            <select id="edit_property_type" name="property_type" class="input-type-text">
+                            <select id="view_property_type" name="property_type" class="input-type-text" disabled>
                                 <option selected disabled>Select Property Type</option>
                                 <option value="Building" title="Building">Bldng.</option>
                                 <option value="Communication Equipment" title="Communication Equipment">CE</option>
@@ -881,40 +671,40 @@
                                 <option value="Other Structures" title="Other Structures">OS</option>
                                 <option value="Technical Science Equipment" title="Technical Science Equipment">TSE</option>
                             </select>
-                                                   
+
                             <label for="article_item">Article/Item</label>
-                            <input type="text" id="edit_article_item" name="article_item" class="input-type-text">
+                            <input type="text" id="view_article_item" name="article_item" class="input-type-text" disabled>
+
                         </div>
 
                         <!-- Second Column -->
-                        <div class="editForm-column-input">
+                        <div class="form-column-input"> 
                             <label for="description">Description</label>
-                            <input type="text" id="edit_description" name="description" class="input-type-text">
+                            <input type="text" id="view_description" name="description" class="input-type-text" disabled>
 
                             <label for="old_pn">Old PN Number</label>
-                            <input type="text" id="edit_old_pn" name="old_pn" class="input-type-text">
+                            <input type="text" id="view_old_pn" name="old_pn" class="input-type-text" disabled>
 
                             <label for="new_pn">New PN Number</label>
-                            <input type="text" id="edit_new_pn" name="new_pn" class="input-type-text">
+                            <input type="text" id="view_new_pn" name="new_pn" class="input-type-text" disabled>
 
                             <label for="unit_meas">Unit of Meas.</label>
-                            <input type="text" id="edit_unit_meas" name="unit_meas" class="input-type-text">
+                            <input type="text" id="view_unit_meas" name="unit_meas" class="input-type-text" disabled>
                         </div>
 
                         <!-- Third Column -->
-                        <div class="editForm-column-input">
+                        <div class="form-column-input"> 
                             <label for="unit_value">Unit Value</label>
-                            <input type="text" id="edit_unit_value" name="unit_value" class="input-type-text">
+                            <input type="text" id="view_unit_value" name="unit_value" class="input-type-text" disabled onblur="updateUnitValueDisplay(this)"> 
 
                             <label for="quantity_property">Quantity (Property Card)</label>
-                            <input type="text" id="edit_quantity_property" name="quantity_property" class="input-type-text">
+                            <input type="text" id="view_quantity_property" name="quantity_property" class="input-type-text" disabled>
 
                             <label for="quantity_physical">Quantity (Physical Count)</label>
-                            <input type="text" id="edit_quantity_physical" name="quantity_physical" class="input-type-text">
+                            <input type="text" id="view_quantity_physical" name="quantity_physical" class="input-type-text" disabled>
 
                             <label for="location">Location/Whereabouts</label>
-                            
-                            <select id="edit_location" name="location" class="input-type-text">
+                            <select id="view_location" name="location" class="input-type-text" disabled>
                                 <option selected disabled>Select Location/Whereabouts</option>
                                 <option value="ACD">ACD</option>
                                 <option value="ARMRD">ARMRD</option>
@@ -948,22 +738,28 @@
                                 <option value="IDD">IDD</option>
                                 <option value="LRD">LRD</option>
                                 <option value="MAIN-GATE">MAIN-GATE</option>
+                                <option value="MISD">MISD</option>
+                                <option value="MRRD">MRRD</option>
                                 <option value="Near-Executive-House#3">Near-Executive-House#3</option>
                                 <option value="Near-Main-Gate">Near-Main-Gate</option>
+                                <option value="OED">OED</option>
+                                <option value="OED-ARMSS">OED-ARMSS</option>
+                                <option value="OED-RD">OED-RD</option>
                                 <option value="PCAARRD-Main">PCAARRD-Main</option>
+                                <option value="PCMD">PCMD</option>
                                 <option value="Regional-NARC">Regional-NARC</option>
+                                <option value="SERD">SERD</option>
                                 <option value="Service-Area">Service-Area</option>
                                 <option value="Staff-Housing">Staff-Housing</option>
+                                <option value="TTPD">TTPD</option>
                                 <option value="Not_Available">Not_Available</option>
                             </select>
-
                         </div>
 
                         <!-- Fourth Column -->
-                        <div class="editForm-column-input">
-
+                        <div class="form-column-input"> 
                             <label for="condition">Condition</label>
-                            <select id="edit_condition" name="condition" class="input-type-text">
+                            <select id="view_condition" name="condition" class="input-type-text" disabled>
                                 <option selected>Select Condition</option>
                                 <option value="Disposed" title="Disposed">Disposed</option>
                                 <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
@@ -980,110 +776,310 @@
 
 
                             <label for="status">Status</label>
-                            <select id="edit_status" name="status" class="input-type-text">
-                                <option selected>Select Status</option>
-                                <option value="Found">Found</option>
-                                <option value="Missing">Missing</option>
-                                <option value="Checked">Checked</option>
-                                <option value="Unchecked">Unchecked</option>
-                            </select>
+                                <select id="view_status" name="status" class="input-type-text" disabled>
+                                    <option selected>Select Status</option>
+                                    <option value="Found">Found</option>
+                                    <option value="Missing">Missing</option>
+                                    <option value="Checked">Checked</option>
+                                    <option value="Unchecked">Unchecked</option>
+                                </select>
 
                             <label for="remarks">Remarks</label>
-                            <input type="text" id="edit_remarks" name="remarks" class="input-type-text">
+                            <input type="text" id="view_remarks" name="remarks" class="input-type-text" disabled>
 
                             <label for="date_acq">Date Acquired</label>
-                            <input type="date" id="edit_date_acq" name="date_acq" class="input-type-date">
-
-                            <input type="submit" value="Save" class="ppe-submit-button">
+                            <input type="date" id="view_date_acq" name="date_acq" class="input-type-date" disabled>
                         </div>
+                    </div>
 
 
-
+                    <div class="form-column-input-flex">
+                        <div class="form-group-item">
+                            <label for="created_at">Date Created</label>
+                            <span id="view_created_at" class="input-type-text" disabled></span>
+                        </div>
+                        <div class="form-group-item">
+                            <label for="updated_at">Last Updated</label>
+                            <span id="view_updated_at" class="input-type-text" disabled></span>
+                        </div>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    <!-- View Modal -->
+
+    <!-- Edit Modal -->
+    <div class="overlay" id="editPpeOverlay"></div>
+        <div id="editPpeModal" class="modal">
+            <div class="modal-content">
+                <form id="editForm" method="POST" action="/savePpe/{{ $ppe->id }}">
+                    @csrf
+                    <input type="hidden" name="id" id="editPpeId">
+
+                    <div class="editForm-input-container">
+                        <span class="close" onclick="closeEditPopup()">&times;</span>
+                        <div class="editForm-row-input">
+
+                            <!-- First Column -->
+                            <div class="editForm-column-input">
+                                <label for="division">Division</label>
+                                <select id="edit_division" name="division" class="input-type-text" onchange="populateUserDropdownForEdit(this.value)">
+                                    <option selected disabled>Select Division</option>
+                                    <option value="ACD">ACD</option>
+                                    <option value="ARMRD">ARMRD</option>
+                                    <option value="COA">COA</option>
+                                    <option value="CRD">CRD</option>
+                                    <option value="DPITC-ACD">DPITC-ACD</option>
+                                    <option value="DPITC-MISD">DPITC-MISD</option>
+                                    <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
+                                    <option value="DPITC-TTPD">DPITC TTPD</option>
+                                    <option value="FAD-Accounting">FAD-Accounting</option>
+                                    <option value="FAD-Budget">FAD-Budget</option>
+                                    <option value="FAD-Cash">FAD-Cash</option>
+                                    <option value="FAD-GSS">FAD-GSS</option>
+                                    <option value="FAD-DO">FAD-DO</option>
+                                    <option value="FAD-Personnel">FAD-Personnel</option>
+                                    <option value="FAD-Property">FAD-Property</option>
+                                    <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
+                                    <option value="FERD">FERD</option>
+                                    <option value="IARRD">IARRD</option>
+                                    <option value="IDD">IDD</option>
+                                    <option value="LRD">LRD</option>
+                                    <option value="MISD">MISD</option>
+                                    <option value="MRRD">MRRD</option>
+                                    <option value="OED">OED</option>
+                                    <option value="OED-ARMSS">OED-ARMSS</option>
+                                    <option value="OED-RD">OED-RD</option>
+                                    <option value="PCMD">PCMD</option>
+                                    <option value="SERD">SERD</option>
+                                    <option value="TTPD">TTPD</option>
+                                    <option value="Not_Available">Not_Available</option>
+
+                                </select>
+
+
+                                <label for="user">User</label>
+                                <select id="edit_user" name="user" class="input-type-text">
+                                    <option selected disabled>Select User</option>
+                                </select>
+
+                                <label for="property_type">Property Type</label>
+                                <select id="edit_property_type" name="property_type" class="input-type-text">
+                                    <option selected disabled>Select Property Type</option>
+                                    <option value="Building" title="Building">Bldng.</option>
+                                    <option value="Communication Equipment" title="Communication Equipment">CE</option>
+                                    <option value="Furniture and Fixture" title="Furniture and Fixture">FF</option>
+                                    <option value="ICT" title="Information Communication Technology">ICT</option>
+                                    <option value="Motor Vehicles" title="Motor Vehicles">MV</option>
+                                    <option value="Office Equipment" title="Office Equipment">OE</option>
+                                    <option value="Other Land Improvement" title="Other Land Improvement">OLI</option>
+                                    <option value="Other Machineries" title="Other Machineries">OM</option>
+                                    <option value="Other Structures" title="Other Structures">OS</option>
+                                    <option value="Technical Science Equipment" title="Technical Science Equipment">TSE</option>
+                                </select>
+                                                    
+                                <label for="article_item">Article/Item</label>
+                                <input type="text" id="edit_article_item" name="article_item" class="input-type-text">
+                            </div>
+
+                            <!-- Second Column -->
+                            <div class="editForm-column-input">
+                                <label for="description">Description</label>
+                                <input type="text" id="edit_description" name="description" class="input-type-text">
+
+                                <label for="old_pn">Old PN Number</label>
+                                <input type="text" id="edit_old_pn" name="old_pn" class="input-type-text">
+
+                                <label for="new_pn">New PN Number</label>
+                                <input type="text" id="edit_new_pn" name="new_pn" class="input-type-text">
+
+                                <label for="unit_meas">Unit of Meas.</label>
+                                <input type="text" id="edit_unit_meas" name="unit_meas" class="input-type-text">
+                            </div>
+
+                            <!-- Third Column -->
+                            <div class="editForm-column-input">
+                                <label for="unit_value">Unit Value</label>
+                                <input type="text" id="edit_unit_value" name="unit_value" class="input-type-text">
+
+                                <label for="quantity_property">Quantity (Property Card)</label>
+                                <input type="text" id="edit_quantity_property" name="quantity_property" class="input-type-text">
+
+                                <label for="quantity_physical">Quantity (Physical Count)</label>
+                                <input type="text" id="edit_quantity_physical" name="quantity_physical" class="input-type-text">
+
+                                <label for="location">Location/Whereabouts</label>
+                                
+                                <select id="edit_location" name="location" class="input-type-text">
+                                    <option selected disabled>Select Location/Whereabouts</option>
+                                    <option value="ACD">ACD</option>
+                                    <option value="ARMRD">ARMRD</option>
+                                    <option value="AR-TANCO-HALL">AR-TANCO-HALL</option>
+                                    <option value="BPI-Grounds">BPI-Grounds</option>
+                                    <option value="BPK">BPK</option>
+                                    <option value="COA">COA</option>
+                                    <option value="CRD">CRD</option>
+                                    <option value="DPITC">DPITC</option>
+                                    <option value="DPITC-ACD">DPITC-ACD</option>
+                                    <option value="DPITC-MISD">DPITC-MISD</option>
+                                    <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
+                                    <option value="DPITC-TTPD">DPITC-TTPD</option>
+                                    <option value="E.O-TAN-HALL">E.O-TAN-HALL</option>
+                                    <option value="FAD-Accounting">FAD-Accounting</option>
+                                    <option value="FAD-Budget">FAD-Budget</option>
+                                    <option value="FAD-Cash">FAD-Cash</option>
+                                    <option value="FAD-GSS">FAD-GSS</option>
+                                    <option value="FAD-GSS-Canteen">FAD-GSS-Canteen</option>
+                                    <option value="FAD-DO">FAD-DO</option>
+                                    <option value="FAD-Personnel">FAD-Personnel</option>
+                                    <option value="FAD-Property">FAD-Property</option>
+                                    <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
+                                    <option value="FERD">FERD</option>
+                                    <option value="GSS-Building">GSS-Building</option>
+                                    <option value="Grounds-Motorpool">Grounds-Motorpool</option>
+                                    <option value="Grounds-Staff Housing">Grounds-Staff Housing</option>
+                                    <option value="Grounds-Main">Grounds-Main</option>
+                                    <option value="Grounds-Near-Executive-Housing">Grounds-Near-Executive-Housing</option>
+                                    <option value="IARRD">IARRD</option>
+                                    <option value="IDD">IDD</option>
+                                    <option value="LRD">LRD</option>
+                                    <option value="MAIN-GATE">MAIN-GATE</option>
+                                    <option value="Near-Executive-House#3">Near-Executive-House#3</option>
+                                    <option value="Near-Main-Gate">Near-Main-Gate</option>
+                                    <option value="PCAARRD-Main">PCAARRD-Main</option>
+                                    <option value="Regional-NARC">Regional-NARC</option>
+                                    <option value="Service-Area">Service-Area</option>
+                                    <option value="Staff-Housing">Staff-Housing</option>
+                                    <option value="Not_Available">Not_Available</option>
+                                </select>
+
+                            </div>
+
+                            <!-- Fourth Column -->
+                            <div class="editForm-column-input">
+
+                                <label for="condition">Condition</label>
+                                <select id="edit_condition" name="condition" class="input-type-text">
+                                    <option selected>Select Condition</option>
+                                    <option value="Disposed" title="Disposed">Disposed</option>
+                                    <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
+                                    <option value="For Disposal" title="For Disposal">For Disposal</option>
+                                    <option value="For Donation" title="For Donation">For Donation</option>
+                                    <option value="Good Condition" title="Good Condition">Good Condition</option>
+                                    <option value="Need Repair" title="Need Repair">Need Repair</option>
+                                    <option value="No Longer Needed" title="No Longer Needed">No Longer Needed</option>
+                                    <option value="Poor Condition" title="Poor Condition">Poor Condition</option>
+                                    <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
+                                    <option value="Very Good" title="Very Good">Very Good</option>
+                                    <option value="Not_Available" title="Not Available">Not_Available</option>
+                                </select>
+
+
+                                <label for="status">Status</label>
+                                <select id="edit_status" name="status" class="input-type-text">
+                                    <option selected>Select Status</option>
+                                    <option value="Found">Found</option>
+                                    <option value="Missing">Missing</option>
+                                    <option value="Checked">Checked</option>
+                                    <option value="Unchecked">Unchecked</option>
+                                </select>
+
+                                <label for="remarks">Remarks</label>
+                                <input type="text" id="edit_remarks" name="remarks" class="input-type-text">
+
+                                <label for="date_acq">Date Acquired</label>
+                                <input type="date" id="edit_date_acq" name="date_acq" class="input-type-date">
+
+                                <input type="submit" value="Save" class="ppe-submit-button">
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     <!-- Edit Modal -->
 
     <!-- View Edit History -->
     <div class="overlay" id="editHistoryModal"></div>
-    <div id="viewEditHistory" class="modal">
-        <div class="modal-content">
-            <form>
-                <div class="input-ppe-container">
-                    <h2 class="h1-date">PPE Edit History</h2>
-                    <span class="close" onclick="closeViewEditHistory()">&times;</span>
-                    <div class="form-row-input">
-                        <div class="div-editTable-container">
-                            <div class="viewEditHistory-range-wrapper">
-                                <div class="date-row">
-                                    <div class="date-flex-container">
-                                        <!-- Left Side: Search Form -->
-                                        <div class="viewEditHistory-form-container">
-                                            <form id="filterForm" class="date-form-wrapper">
-                                                <div class="editHistoryDaterange-group">
-                                                    <label for="search_ppe" class="date-form-label">Search</label>
-                                                    <input type="text" id="search_ppe" name="search_ppe" class="date-form-input">
-                                                    <button type="button" id="search-btn" class="form-btn submit">Search</button>
+        <div id="viewEditHistory" class="modal">
+            <div class="modal-content">
+                <form>
+                    <div class="input-ppe-container">
+                        <h2 class="h1-date">PPE Edit History</h2>
+                        <span class="close" onclick="closeViewEditHistory()">&times;</span>
+                        <div class="form-row-input">
+                            <div class="div-editTable-container">
+                                <div class="viewEditHistory-range-wrapper">
+                                    <div class="date-row">
+                                        <div class="date-flex-container">
+                                            <!-- Left Side: Search Form -->
+                                            <div class="viewEditHistory-form-container">
+                                                <form id="filterForm" class="date-form-wrapper">
+                                                    <div class="editHistoryDaterange-group">
+                                                        <label for="search_ppe" class="date-form-label">Search</label>
+                                                        <input type="text" id="search_ppe" name="search_ppe" class="date-form-input">
+                                                        <button type="button" id="search-btn" class="form-btn submit">Search</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+            
+                                            <!-- Right Side: Date Range & Buttons -->
+                                            <div class="viewEditHistory-controls">
+                                                <div class="daterange-group">
+                                                    <label for="start_date" class="date-form-label">Start Date:</label>
+                                                    <input type="date" id="start-date" name="start-date" class="date-form-input">
                                                 </div>
-                                            </form>
-                                        </div>
-        
-                                        <!-- Right Side: Date Range & Buttons -->
-                                        <div class="viewEditHistory-controls">
-                                            <div class="daterange-group">
-                                                <label for="start_date" class="date-form-label">Start Date:</label>
-                                                <input type="date" id="start-date" name="start-date" class="date-form-input">
-                                            </div>
-                                            <div class="daterange-group">
-                                                <label for="end_date" class="date-form-label">End Date:</label>
-                                                <input type="date" id="end-date" name="end-date" class="date-form-input">
-                                            </div>
-                                            <div class="editHistoryDaterangeButton">
-                                                <button type="button" onclick="filterByDateRange()" class="form-btn submit">Apply</button>
-                                                <button onclick="dvDownloadCSV()" class="form-btn submit">Download</button>
-                                                <button type="button" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
+                                                <div class="daterange-group">
+                                                    <label for="end_date" class="date-form-label">End Date:</label>
+                                                    <input type="date" id="end-date" name="end-date" class="date-form-input">
+                                                </div>
+                                                <div class="editHistoryDaterangeButton">
+                                                    <button type="button" onclick="filterByDateRange()" class="form-btn submit">Apply</button>
+                                                    <button onclick="dvDownloadCSV()" class="form-btn submit">Download</button>
+                                                    <button type="button" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-        
-                            <table class="table-content" id="ppe-table">
-                                <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        <!-- <th>Division</th>
-                                        <th>User</th>
-                                        <th>New PN</th> -->
-                                        <th>Field Name</th>
-                                        <th>Previous Value</th>
-                                        <th>Updated Value</th>
-                                        <th>Date Edited</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="historyTableBody">
-                                @if(isset($editHistory))
-                                    @foreach($editHistory as $index => $history)
-                                    <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $history->field_name ?? 'N/A' }}</td>
-                                        <td>{{ $history->previous_value ?? 'N/A' }}</td>
-                                        <td>{{ $history->updated_value ?? 'N/A' }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($history->edited_at)->format('Y-m-d H:i:s') }}</td>
-                                    </tr>
-                                    @endforeach
-                                @endif
+            
+                                <table class="table-content" id="ppe-table">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <!-- <th>Division</th>
+                                            <th>User</th>
+                                            <th>New PN</th> -->
+                                            <th>Field Name</th>
+                                            <th>Previous Value</th>
+                                            <th>Updated Value</th>
+                                            <th>Date Edited</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="historyTableBody">
+                                    @if(isset($editHistory))
+                                        @foreach($editHistory as $index => $history)
+                                        <tr>
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ $history->field_name ?? 'N/A' }}</td>
+                                            <td>{{ $history->previous_value ?? 'N/A' }}</td>
+                                            <td>{{ $history->updated_value ?? 'N/A' }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($history->edited_at)->format('Y-m-d H:i:s') }}</td>
+                                        </tr>
+                                        @endforeach
+                                    @endif
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
     <!-- View Edit History -->
 
     <!-- Summary Table -->

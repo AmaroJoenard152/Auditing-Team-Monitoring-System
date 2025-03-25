@@ -1,46 +1,48 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
 
-    <!-- DV ---->
+    <!-- PPE ---->
     <link rel="stylesheet" href="{{ asset('css/monitoring/ppe.css') }}">
     <script src="{{ asset('js/monitoring/ppe.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- End DV ---->
+    <!-- End PPE ---->
 
     <!-- Side Nav -->
     <link rel="stylesheet" href="{{ asset('css/sidenav/sidenav.css') }}">
     <script src="{{ asset('js/sidenav/sidenav.js') }}"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <!-- End Side Nav -->
 
     <!-- Header -->
     <link rel="stylesheet" href="{{ asset('css/header/header.css') }}">
-    <script src="{{ asset('js/header/header.js') }}"></script>
-    <!-- End Header -->
 
-    <!-- Date Range -->
+    <!-- PPE Date Range ---->
     <link rel="stylesheet" href="{{ asset('css/daterange/ppe-daterange.css') }}">
-    <!-- End Header -->
+    <script src="{{ asset('js/ppe/ppe_date_range.js') }}" defer></script>
 
     <!-- Pagination ---->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- Pagination ---->
-
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <!-- Search PPE ---->
+    <script src="{{ asset('js/ppe/search_ppe.js') }}" defer></script>
+
+    <!-- CSV Export ---->
+    <script src="{{ asset('js/ppe/csv_export.js') }}" defer></script>
+
+    <!-- PPE Table ---->
+    <script src="{{ asset('js/ppe/ppe_table.js') }}" defer></script>
+
+    <!-- Summary Table ---->
+    <script src="{{ asset('js/ppe/summary_table.js') }}" defer></script>
 
     <!-- Data Visualization ---->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{ asset('js/ppe-visualization/visualization.js') }}" defer></script>
+    <script src="{{ asset('js/ppe/visualization.js') }}" defer></script>
 
-
+    <!-- Popup Modal ---->
+    <script src="{{ asset('js/ppe/popup_modal.js') }}" defer></script>
 
 </head>
 <body>
@@ -91,7 +93,6 @@
         </div>
     </div>
     <!-- Header --->
-
 
     <!--- Side Nav --->
     <div class="sidebar">
@@ -168,25 +169,20 @@
     </div>
     <!--- Side Nav --->
 
-    
-    <!-- DV Wrapper --->
-    <div class="entire-dv-wrapper">
+    <!-- PPE Wrapper --->
+    <div class="entire-ppe-wrapper">
 
-    
         <!-- Title and Pop-up Button --->
-        <div class="dv-input-wrapper">  
+        <div class="ppe-input-wrapper">  
             <h1 class="h1-date">One Time-Cleansing (PPE)</h1>       
             <div class="button-wrapper">
-                <button class="newDvButton" onclick="inputDvModal()">Add New Property</button>
-                <button class="newDvButton" onclick="openViewEditHistory()">View Edit History</button>
+                <button class="popup-button" onclick="inputPPEModal()">Add New Property</button>
+                <button class="popup-button" onclick="openViewEditHistory()">View Edit History</button>
             </div>
         </div>
-
         <!-- Title and Pop-up Button --->
 
-
         <!-- Date Range, Drop Down, Download Form --->
-
         <div class="date-range-wrapper">  
             <div class="date-row">
                 <div class="date-flex-container">
@@ -303,7 +299,7 @@
 
                                     <button type="button" onclick="filterByDateRange()" class="form-btn submit">Apply</button>
                                     <button type="button" onclick="prepareCSVExport()" class="form-btn submit">Download</button>
-                                    <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="resetPPEFilters()">Reset</button>
+                                    <button type="button" class="date-form-btn cancel" onclick="resetPPEFilters()">Reset</button>
                                 </div>
 
                                 <div id="tooltip" class="tooltip"></div>
@@ -313,13 +309,10 @@
                 </div>
             </div>
         </div>
-
         <!-- Date Range, Drop Down, Download Form --->
 
-
-        <!-- DV TABLE --->
-
-        <div class="div-table-container">
+        <!-- PPE TABLE --->
+        <div class="ppe-table-container">
         <table class="table-content" id="ppe-table">
             <thead>
                 <tr>
@@ -402,8 +395,7 @@
             </tbody>
         </table>
         </div>
-        <!-- DV TABLE --->
-
+        <!-- PPE TABLE --->
 
     <!-- Footer --->
     <div class="footer-container">
@@ -418,21 +410,19 @@
         <div id="pagination-btns" class="pagination"></div>
     </div>
 
-
     </div>
 
-    <!-- DV Wrapper --->
-
+    <!-- PPE Wrapper --->
 
     <!-- Input Form Modal Pop-up --->
     <div class="overlay" id="inputOverlay"></div>
-    <div id="inputDvModal" class="modal">
+    <div id="inputPPEModal" class="modal">
         <div class="modal-content">  
-            <form id="dv-input" action="{{url('/submitPpe')}}" method="Post">
+            <form action="{{url('/submitPpe')}}" method="Post">
                 @csrf
                 <input type="hidden" name="id" id="voucherId">
 
-                <div class="input-dv-container">
+                <div class="input-ppe-container">
                     <span class="close" onclick="closeInputPopup()">&times;</span>
                     <div class="form-row-input">
 
@@ -613,8 +603,8 @@
                             <label for="date_acq">Date Acquired</label>
                             <input type="date" id="date_acq" name="date_acq" class="input-type-date">
 
-                            <button type="button" id="dvReloadBtn" class="date-form-btn-cancel" onclick="resetPPEInput()">Reset</button>
-                            <input type="submit" value="Submit" class="dv-submit-button">
+                            <button type="button" class="date-form-btn-cancel" onclick="resetPPEInput()">Reset</button>
+                            <input type="submit" value="Submit" class="ppe-submit-button">
                         </div>
                     </div>
                 </div>
@@ -623,12 +613,11 @@
     </div>
     <!-- Input Form Modal Pop-up --->
 
-
     <!-- View Modal -->
     <div class="overlay" id="ppeModal"></div>
         <div id="viewDvModal" class="modal">
         <div class="modal-content">  
-            <div class="input-dv-container">
+            <div class="input-ppe-container">
                 <span class="close" onclick="closeViewPopup()">&times;</span>
                 <div class="form-row-input">
                     <!-- First Column -->
@@ -823,8 +812,6 @@
     </div>
     <!-- View Modal -->
 
-    
-
     <!-- Edit Modal -->
     <div class="overlay" id="editPpeOverlay"></div>
     <div id="editPpeModal" class="modal">
@@ -1007,7 +994,7 @@
                             <label for="date_acq">Date Acquired</label>
                             <input type="date" id="edit_date_acq" name="date_acq" class="input-type-date">
 
-                            <input type="submit" value="Save" class="dv-submit-button">
+                            <input type="submit" value="Save" class="ppe-submit-button">
                         </div>
 
 
@@ -1019,13 +1006,12 @@
     </div>
     <!-- Edit Modal -->
 
-
     <!-- View Edit History -->
     <div class="overlay" id="editHistoryModal"></div>
     <div id="viewEditHistory" class="modal">
         <div class="modal-content">
-            <form id="dv-input">
-                <div class="input-dv-container">
+            <form>
+                <div class="input-ppe-container">
                     <h2 class="h1-date">PPE Edit History</h2>
                     <span class="close" onclick="closeViewEditHistory()">&times;</span>
                     <div class="form-row-input">
@@ -1057,7 +1043,7 @@
                                             <div class="editHistoryDaterangeButton">
                                                 <button type="button" onclick="filterByDateRange()" class="form-btn submit">Apply</button>
                                                 <button onclick="dvDownloadCSV()" class="form-btn submit">Download</button>
-                                                <button type="button" id="dvReloadBtn" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
+                                                <button type="button" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1100,8 +1086,7 @@
     </div>
     <!-- View Edit History -->
 
-
-
+    <!-- Summary Table -->
     <div class="rpcppe-summary-container">
         <h1 class="h1-date">RPCPPE Summary</h1>
         <div class="rpcppe-summary-table">
@@ -1122,7 +1107,7 @@
             </table>
         </div>
     </div>
-
+    <!-- Summary Table -->
 
     <!-- Data Visualization-->
     <div class="ppe-chart-container">
@@ -1147,708 +1132,357 @@
         </div>
     </div>
 
-
-
-
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-
-
-const rowsPerPage = 20; // Number of rows to display per page
-let currentPage = 1;
-const maxPaginationButtons = 3; // Maximum pagination buttons to display
-let allData = @json($ppes); // Original data from server
-let filteredData = [...allData]; // Default to all data initially
-
-
-// Input Modal Handling
-var inputModal = document.getElementById("inputDvModal");
-var inputOverlay = document.getElementById("inputOverlay");
-
-
-function inputDvModal() {
-    inputModal.style.display = "block";
-    inputOverlay.style.display = "block";
-}
-
-function closeInputPopup() {
-    inputModal.style.display = "none";
-    inputOverlay.style.display = "none";
-}
-
-window.onclick = function(event) {
-    if (event.target == inputOverlay) {
-        closeInputPopup();
-    }
-}
-
-
-
-
-// Open the View Edit History modal
-var editHistoryModal = document.getElementById("editHistoryModal");
-var viewEditHistory = document.getElementById("viewEditHistory");
-
-function openViewEditHistory() {
-    editHistoryModal.style.display = "block";
-    viewEditHistory.style.display = "block";
-}
-
-// Close the View Edit History modal
-function closeViewEditHistory() {
-    editHistoryModal.style.display = "none";
-    viewEditHistory.style.display = "none";
-}
-
-// Close modal if clicked outside
-window.onclick = function(event) {
-    if (event.target == editHistoryModal) {
-        closeViewEditHistory();
-    }
-}
-
-function updateEditHistoryTableRows() {
-    const tableBody = document.getElementById('historyTableBody');
-    tableBody.innerHTML = ''; // Clear existing table rows
-
-    // Sort the filtered data before pagination
-    const sortedData = sortDataTable(filteredData);
-
-    // Calculate pagination range
-    const startIndex = (currentPage - 1) * rowsPerPage;
-    const endIndex = startIndex + rowsPerPage;
-    const paginatedData = sortedData.slice(startIndex, endIndex);
-
-    // Populate the table with paginated data
-    paginatedData.forEach((history, index) => {
-        const rowNumber = startIndex + index + 1; // Dynamic row numbering
-        const row = document.createElement('tr');
-
-        row.innerHTML = `
-            <td>${rowNumber}</td>
-            <td>${history.field_name || 'N/A'}</td>
-            <td>${history.previous_value ?? 'N/A'}</td>
-            <td>${history.updated_value ?? 'N/A'}</td>
-            <td>${formatDateTime(history.edited_at)}</td>
-        `;
-
-        tableBody.appendChild(row);
-    });
-}
-
-// Helper function to format date/time in Philippine Time (PHT)
-function formatDateTime(dateTime) {
-    const date = new Date(dateTime);
-    return date.toLocaleString('en-US', { timeZone: 'Asia/Manila' });
-}
-
-
-
-
-// Edit Modal Handling
-var editPpeModal = document.getElementById("editPpeModal");
-var editPpeOverlay = document.getElementById("editPpeOverlay");
-
-function editPpe(ppe) {
-    document.getElementById('edit_division').value = ppe.division || 'Select Division';
-    populateUserDropdownForEdit(ppe.division, ppe.user);  // Dynamically populate and select the user
-
-    document.getElementById('edit_property_type').value = ppe.property_type || 'Select Property Type';
-    document.getElementById('edit_article_item').value = ppe.article_item || '';
-    document.getElementById('edit_description').value = ppe.description || '';
-    document.getElementById('edit_old_pn').value = ppe.old_pn || '';
-    document.getElementById('edit_new_pn').value = ppe.new_pn || '';
-    document.getElementById('edit_unit_meas').value = ppe.unit_meas || '';
-    document.getElementById('edit_unit_value').value = ppe.unit_value || '';
-    document.getElementById('edit_quantity_property').value = ppe.quantity_property || '';
-    document.getElementById('edit_quantity_physical').value = ppe.quantity_physical || '';
-    document.getElementById('edit_location').value = ppe.location || 'Select Location/Whereabouts';
-    document.getElementById('edit_condition').value = ppe.condition || 'Select Condition';
-    document.getElementById('edit_status').value = ppe.status || 'Select Status';
-    document.getElementById('edit_remarks').value = ppe.remarks || '';
-    document.getElementById('edit_date_acq').value = ppe.date_acq || '';
-
-    document.getElementById('editForm').action = `/savePpe/${ppe.id}`;
-
-    editPpeModal.style.display = "block";
-    editPpeOverlay.style.display = "block";
-}
-
-function closeEditPopup() {
-    editPpeModal.style.display = "none";
-    editPpeOverlay.style.display = "none";
-}
-
-window.onclick = function(event) {
-    if (event.target == editPpeOverlay) {
-        closeEditPopup();
-    }
-}
-
-
-
-
-// Function for PPE Table
-function updateUserDropdown(event) {
-    // Get the ID of the triggered division dropdown
-    const divisionDropdown = event.target;
-    const selectedDivision = divisionDropdown.value;
-
-    // Determine the corresponding user dropdown
-    let userDropdown;
-    if (divisionDropdown.id === 'division') {
-        userDropdown = document.getElementById('user');
-    } else if (divisionDropdown.id === 'divisionDropdown') {
-        userDropdown = document.getElementById('userDropdown');
-    }
-
-    if (!userDropdown) return;
-
-    // Clear previous options
-    userDropdown.innerHTML = '<option selected disabled>Select User</option>';
-
-    // Enable the dropdown
-    userDropdown.disabled = false;
-
-    // Define division-to-user mapping
-    const usersByDivision = {
-
-        "ACD": ["Alberto, Pepito G.", "Belen, Maria Adelia C.", "Caparas, Pauline Davis E.", "De Castro, Rosemarie A.", 
-        "De Guzman, Kristine Joy P.", "Deseo, Nenet B.", "Deseo, Netnet B.", "Ibarra, Alissa Carol M.", 
-        "Ignacio, Rhesa Miren A.", "Lambio, Roscelia M.", "Locsin, Kimberly Zarah B.", "Lubang, Sahrie Al-Faiha A.", 
-        "Lubang, Sharie Al-Faiha A.", "Macaraeg, John Aaron Mark V.", "Naval, Ervin M.", "Odejar, Fredric M.", 
-        "Palma, Ireneo B.", "Panganiban, Joel Norman R.", "Penido, Eiros Colins R.", "Pelegrina, Leilani D.", 
-        "Plata, Joan May B.", "Rasgo, Maria Rae Lynne J.", "Recote, Jessa May Q.", "Reyes, Lilia V.", 
-        "Samson, Erika E.", "Sustrina, Brian Angelo R.", "Valencia, Erwin Cris D.", "Yebron, Renelle C.", "Not_Available"],
-
-        "ARMRD": ["Abuan, Catherine R.", "Balbieran, Sarah Hazel M.", "De Guzman, Maria Teresa L.", "Domingo, Ofelia F.", 
-        "Evangelista, Misty Mae M.", "Remoquillo, Cynthia P.", "Santiago, Romeo P.", "Villarma, Kathleen Faith Jay O."],
-
-        "COA": ["Abordo, Cindy Faith R.", "Rosete, Edlyne A."],
-
-        "CRD": ["Alberto, Pepito G.", "Belen, Maria Adelia C.", "Caparas, Pauline Davis E.", "De Castro, Rosemarie A.", 
-        "De Guzman, Kristine Joy P.", "Deseo, Netnet B.", "Ibarra, Alissa Carol M.", "Ignacio, Rhesa Miren A.", 
-        "Lambio, Roscelia M.", "Locsin, Kimberly Zarah B.", "Lubang, Sharie Al-Faiha A.", "Macaraeg, John Aaron Mark V.", 
-        "Naval, Ervin M.", "Odejar, Fredric M.", "Palma, Ireneo B.", "Panganiban, Joel Norman R.", 
-        "Penido, Eiros Colins R.", "Pelegrina, Leilani D.", "Plata, Joan May B.", "Rasgo, Maria Rae Lynne J.", 
-        "Recote, Jessa May Q.", "Reyes, Lilia V.", "Samson, Erika E.", "Sustrina, Brian Angelo R.", 
-        "Yebron, Renelle C.", "Not_Available"], 
-
-        "DPITC-ACD": ["Borcena, Bhia Mitchie T.", "De Ramos, Marina T.", "Longamen, Juan Carlo J.", "Leron, Paul Jersey G.", 
-        "Valencia, Erwin Cris D."],
-
-        "DPITC-MISD": ["Dalisay, Richard O."],
-
-        "DPITC-OED-ARMSS": ["No Names Available"],
-
-        "DPITC-TTPD": ["Dalisay, Richard O."],
-
-        "FAD-Accounting": ["Balagat, Maeanne Lois H.", "Estanislao, Jenylou A.", "Manacop, Michelin B.", "Manalang, Eugene S.", 
-        "Tabadero, Jaivee Ann M"],
-
-        "FAD-Budget": ["Banasihan, Samantha L.", "Garcia, Susan G.", "Lapitan, Ma. Eleanor S.", "Vega, Mary Jane M."],
-
-        "FAD-Cash": ["Camposano, Rhodora G.", "Daza, Van Eric L.", "Lajara, Ma. Ester Catalina V.", "Ramos, Heidi"],
-
-        "FAD-DO": ["Amaro, Joenard M.", "Balita, Maria Lea Preciosa E.", "Ocier, Mary Jane" ],
-
-        "FAD-GSS": ["Anda, Zoilo E.", "Balagat, Marion Clark H.", "Gregorio, Edicel C.", "Oleta, Armand J."],
-        
-        "FAD-Personnel": ["Lawas, Georgia M.", "Maglalang, Jasmin Rose D.", "Reyes, Hannah Joy D.", "Sobrevega Jr., Marcelino V.", 
-        "Visperas, Rommel V."],
-
-        "FAD-Property": ["Bello, Mark Anthony M.", "Carpio, Jovenette L.", "ManabaT Jr., Narciso M.", "Manalo, Jose Raymond A.", 
-        "Revera, Jovan B."],
-
-        "FAD-Property-Stock-Room": ["Alo, Anna Marie P.", "Batalon, Juanito T.", "Dalisay, Richard O.", "Delos Reyes, Shein Ann R.", 
-        "Santiago, Christine D.", "Torreta, Nimfa K."],
-
-        "FERD": ["Almanza, Rosemarie L.", "Cabral, Dalisay E.", "Opeña, Aster H.", "Martinez, Jenna Mae R.", "Santiago, Christine D.", 
-        "Torreta, Nimfa K.", "Zuñiga, John Benrich M."],
-
-        "IARRD": ["Almazan, Cynthia V.", "Calpe, Adelaida T.", "Gahon, Shirley", "Igcasan, Mary Ann A.", "Mero, Fedelia Flor C.", 
-        "Not_Available", "Olaer, Geraldin Mae D.", "Ramonan, Rizza B.", "Salac, Virna G.", "Tandang, Kristine Joy L.", 
-        "Valguna, Janet Jane S."],
-
-        "IDD": ["Alcantara, Victor P.", "Asilo, Eriza", "Baguio, Synan S.", "Buenaobra, Salvador S.", 
-        "Caparas, Michelle P.", "Decena, Fezoil Luz C.", "Delos Reyes, Sherwin R.", "Lastimosa, Wilmar J.", "Laranas, Jesselle S.", 
-        "Laquinon, Rowena Rita B.", "Libit, Precious D.", "Manacsa, Jemuel I.", "Oleta, Armand J.", "Paclibar, Leovil N.", 
-        "Pasuquin, Donnalyn M.", "Saluta, Joseph T.", "Sumiran, Darryl C.", "Tanqueco, Ruel Carlo L."],
-
-        "LRD": ["Alo, Anna Marie P.", "Baguio, Synan S.", "Catelo, Ariane Shane DC", "Collado, Aleli A.", "Cristobal, Adrian P.", 
-        "De Castro, Ronilo O.", "Dayo, Marites R.", "Fule, Glenda P.", "Llamas, Rundolfo P.", "Mendoza, Stephen A.", 
-        "Parungao, Alfredo Ryenel M.", "Perez, Eric P."],
-
-        "MISD": ["Amansec, Richard E.", "Camposano, John Ross L.", "Cambay, Jan Andrei V.", "Dalisay, Richard O.", 
-        "Diaz, Mark Anthony M.", "Leaño, Cecilia B.", "Legaspi, Paula Mari M.", "Manzanilla, Ricaredo V.", "Mulimbayan, Rick Adrian A.", 
-        "Pasuquin, Marielle J.", "Supan, Kris Marion R."],
-
-        "MRRD": ["Acedera, Mari-Ann M.", "Asajar, Jerwin D.", "Barrion, Dan Carlo B.", "Barrion, Dan Carlo N.", "Corpuz, Ma. Adela C.", 
-        "De Vera, Michelle A.", "Escarez, Rosalinda D.", "Odemer, Hannah May B.", "Redera, Eileen M.", "Samonte, Preciosa C.", 
-        "Trinidad, Jaypee G."],
-
-        "OED": ["Afalla Jr., Eugenio G.", "Ebora, Reynaldo V.", "Garcia Jr., Norberto", "Leyciso, Maria Cecilia R.", 
-        "Peralta, Victoria Athena D.", "Suarez, Dolores N.", "Vallejo, Martha Lois O.", 
-        "Zuraek, Jobelle Mae L."],
-
-        "OED-ARMSS": ["Adique, Micah Angelica V.", "Carlos, Melvin B.", "Centeno, Pamela Marie A.", "Falcon, Fermella Emily B.", 
-        "Garcia, Marjorie M.", "Gonzaga, Janela Rances R.", "Lamano, Ronald John L.", "Lapitan, Aileen L.", "Legaspi Jr., Pascasio", 
-        "Limosinero, Renelaine E.", "Nuñez, Mia M.", "Panganiban, Jeremie", "Palacpac, Lyanne B.", "Surara, Christie A."],
-
-        "OED-RD": ["Afalla, Monaliza B.", "Bandong, Esther Gayle M.", "Gallarte, Lino", "Lameyra, Leandro C.", 
-        "Lebornio, Charmi Uellin P.", "Reyes, Ruth Danica A.", "Samonte, Anna Cristina R.", "San Luis, Josette B.", 
-        "Tandang, Jean Camille V.", "Tandang, Pamela Anne V."],
-
-
-        "PCMD": ["Banganan, Azel Glory C.", "Bebis Jr., Alfredo I.", "Bondoc, Lilian G.", "Lim, Cyrill E.", "Parducho, Rowena A.", 
-        "Sabarias, Mussaenda G.", "Tamis, Alexandra E."],
-
-        "SERD": ["Abeleda, Meliza F.", "Bandoles, Genny G.", "Bautista, Charisse C.", "Brown, Ernesto O.", "Castillo, Monica B.", 
-        "Colobong, Shaliemae L. (R. Candano)", "Colobong, Shalimae L.", "Correa, Aleta Belissa D. (V. Fernandez)", 
-        "Curibot, Janine P.", "Dimagiba, Ezequiel R.", "Fernandez, Vincent M.", "Gevaña, Mikaela Marie B.", 
-        "Horigue, Malen Maree A.", "Inoceno, Rochelle L.", "Lapitan, Emil Rey B.", "Madrigal, El Vic R.", 
-        "Manzano, Christian John M.", "Morada, Kyle Cristel D.", "Puntanar, Jennifer", "Salem, Kalthem Salem B.", 
-        "Suizo, Maritoni B.", "Tamis, Alexandra E.", "Tobias, Annette M.", "Trillana, Charmaine Angela B.", "Zara, John Ceddrix."],
-
-        "TTPD": ["Borja, Alexander John D.", "Dagaas, Mae A.", "Diaz, Analiza C.", "Lalican, Engelbert D.", "Lizaba, Ma. Alexie D.", 
-        "Resuello, Rubiriza DC.", "Tandang, Imelda L.", "Tanyag, Yolanda M."],
-
-        "Not_Available": ["Not_Available"]
-
-    };
-
-    // Populate dropdown with users based on selected division
-    if (usersByDivision[selectedDivision]) {
-        usersByDivision[selectedDivision].forEach(user => {
-            const option = document.createElement('option');
-            option.value = user;
-            option.textContent = user;
-            userDropdown.appendChild(option);
-        });
-    } else {
-        // Disable dropdown if no valid division is selected
-        userDropdown.disabled = true;
-    }
-}
-
-// Attach event listeners to both division dropdowns
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById('division').addEventListener('change', updateUserDropdown);
-    document.getElementById('divisionDropdown').addEventListener('change', updateUserDropdown);
-});
-
-function normalizeString(str) {
-    return str
-        .toString()
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, '') // Remove special characters
-        .trim();
-}
-
-function sortDataTable(data) {
-    return data.sort((a, b) => {
-        const fieldsToSort = ['division', 'user', 'property_type', 'article_item'];
-
-        for (const field of fieldsToSort) {
-            const valA = normalizeString(a[field] || '');
-            const valB = normalizeString(b[field] || '');
-
-            if (valA > valB) return 1;
-            if (valA < valB) return -1;
+    const rowsPerPage = 20; // Number of rows to display per page
+    let currentPage = 1;
+    const maxPaginationButtons = 3; // Maximum pagination buttons to display
+    let allData = @json($ppes); // Original data from server
+    let filteredData = [...allData]; // Default to all data initially
+
+    // Function for PPE Table
+    function updateUserDropdown(event) {
+        // Get the ID of the triggered division dropdown
+        const divisionDropdown = event.target;
+        const selectedDivision = divisionDropdown.value;
+
+        // Determine the corresponding user dropdown
+        let userDropdown;
+        if (divisionDropdown.id === 'division') {
+            userDropdown = document.getElementById('user');
+        } else if (divisionDropdown.id === 'divisionDropdown') {
+            userDropdown = document.getElementById('userDropdown');
         }
 
-        // Maintain original order if all fields are equal
-        return 0;
-    });
-}
+        if (!userDropdown) return;
 
-function formatNumber(value) {
-    // Format number with commas and ensure two decimal places
-    return new Intl.NumberFormat('en-US', { 
-        minimumFractionDigits: 2, 
-        maximumFractionDigits: 2 
-    }).format(value);
-}
+        // Clear previous options
+        userDropdown.innerHTML = '<option selected disabled>Select User</option>';
 
-function updateTableRows() {
-    const tableBody = document.getElementById('table-body');
-    tableBody.innerHTML = ''; // Clear current table rows
+        // Enable the dropdown
+        userDropdown.disabled = false;
 
-    const sortedData = sortDataTable(filteredData);
+        // Define division-to-user mapping
+        const usersByDivision = {
 
-    const start = (currentPage - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-    const paginatedData = sortedData.slice(start, end);
+            "ACD": ["Alberto, Pepito G.", "Belen, Maria Adelia C.", "Caparas, Pauline Davis E.", "De Castro, Rosemarie A.", 
+            "De Guzman, Kristine Joy P.", "Deseo, Nenet B.", "Deseo, Netnet B.", "Ibarra, Alissa Carol M.", 
+            "Ignacio, Rhesa Miren A.", "Lambio, Roscelia M.", "Locsin, Kimberly Zarah B.", "Lubang, Sahrie Al-Faiha A.", 
+            "Lubang, Sharie Al-Faiha A.", "Macaraeg, John Aaron Mark V.", "Naval, Ervin M.", "Odejar, Fredric M.", 
+            "Palma, Ireneo B.", "Panganiban, Joel Norman R.", "Penido, Eiros Colins R.", "Pelegrina, Leilani D.", 
+            "Plata, Joan May B.", "Rasgo, Maria Rae Lynne J.", "Recote, Jessa May Q.", "Reyes, Lilia V.", 
+            "Samson, Erika E.", "Sustrina, Brian Angelo R.", "Valencia, Erwin Cris D.", "Yebron, Renelle C.", "Not_Available"],
 
-    let totalPpe = 0; // Total PPE will count the number of rows
-    let totalAmount = 0; // Total Amount will sum the unit values
+            "ARMRD": ["Abuan, Catherine R.", "Balbieran, Sarah Hazel M.", "De Guzman, Maria Teresa L.", "Domingo, Ofelia F.", 
+            "Evangelista, Misty Mae M.", "Remoquillo, Cynthia P.", "Santiago, Romeo P.", "Villarma, Kathleen Faith Jay O."],
 
-    // Iterate through all data, not just the paginated portion
-    filteredData.forEach((ppe) => {
-        totalPpe += 1; // Count each row
-        totalAmount += parseFloat(ppe.unit_value || 0); // Sum the unit values
-    });
+            "COA": ["Abordo, Cindy Faith R.", "Rosete, Edlyne A."],
 
-    // Display the paginated data in the table
-    paginatedData.forEach((ppe, index) => {
-        const rowNumber = start + index + 1; // Generates the row number dynamically
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${rowNumber}</td>
-            <td>${ppe.division || ''}</td>
-            <td>${ppe.user || ''}</td>
-            <td>${ppe.property_type || ''}</td>
-            <td>${ppe.article_item || ''}</td>
-            <td>${ppe.description || ''}</td>          
-            <td>${ppe.new_pn || ''}</td>
-            <td>${ppe.unit_value ? formatNumber(ppe.unit_value) : ''}</td> <!-- Apply formatting -->
-            <td>${ppe.quantity_property || ''}</td>
-            <td>${ppe.quantity_physical || ''}</td>
-            <td>${ppe.condition || ''}</td>
-            <td>${ppe.status || ''}</td>
-            <td>
-                <a href="javascript:void(0)" onclick="showPpeDetails(${JSON.stringify(ppe).replace(/"/g, '&quot;')})">
-                    <!-- View SVG -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                    </svg>
-                </a>
-            </td>
-            <td>
-                <a onclick="return confirm('Are you sure you want to delete this?');" href="/deletePpe/${ppe.id}">
-                    <!-- Delete SVG -->
-                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M14 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M4 7H20" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </td>
-            <td>
-                <a href="javascript:void(0);" onclick='editPpe(${JSON.stringify(ppe)})'>
-                    <!-- Edit SVG -->
-                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </td>
-        `;
-        tableBody.appendChild(row);
-    });
+            "CRD": ["Alberto, Pepito G.", "Belen, Maria Adelia C.", "Caparas, Pauline Davis E.", "De Castro, Rosemarie A.", 
+            "De Guzman, Kristine Joy P.", "Deseo, Netnet B.", "Ibarra, Alissa Carol M.", "Ignacio, Rhesa Miren A.", 
+            "Lambio, Roscelia M.", "Locsin, Kimberly Zarah B.", "Lubang, Sharie Al-Faiha A.", "Macaraeg, John Aaron Mark V.", 
+            "Naval, Ervin M.", "Odejar, Fredric M.", "Palma, Ireneo B.", "Panganiban, Joel Norman R.", 
+            "Penido, Eiros Colins R.", "Pelegrina, Leilani D.", "Plata, Joan May B.", "Rasgo, Maria Rae Lynne J.", 
+            "Recote, Jessa May Q.", "Reyes, Lilia V.", "Samson, Erika E.", "Sustrina, Brian Angelo R.", 
+            "Yebron, Renelle C.", "Not_Available"], 
 
-    // Update the footer with the totals
-    document.getElementById('totalPpe').value = totalPpe; // Total PPE: count of all rows
-    document.getElementById('totalAmount').value = formatNumber(totalAmount); // Total Amount: sum of all unit values
-}
+            "DPITC-ACD": ["Borcena, Bhia Mitchie T.", "De Ramos, Marina T.", "Longamen, Juan Carlo J.", "Leron, Paul Jersey G.", 
+            "Valencia, Erwin Cris D."],
 
-// Assuming the input fields are dynamically updated
+            "DPITC-MISD": ["Dalisay, Richard O."],
 
-function updateUnitValueDisplay(inputElement) {
-    const formattedValue = formatNumber(inputElement.value);
-    inputElement.value = formattedValue;
-}
+            "DPITC-OED-ARMSS": ["No Names Available"],
 
-function showPpeDetails(ppe) {
-    // Populate the modal fields with PPE data
-    document.getElementById('view_division').value = ppe.division || 'Select Division';
-    document.getElementById('view_user').value = ppe.user || '';
-    document.getElementById('view_property_type').value = ppe.property_type || 'Select Property Type';
-    document.getElementById('view_article_item').value = ppe.article_item || 'Select Article/Item';
-    document.getElementById('view_description').value = ppe.description || '';
-    document.getElementById('view_old_pn').value = ppe.old_pn || '';
-    document.getElementById('view_new_pn').value = ppe.new_pn || '';
-    document.getElementById('view_unit_meas').value = ppe.unit_meas || '';
-    document.getElementById('view_unit_value').value = ppe.unit_value ? formatNumber(ppe.unit_value) : '';
-    document.getElementById('view_quantity_property').value = ppe.quantity_property || '';
-    document.getElementById('view_quantity_physical').value = ppe.quantity_physical || '';
-    document.getElementById('view_location').value = ppe.location || 'Select Location/Whereabouts';
-    document.getElementById('view_condition').value = ppe.condition || 'Select Condition';
-    document.getElementById('view_status').value = ppe.status || 'Select Status';
-    document.getElementById('view_remarks').value = ppe.remarks || '';
-    document.getElementById('view_date_acq').value = ppe.date_acq || '';
-    
-    // Format and populate timestamps
-    document.getElementById('view_created_at').textContent = formatDateTime(ppe.created_at);
-    document.getElementById('view_updated_at').textContent = formatDateTime(ppe.updated_at);
+            "DPITC-TTPD": ["Dalisay, Richard O."],
 
-    // Show the modal
-    document.getElementById('ppeModal').style.display = 'block';
-    document.getElementById('viewDvModal').style.display = 'block';
-}
+            "FAD-Accounting": ["Balagat, Maeanne Lois H.", "Estanislao, Jenylou A.", "Manacop, Michelin B.", "Manalang, Eugene S.", 
+            "Tabadero, Jaivee Ann M"],
 
-// Function to close the modal
-function closeViewPopup() {
-    document.getElementById('ppeModal').style.display = 'none';
-    document.getElementById('viewDvModal').style.display = 'none';
-}
+            "FAD-Budget": ["Banasihan, Samantha L.", "Garcia, Susan G.", "Lapitan, Ma. Eleanor S.", "Vega, Mary Jane M."],
+
+            "FAD-Cash": ["Camposano, Rhodora G.", "Daza, Van Eric L.", "Lajara, Ma. Ester Catalina V.", "Ramos, Heidi"],
+
+            "FAD-DO": ["Amaro, Joenard M.", "Balita, Maria Lea Preciosa E.", "Ocier, Mary Jane" ],
+
+            "FAD-GSS": ["Anda, Zoilo E.", "Balagat, Marion Clark H.", "Gregorio, Edicel C.", "Oleta, Armand J."],
+            
+            "FAD-Personnel": ["Lawas, Georgia M.", "Maglalang, Jasmin Rose D.", "Reyes, Hannah Joy D.", "Sobrevega Jr., Marcelino V.", 
+            "Visperas, Rommel V."],
+
+            "FAD-Property": ["Bello, Mark Anthony M.", "Carpio, Jovenette L.", "ManabaT Jr., Narciso M.", "Manalo, Jose Raymond A.", 
+            "Revera, Jovan B."],
+
+            "FAD-Property-Stock-Room": ["Alo, Anna Marie P.", "Batalon, Juanito T.", "Dalisay, Richard O.", "Delos Reyes, Shein Ann R.", 
+            "Santiago, Christine D.", "Torreta, Nimfa K."],
+
+            "FERD": ["Almanza, Rosemarie L.", "Cabral, Dalisay E.", "Opeña, Aster H.", "Martinez, Jenna Mae R.", "Santiago, Christine D.", 
+            "Torreta, Nimfa K.", "Zuñiga, John Benrich M."],
+
+            "IARRD": ["Almazan, Cynthia V.", "Calpe, Adelaida T.", "Gahon, Shirley", "Igcasan, Mary Ann A.", "Mero, Fedelia Flor C.", 
+            "Not_Available", "Olaer, Geraldin Mae D.", "Ramonan, Rizza B.", "Salac, Virna G.", "Tandang, Kristine Joy L.", 
+            "Valguna, Janet Jane S."],
+
+            "IDD": ["Alcantara, Victor P.", "Asilo, Eriza", "Baguio, Synan S.", "Buenaobra, Salvador S.", 
+            "Caparas, Michelle P.", "Decena, Fezoil Luz C.", "Delos Reyes, Sherwin R.", "Lastimosa, Wilmar J.", "Laranas, Jesselle S.", 
+            "Laquinon, Rowena Rita B.", "Libit, Precious D.", "Manacsa, Jemuel I.", "Oleta, Armand J.", "Paclibar, Leovil N.", 
+            "Pasuquin, Donnalyn M.", "Saluta, Joseph T.", "Sumiran, Darryl C.", "Tanqueco, Ruel Carlo L."],
+
+            "LRD": ["Alo, Anna Marie P.", "Baguio, Synan S.", "Catelo, Ariane Shane DC", "Collado, Aleli A.", "Cristobal, Adrian P.", 
+            "De Castro, Ronilo O.", "Dayo, Marites R.", "Fule, Glenda P.", "Llamas, Rundolfo P.", "Mendoza, Stephen A.", 
+            "Parungao, Alfredo Ryenel M.", "Perez, Eric P."],
+
+            "MISD": ["Amansec, Richard E.", "Camposano, John Ross L.", "Cambay, Jan Andrei V.", "Dalisay, Richard O.", 
+            "Diaz, Mark Anthony M.", "Leaño, Cecilia B.", "Legaspi, Paula Mari M.", "Manzanilla, Ricaredo V.", "Mulimbayan, Rick Adrian A.", 
+            "Pasuquin, Marielle J.", "Supan, Kris Marion R."],
+
+            "MRRD": ["Acedera, Mari-Ann M.", "Asajar, Jerwin D.", "Barrion, Dan Carlo B.", "Barrion, Dan Carlo N.", "Corpuz, Ma. Adela C.", 
+            "De Vera, Michelle A.", "Escarez, Rosalinda D.", "Odemer, Hannah May B.", "Redera, Eileen M.", "Samonte, Preciosa C.", 
+            "Trinidad, Jaypee G."],
+
+            "OED": ["Afalla Jr., Eugenio G.", "Ebora, Reynaldo V.", "Garcia Jr., Norberto", "Leyciso, Maria Cecilia R.", 
+            "Peralta, Victoria Athena D.", "Suarez, Dolores N.", "Vallejo, Martha Lois O.", 
+            "Zuraek, Jobelle Mae L."],
+
+            "OED-ARMSS": ["Adique, Micah Angelica V.", "Carlos, Melvin B.", "Centeno, Pamela Marie A.", "Falcon, Fermella Emily B.", 
+            "Garcia, Marjorie M.", "Gonzaga, Janela Rances R.", "Lamano, Ronald John L.", "Lapitan, Aileen L.", "Legaspi Jr., Pascasio", 
+            "Limosinero, Renelaine E.", "Nuñez, Mia M.", "Panganiban, Jeremie", "Palacpac, Lyanne B.", "Surara, Christie A."],
+
+            "OED-RD": ["Afalla, Monaliza B.", "Bandong, Esther Gayle M.", "Gallarte, Lino", "Lameyra, Leandro C.", 
+            "Lebornio, Charmi Uellin P.", "Reyes, Ruth Danica A.", "Samonte, Anna Cristina R.", "San Luis, Josette B.", 
+            "Tandang, Jean Camille V.", "Tandang, Pamela Anne V."],
 
 
+            "PCMD": ["Banganan, Azel Glory C.", "Bebis Jr., Alfredo I.", "Bondoc, Lilian G.", "Lim, Cyrill E.", "Parducho, Rowena A.", 
+            "Sabarias, Mussaenda G.", "Tamis, Alexandra E."],
 
-//Header Functions
+            "SERD": ["Abeleda, Meliza F.", "Bandoles, Genny G.", "Bautista, Charisse C.", "Brown, Ernesto O.", "Castillo, Monica B.", 
+            "Colobong, Shaliemae L. (R. Candano)", "Colobong, Shalimae L.", "Correa, Aleta Belissa D. (V. Fernandez)", 
+            "Curibot, Janine P.", "Dimagiba, Ezequiel R.", "Fernandez, Vincent M.", "Gevaña, Mikaela Marie B.", 
+            "Horigue, Malen Maree A.", "Inoceno, Rochelle L.", "Lapitan, Emil Rey B.", "Madrigal, El Vic R.", 
+            "Manzano, Christian John M.", "Morada, Kyle Cristel D.", "Puntanar, Jennifer", "Salem, Kalthem Salem B.", 
+            "Suizo, Maritoni B.", "Tamis, Alexandra E.", "Tobias, Annette M.", "Trillana, Charmaine Angela B.", "Zara, John Ceddrix."],
 
-//Search function
-// Setup CSRF and search button click event
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            "TTPD": ["Borja, Alexander John D.", "Dagaas, Mae A.", "Diaz, Analiza C.", "Lalican, Engelbert D.", "Lizaba, Ma. Alexie D.", 
+            "Resuello, Rubiriza DC.", "Tandang, Imelda L.", "Tanyag, Yolanda M."],
+
+            "Not_Available": ["Not_Available"]
+
+        };
+        // Populate dropdown with users based on selected division
+        if (usersByDivision[selectedDivision]) {
+            usersByDivision[selectedDivision].forEach(user => {
+                const option = document.createElement('option');
+                option.value = user;
+                option.textContent = user;
+                userDropdown.appendChild(option);
+            });
+        } else {
+            // Disable dropdown if no valid division is selected
+            userDropdown.disabled = true;
+        }
     }
-});
 
-$(document).ready(function() {
-    $('#search-btn').on('click', function(event) {
-        event.preventDefault();
-        const searchValue = $('#search_ppe').val();
-        performSearch(searchValue);
+    // Attach event listeners to both division dropdowns
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById('division').addEventListener('change', updateUserDropdown);
+        document.getElementById('divisionDropdown').addEventListener('change', updateUserDropdown);
     });
-});
 
-// Search function with AJAX
-function performSearch(searchValue) {
-    $.ajax({
-        url: '/searchPpe',
-        type: 'GET',
-        data: { search_ppe: searchValue },
-        success: function(response) {
-            console.log(response); // Debugging to verify response
+    function normalizeString(str) {
+        return str
+            .toString()
+            .toLowerCase()
+            .replace(/[^a-z0-9\s]/g, '') // Remove special characters
+            .trim();
+    }
 
-            // Update global filteredData used for pagination
-            filteredData = response;
+    function sortDataTable(data) {
+        return data.sort((a, b) => {
+            const fieldsToSort = ['division', 'user', 'property_type', 'article_item'];
 
-            $('#table-body').empty(); // Clear the table before appending new rows
+            for (const field of fieldsToSort) {
+                const valA = normalizeString(a[field] || '');
+                const valB = normalizeString(b[field] || '');
 
-            let totalPpe = 0;
-            let totalAmount = 0;
+                if (valA > valB) return 1;
+                if (valA < valB) return -1;
+            }
 
-            response.forEach(function(ppe, index) {
-                totalPpe++; // Count each row
-                totalAmount += parseFloat(ppe.unit_value) || 0;
+            // Maintain original order if all fields are equal
+            return 0;
+        });
+    }
 
-                const rowNumber = index + 1; // Dynamic row numbering
-                $('#table-body').append(
-                    `<tr>
-                        <td>${rowNumber}</td>
-                        <td>${ppe.division || ''}</td>
-                        <td>${ppe.user || ''}</td>
-                        <td>${ppe.property_type || ''}</td>
-                        <td>${ppe.article_item || ''}</td>
-                        <td>${ppe.description || ''}</td>
-                        <td>${ppe.new_pn || ''}</td>
-                        <td>${ppe.unit_value ? formatNumber(ppe.unit_value) : ''}</td>
-                        <td>${ppe.quantity_property || ''}</td>
-                        <td>${ppe.quantity_physical || ''}</td>
-                        <td>${ppe.condition || ''}</td>
-                        <td>${ppe.status || ''}</td>
-                        <td>
-                            <a href="javascript:void(0)" onclick="showPpeDetails(${JSON.stringify(ppe).replace(/"/g, '&quot;')})">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                                </svg>
-                            </a>
-                        </td>
-                        <td>
-                            <a onclick="return confirm('Are you sure you want to delete this?');" href="/deletePpe/${ppe.id}">
-                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M14 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M4 7H20" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="javascript:void(0);" onclick='editPpe(${JSON.stringify(ppe)})'>
-                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                        </td>
-                    </tr>`
-                );
+    function formatNumber(value) {
+        // Format number with commas and ensure two decimal places
+        return new Intl.NumberFormat('en-US', { 
+            minimumFractionDigits: 2, 
+            maximumFractionDigits: 2 
+        }).format(value);
+    }
+
+    function updateTableRows() {
+        const tableBody = document.getElementById('table-body');
+        tableBody.innerHTML = ''; // Clear current table rows
+
+        const sortedData = sortDataTable(filteredData);
+
+        const start = (currentPage - 1) * rowsPerPage;
+        const end = start + rowsPerPage;
+        const paginatedData = sortedData.slice(start, end);
+
+        let totalPpe = 0; // Total PPE will count the number of rows
+        let totalAmount = 0; // Total Amount will sum the unit values
+
+        // Iterate through all data, not just the paginated portion
+        filteredData.forEach((ppe) => {
+            totalPpe += 1; // Count each row
+            totalAmount += parseFloat(ppe.unit_value || 0); // Sum the unit values
+        });
+
+        // Display the paginated data in the table
+        paginatedData.forEach((ppe, index) => {
+            const rowNumber = start + index + 1; // Generates the row number dynamically
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${rowNumber}</td>
+                <td>${ppe.division || ''}</td>
+                <td>${ppe.user || ''}</td>
+                <td>${ppe.property_type || ''}</td>
+                <td>${ppe.article_item || ''}</td>
+                <td>${ppe.description || ''}</td>          
+                <td>${ppe.new_pn || ''}</td>
+                <td>${ppe.unit_value ? formatNumber(ppe.unit_value) : ''}</td> <!-- Apply formatting -->
+                <td>${ppe.quantity_property || ''}</td>
+                <td>${ppe.quantity_physical || ''}</td>
+                <td>${ppe.condition || ''}</td>
+                <td>${ppe.status || ''}</td>
+                <td>
+                    <a href="javascript:void(0)" onclick="showPpeDetails(${JSON.stringify(ppe).replace(/"/g, '&quot;')})">
+                        <!-- View SVG -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                        </svg>
+                    </a>
+                </td>
+                <td>
+                    <a onclick="return confirm('Are you sure you want to delete this?');" href="/deletePpe/${ppe.id}">
+                        <!-- Delete SVG -->
+                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4 7H20" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </td>
+                <td>
+                    <a href="javascript:void(0);" onclick='editPpe(${JSON.stringify(ppe)})'>
+                        <!-- Edit SVG -->
+                        <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        // Update the footer with the totals
+        document.getElementById('totalPpe').value = totalPpe; // Total PPE: count of all rows
+        document.getElementById('totalAmount').value = formatNumber(totalAmount); // Total Amount: sum of all unit values
+    }
+
+    // Assuming the input fields are dynamically updated
+    function updateUnitValueDisplay(inputElement) {
+        const formattedValue = formatNumber(inputElement.value);
+        inputElement.value = formattedValue;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateTableRows();
+        generatePaginationButtons(); // Ensure pagination appears at the start
+    });
+
+    function generatePaginationButtons() {
+        const paginationContainer = document.getElementById('pagination-btns');
+        paginationContainer.innerHTML = '';  // Clear current pagination buttons
+
+        const pageCount = Math.ceil(filteredData.length / rowsPerPage);  // Use filteredData to get page count
+
+        // Always show pagination (even if there's only one page)
+        if (pageCount === 1) {
+            const btn = document.createElement('button');
+            btn.innerText = '1';
+            btn.classList.add('pagination-btn', 'active');
+            paginationContainer.appendChild(btn);
+            return;
+        }
+
+        // Previous button
+        const prevBtn = document.createElement('button');
+        prevBtn.innerText = 'Previous';
+        prevBtn.classList.add('pagination-btn');
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                updateTableRows();
+                generatePaginationButtons();
+            }
+        });
+        paginationContainer.appendChild(prevBtn);
+
+        // Calculate the range of pagination buttons
+        let startPage = Math.max(1, currentPage - Math.floor(maxPaginationButtons / 2));
+        let endPage = Math.min(pageCount, startPage + maxPaginationButtons - 1);
+
+        // Ensure we always show exactly maxPaginationButtons
+        if (endPage - startPage + 1 < maxPaginationButtons && startPage > 1) {
+            startPage = Math.max(1, endPage - maxPaginationButtons + 1);
+        }
+
+        // Generate pagination buttons for the calculated range
+        for (let i = startPage; i <= endPage; i++) {
+            const btn = document.createElement('button');
+            btn.innerText = i;
+            btn.classList.add('pagination-btn');
+            btn.classList.toggle('active', i === currentPage);
+
+            btn.addEventListener('click', () => {
+                currentPage = i;
+                updateTableRows();
+                generatePaginationButtons();
             });
 
-            // Update totals
-            $('#totalPpe').val(totalPpe); 
-            $('#totalAmount').val(formatNumber(totalAmount));
-
-            // Reset pagination and update table rows
-            currentPage = 1;
-            generatePaginationButtons();
-        },
-        error: function(xhr, status, error) {
-            console.error(error);
+            paginationContainer.appendChild(btn);
         }
-    });
-}
 
-
-
-// Helper function to format numbers with commas
-function formatNumber(value) {
-    return new Intl.NumberFormat().format(value);
-}
-
-
-
-//Date Range function
-function filterByDateRange() {
-    const startDateInput = document.getElementById('start-date').value;
-    const endDateInput = document.getElementById('end-date').value;
-    const divisionValue = document.getElementById('divisionDropdown').value || null;
-    const propertyTypeValue = document.getElementById('ptDropdown').value || null;
-    const conditionValue = document.getElementById('conditionDropdown').value || null;
-    const statusValue = document.getElementById('statusDropdown').value || null;
-
-    // Parse dates if inputs are provided
-    let startDate = startDateInput ? new Date(startDateInput) : null;
-    let endDate = endDateInput ? new Date(endDateInput) : null;
-
-    // Ensure valid date range selection
-    if (startDate && endDate && startDate > endDate) {
-        alert('Start date cannot be after the end date.');
-        return;
+        // Next button
+        const nextBtn = document.createElement('button');
+        nextBtn.innerText = 'Next';
+        nextBtn.classList.add('pagination-btn');
+        nextBtn.disabled = currentPage === pageCount;
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < pageCount) {
+                currentPage++;
+                updateTableRows();
+                generatePaginationButtons();
+            }
+        });
+        paginationContainer.appendChild(nextBtn);
     }
 
-    // Filter the data
-    filteredData = allData.filter(item => {
-        const itemDate = new Date(item.date_acq);
-
-        // Date filtering logic
-        const isDateValid =
-            (!startDate && !endDate) ||
-            (startDate && !endDate && itemDate >= startDate) ||
-            (!startDate && endDate && itemDate <= endDate) ||
-            (startDate && endDate && itemDate >= startDate && itemDate <= endDate);
-
-        // Division filtering logic: Include all divisions if '--All Divisions--' is selected
-        const isDivisionValid = !divisionValue || divisionValue === "--All Divisions--" || item.division === divisionValue;
-        
-        // Other dropdown filtering logic
-        const isPropertyTypeValid = !propertyTypeValue || item.property_type === propertyTypeValue;
-        const isConditionValid = !conditionValue || item.condition === conditionValue;
-        const isStatusValid = !statusValue || item.status === statusValue;
-
-        // Combine all filters
-        return isDateValid && isDivisionValid && isPropertyTypeValid && isConditionValid && isStatusValid;
-    });
-
-    // Reset to the first page after filtering
-    currentPage = 1;
+    // Initialize data and pagination
+    filteredData = initialData.slice(); // Clone the data
     updateTableRows();
     generatePaginationButtons();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    updateTableRows();
-    generatePaginationButtons(); // Ensure pagination appears at the start
-});
-
-//Reset Button function
-function resetFilters() {
-    document.getElementById('filterForm').reset();
-    filterDataByDateRange();
-}
-
-
-function displaySummary() {
-    const tableBody = document.getElementById('rpcppe-table-body');
-    tableBody.innerHTML = ''; // Clear table
-
-    // Extract distinct property types, remove nulls, and sort alphabetically
-    const propertyTypes = [...new Set(allData.map(ppe => ppe.property_type))]
-        .filter(type => type)
-        .sort();
-
-    // Variables to store grand totals
-    let grandChecked = 0;
-    let grandFound = 0;
-    let grandMissing = 0;
-    let grandUnchecked = 0;
-    let grandTotalAmount = 0;
-
-    // Iterate over each property type and calculate sums for each status and Total Amount
-    propertyTypes.forEach(type => {
-        const checkedSum = allData
-            .filter(ppe => ppe.property_type === type && ppe.status === 'Checked')
-            .reduce((sum, ppe) => sum + parseFloat(ppe.unit_value || 0), 0);
-
-        const foundSum = allData
-            .filter(ppe => ppe.property_type === type && ppe.status === 'Found')
-            .reduce((sum, ppe) => sum + parseFloat(ppe.unit_value || 0), 0);
-
-        const missingSum = allData
-            .filter(ppe => ppe.property_type === type && ppe.status === 'Missing')
-            .reduce((sum, ppe) => sum + parseFloat(ppe.unit_value || 0), 0);
-
-        const uncheckedSum = allData
-            .filter(ppe => ppe.property_type === type && ppe.status === 'Unchecked')
-            .reduce((sum, ppe) => sum + parseFloat(ppe.unit_value || 0), 0);
-
-        // Calculate Total Amount using the formula: Checked + Found + Missing + Unchecked
-        const totalAmount = checkedSum + foundSum + missingSum + uncheckedSum;
-
-        // Update grand totals
-        grandChecked += checkedSum;
-        grandFound += foundSum;
-        grandMissing += missingSum;
-        grandUnchecked += uncheckedSum;
-        grandTotalAmount += totalAmount;
-
-        // Create and append row to the table
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${type}</td>
-            <td>${checkedSum.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            <td>${foundSum.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            <td>${missingSum.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            <td>${uncheckedSum.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
-            <td><strong>${totalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></td>
-        `;
-        tableBody.appendChild(row);
-    });
-
-    // Append Grand Total row
-    const grandTotalRow = document.createElement('tr');
-    grandTotalRow.innerHTML = `
-        <td><strong>Grand Total</strong></td>
-        <td><strong>${grandChecked.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></td>
-        <td><strong>${grandFound.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></td>
-        <td><strong>${grandMissing.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></td>
-        <td><strong>${grandUnchecked.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></td>
-        <td><strong>${grandTotalAmount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></td>
-    `;
-    grandTotalRow.style.fontWeight = 'bold'; // Make the row visually distinct
-    tableBody.appendChild(grandTotalRow);
-}
-
-displaySummary();
-
-
-
-// Prepares and submits the export form with applied filters
-function prepareCSVExport() {
-    document.getElementById('export-start-date').value = document.getElementById('start-date').value;
-    document.getElementById('export-end-date').value = document.getElementById('end-date').value;
-    
-    // Submit the form with all filter values
-    document.getElementById('csvExportForm').submit();
-}
-
-
-// Initialize data and pagination
-filteredData = initialData.slice(); // Clone the data
-updateTableRows();
-generatePaginationButtons();
 </script>
-
 
 </html>

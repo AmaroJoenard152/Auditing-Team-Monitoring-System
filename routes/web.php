@@ -30,7 +30,7 @@ Route::get('/updateVoucher/{id}', [DisbursementVoucherController::class, 'update
 
 Route::post('/saveVoucher/{id}', [DisbursementVoucherController::class, 'saveVoucher'])->name('monitoring.disbursement-voucher');
 
-Route::get('/export-csv', [DisbursementVoucherController::class, 'dvExportCSV'])->name('export.csv');
+Route::get('/dv-export-csv', [DisbursementVoucherController::class, 'dvDownloadCSV'])->name('dv-export.csv');
 
 Route::get('/searchVoucher', [DisbursementVoucherController::class, 'searchVoucher'])->name('monitoring.disbursement-voucher');
 

@@ -261,7 +261,6 @@ class PpeController extends Controller
         return response()->json($data);
     }
 
-
     public function getYearCount()
     {
         $data = DB::table('ppes')

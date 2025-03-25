@@ -22,11 +22,12 @@
     <!-- End Header -->
 
     <!-- Date Range -->
-    <link rel="stylesheet" href="{{ asset('css/daterange/daterange.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/daterange/dv-daterange.css') }}">
     <!-- End Header -->
 
     <!-- Pagination ---->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="{{ asset('js/pagination/pagination.js') }}" defer></script>
     <!-- Pagination ---->
 
 
@@ -162,9 +163,9 @@
     <div class="entire-dv-wrapper">
     
         <!-- Title and Pop-up Button --->
-        <div class="dv-input-wrapper">  
+        <div class="input-wrapper">  
             <h1 class="h1-date">DV Monitoring</h1>       
-            <button class="newDvButton" onclick="inputDvModal()">Add New DV</button>
+            <button class="popup-button" onclick="inputDvModal()">Add New DV</button>
         </div>
         <!-- Title and Pop-up Button --->
 
@@ -196,7 +197,7 @@
 
                     <!-- Right Side: Filter Form -->
                     <div class="right-form-container">
-                        <form id="filterForm" method="GET" action="{{ route('export.csv') }}" class="date-form-wrapper">
+                        <form id="filterForm" method="GET" action="{{ route('dv-export.csv') }}" class="date-form-wrapper">
                             <div class="daterange-group">
                                 <label for="start_date" class="date-form-label">Start Date:</label>
                                 <input type="date" id="div_start_date" name="start_date" class="date-form-input">

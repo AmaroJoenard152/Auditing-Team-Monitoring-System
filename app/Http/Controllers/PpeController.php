@@ -41,11 +41,21 @@ class PpeController extends Controller
         ], 201);
     } 
 
+    public function index()
+    {
+        $ppes = Ppe::all(); // Use for displaying data inside the view popup form
+
+        return response()->json([
+            'success' => true,
+            'data' => $ppes
+        ]);
+    }
+
     public function showPpe()
     {
-        $ppes = Ppe::all();
-        $editHistory = PpeHistory::orderBy('edited_at', 'desc')->get();
-    
+        $ppes = Ppe::all(); // Use for displaying data inside the table
+        $editHistory = PpeHistory::orderBy('edited_at', 'desc')->get(); // Use for displaying edited data 
+                                                                        // inside the view edit history popup form
         return view('inventory.ppe', compact('ppes', 'editHistory'));
     }
     

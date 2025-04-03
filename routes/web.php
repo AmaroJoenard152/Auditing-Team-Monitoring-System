@@ -41,7 +41,7 @@ Route::post('/savePpe/{id}', [PpeController::class, 'savePpe'])->name('inventory
 Route::get('/searchPpe', [PpeController::class, 'searchPpe'])->name('inventory.ppe');
 Route::get('/export-csv', [PpeController::class, 'dvExportCSV'])->name('export.csv');
 
-Route::get('/ppe', [PpeController::class, 'showPpe'])->name('inventory.ppe');
+Route::get('/ppe', [PpeController::class, 'showPpe'])->name('inventory.ppe'); // Use for displaying data inside the table
 Route::get('/ppe/history', [PpeController::class, 'showPpe']); // Use the same function for showPpe and showPpeHistory
 
 

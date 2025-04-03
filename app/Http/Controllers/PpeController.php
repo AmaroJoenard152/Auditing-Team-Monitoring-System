@@ -7,35 +7,39 @@ use App\Models\Ppe;
 use App\Models\PpeHistory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
-
+use Illuminate\Http\JsonResponse;
 
 class PpeController extends Controller
 {
-    public function submitPpe(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        // Create a new property
-        $ppe = new Ppe();
-        $ppe->division = $request->input('division');
-        $ppe->user = $request->input('user');
-        $ppe->property_type = $request->input('property_type');
-        $ppe->article_item = $request->input('article_item');
-        $ppe->description = $request->input('description');
-        $ppe->old_pn = $request->input('old_pn');
-        $ppe->new_pn = $request->input('new_pn');
-        $ppe->unit_meas = $request->input('unit_meas');
-        $ppe->unit_value = $request->input('unit_value');
-        $ppe->quantity_property = $request->input('quantity_property');
-        $ppe->quantity_physical = $request->input('quantity_physical');
-        $ppe->location = $request->input('location');
-        $ppe->condition = $request->input('condition');
-        $ppe->status = $request->input('status');
-        $ppe->remarks = $request->input('remarks');
-        $ppe->date_acq = $request->input('date_acq');
-        $ppe->save();
+        $validatedData = $request->validate([
+            'division'          => 'required|string',
+            'user'              => 'required|string',
+            'property_type'     => 'required|string',
+            'article_item'      => 'required|string',
+            'description'       => 'required|string',
+            'old_pn'            => 'required|string',
+            'new_pn'            => 'required|string',
+            'unit_meas'         => 'required|string',
+            'unit_value'        => 'required|numeric',
+            'quantity_property' => 'required|integer',
+            'quantity_physical' => 'required|integer',
+            'location'          => 'required|string',
+            'condition'         => 'required|string',
+            'status'            => 'required|string',
+            'remarks'           => 'nullable|string',
+            'date_acq'          => 'required|date',
+        ]);
 
-        // Redirect back
-        return redirect()->back();
-    }
+        // Create PPE entry
+        $ppe = Ppe::create($validatedData);
+
+        return response()->json([
+            'message' => 'PPE record created successfully!',
+            'ppe' => $ppe
+        ], 201);
+    } 
 
     public function showPpe()
     {

@@ -313,87 +313,87 @@
 
         <!-- PPE TABLE --->
         <div class="ppe-table-container">
-        <table class="table-content" id="ppe-table">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Division</th>
-                    <th>User</th>
-                    <th>Property Type</th>
-                    <th>Article/Item</th>
-                    <th>Description</th>
-                    <!-- <th>Old PN Number</th> -->
-                    <th>New PN Number</th>
-                    <!-- <th>Unit of Meas.</th> -->
-                    <th>Unit Value</th>
-                    <th>Qty (Property Card)</th>
-                    <th>Qty (Physical Count)</th>
-                    <!-- <th>Previous Location/Whereabouts</th> -->
-                    <!-- <th>Current Location/Whereabouts</th> -->
-                    <th>Condition</th>
-                    <th>Status</th>
-                    <!-- <th>Remarks</th> -->
-                    <!-- <th>Date Acquired</th> -->
-                    <th>View</th>
-                    <th>Delete</th>
-                    <th>Update</th>
-                </tr>
-            </thead>
+            <table class="table-content" id="ppe-table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Division</th>
+                        <th>User</th>
+                        <th>Property Type</th>
+                        <th>Article/Item</th>
+                        <th>Description</th>
+                        <!-- <th>Old PN Number</th> -->
+                        <th>New PN Number</th>
+                        <!-- <th>Unit of Meas.</th> -->
+                        <th>Unit Value</th>
+                        <th>Qty (Property Card)</th>
+                        <th>Qty (Physical Count)</th>
+                        <!-- <th>Previous Location/Whereabouts</th> -->
+                        <!-- <th>Current Location/Whereabouts</th> -->
+                        <th>Condition</th>
+                        <th>Status</th>
+                        <!-- <th>Remarks</th> -->
+                        <!-- <th>Date Acquired</th> -->
+                        <th>View</th>
+                        <th>Delete</th>
+                        <th>Update</th>
+                    </tr>
+                </thead>
 
-            <tbody id="table-body">
-                @foreach($ppes as $ppe)
-                <tr>
-                    <td>${ppe.division || ''}</td>
-                    <td>${ppe.user || ''}</td>
-                    <td>${ppe.property_type || ''}</td>
-                    <td>${ppe.article_item || ''}</td>
-                    <td>${ppe.description || ''}</td>
-                    <!-- <td>${ppe.old_pn || ''}</td> -->
-                    <td>${ppe.new_pn || ''}</td>
-                    <!-- <td>${ppe.unit_meas || ''}</td> -->
-                    <td>${ppe.unit_value || ''}</td>
-                    <td>${ppe.quantity_property || ''}</td>
-                    <td>${ppe.quantity_physical || ''}</td>
-                    <!-- <td>${ppe.location || ''}</td> -->
-                    <td>${ppe.condition || ''}</td>
-                    <td>${ppe.status || ''}</td>
+                <tbody id="table-body">
+                    @foreach($ppes as $ppe)
+                    <tr>
+                        <td>${ppe.division || ''}</td>
+                        <td>${ppe.user || ''}</td>
+                        <td>${ppe.property_type || ''}</td>
+                        <td>${ppe.article_item || ''}</td>
+                        <td>${ppe.description || ''}</td>
+                        <!-- <td>${ppe.old_pn || ''}</td> -->
+                        <td>${ppe.new_pn || ''}</td>
+                        <!-- <td>${ppe.unit_meas || ''}</td> -->
+                        <td>${ppe.unit_value || ''}</td>
+                        <td>${ppe.quantity_property || ''}</td>
+                        <td>${ppe.quantity_physical || ''}</td>
+                        <!-- <td>${ppe.location || ''}</td> -->
+                        <td>${ppe.condition || ''}</td>
+                        <td>${ppe.status || ''}</td>
 
-                    <td>
-                        <a href="javascript:void(0)" onclick="showPpeDetails(${JSON.stringify(ppe).replace(/"/g, '&quot;')})">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
-                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
-                            </svg>
-                        </a>
-                    </td>
+                        <td>
+                            <a href="javascript:void(0)" onclick="showPpeDetails(${JSON.stringify(ppe).replace(/"/g, '&quot;')})">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                                </svg>
+                            </a>
+                        </td>
 
-                    <td>
-                        <a onclick="return confirm('Are you sure you want to delete this?');" href="/deletePpe/${ppe.id}">
-                            <!-- Delete SVG -->
-                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M14 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M4 7H20" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
-                    </td>
+                        <td>
+                            <a onclick="return confirm('Are you sure you want to delete this?');" href="/deletePpe/${ppe.id}">
+                                <!-- Delete SVG -->
+                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M14 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M4 7H20" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </td>
 
 
-                    <td>
-                        <a href="javascript:void(0);" onclick='editPpe(${JSON.stringify(ppe)})'>
-                            <!-- Edit SVG -->
-                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                        <td>
+                            <a href="javascript:void(0);" onclick='editPpe(${JSON.stringify(ppe)})'>
+                                <!-- Edit SVG -->
+                                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
         <!-- PPE TABLE --->
 
@@ -416,198 +416,195 @@
 
     <!-- Input Form Modal Pop-up --->
     <div class="overlay" id="inputOverlay"></div>
-        <div id="inputPPEModal" class="modal">
-            <div class="modal-content">
-                <form action="{{url('/submitPpe')}}" method="Post">
-                    @csrf
-                    <input type="hidden" name="id" id="voucherId">
+    <div id="inputPPEModal" class="modal">
+        <div class="modal-content">
+            <form id="ppeForm">
+                <input type="hidden" name="id" id="voucherId">
+                <div class="input-ppe-container">
+                    <span class="close" onclick="closeInputPopup()">&times;</span>
+                    <div class="form-row-input">
 
-                    <div class="input-ppe-container">
-                        <span class="close" onclick="closeInputPopup()">&times;</span>
-                        <div class="form-row-input">
+                        <!-- First Column -->
+                        <div class="form-column-input">
+                            <label for="division">Division</label>
+                            <select id="division" name="division" class="input-type-text" onchange="updateUserDropdown()">
+                                <option selected disabled>Select Division</option>
+                                <option value="ACD">ACD</option>
+                                <option value="ARMRD">ARMRD</option>
+                                <option value="COA">COA</option>
+                                <option value="CRD">CRD</option>
+                                <option value="DPITC-ACD">DPITC-ACD</option>
+                                <option value="DPITC-MISD">DPITC-MISD</option>
+                                <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
+                                <option value="DPITC-TTPD">DPITC TTPD</option>
+                                <option value="FAD-Accounting">FAD-Accounting</option>
+                                <option value="FAD-Budget">FAD-Budget</option>
+                                <option value="FAD-Cash">FAD-Cash</option>
+                                <option value="FAD-GSS">FAD-GSS</option>
+                                <option value="FAD-DO">FAD-DO</option>
+                                <option value="FAD-Personnel">FAD-Personnel</option>
+                                <option value="FAD-Property">FAD-Property</option>
+                                <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
+                                <option value="FERD">FERD</option>
+                                <option value="IARRD">IARRD</option>
+                                <option value="IDD">IDD</option>
+                                <option value="LRD">LRD</option>
+                                <option value="MISD">MISD</option>
+                                <option value="MRRD">MRRD</option>
+                                <option value="OED">OED</option>
+                                <option value="OED-ARMSS">OED-ARMSS</option>
+                                <option value="OED-RD">OED-RD</option>
+                                <option value="PCMD">PCMD</option>
+                                <option value="SERD">SERD</option>
+                                <option value="TTPD">TTPD</option>
+                                <option value="Not_Available">Not_Available</option>
+                            </select>
 
-                            <!-- First Column -->
-                            <div class="form-column-input">
-                                <label for="division">Division</label>
-                                <select id="division" name="division" class="input-type-text" onchange="updateUserDropdown()">
-                                    <option selected disabled>Select Division</option>
-                                    <option value="ACD">ACD</option>
-                                    <option value="ARMRD">ARMRD</option>
-                                    <option value="COA">COA</option>
-                                    <option value="CRD">CRD</option>
-                                    <option value="DPITC-ACD">DPITC-ACD</option>
-                                    <option value="DPITC-MISD">DPITC-MISD</option>
-                                    <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
-                                    <option value="DPITC-TTPD">DPITC TTPD</option>
-                                    <option value="FAD-Accounting">FAD-Accounting</option>
-                                    <option value="FAD-Budget">FAD-Budget</option>
-                                    <option value="FAD-Cash">FAD-Cash</option>
-                                    <option value="FAD-GSS">FAD-GSS</option>
-                                    <option value="FAD-DO">FAD-DO</option>
-                                    <option value="FAD-Personnel">FAD-Personnel</option>
-                                    <option value="FAD-Property">FAD-Property</option>
-                                    <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
-                                    <option value="FERD">FERD</option>
-                                    <option value="IARRD">IARRD</option>
-                                    <option value="IDD">IDD</option>
-                                    <option value="LRD">LRD</option>
-                                    <option value="MISD">MISD</option>
-                                    <option value="MRRD">MRRD</option>
-                                    <option value="OED">OED</option>
-                                    <option value="OED-ARMSS">OED-ARMSS</option>
-                                    <option value="OED-RD">OED-RD</option>
-                                    <option value="PCMD">PCMD</option>
-                                    <option value="SERD">SERD</option>
-                                    <option value="TTPD">TTPD</option>
-                                    <option value="Not_Available">Not_Available</option>
-                                </select>
+                            <label for="user">User</label>
+                            <select id="user" name="user" class="input-type-text" disabled>
+                                <option selected disabled>Select User</option>
+                            </select>
 
-                                <label for="user">User</label>
-                                <select id="user" name="user" class="input-type-text" disabled>
-                                    <option selected disabled>Select User</option>
-                                </select>
+                            <label for="property_type">Property Type</label>
+                            <select id="property_type" name="property_type" class="input-type-text">
+                                <option selected disabled>Select Property Type</option>
+                                <option value="Building" title="Building">Bldng.</option>
+                                <option value="Communication Equipment" title="Communication Equipment">CE</option>
+                                <option value="Furniture and Fixture" title="Furniture and Fixture">FF</option>
+                                <option value="ICT" title="Information Communication Technology">ICT</option>
+                                <option value="Motor Vehicles" title="Motor Vehicles">MV</option>
+                                <option value="Office Equipment" title="Office Equipment">OE</option>
+                                <option value="Other Land Improvement" title="Other Land Improvement">OLI</option>
+                                <option value="Other Machineries" title="Other Machineries">OM</option>
+                                <option value="Other Structures" title="Other Structures">OS</option>
+                                <option value="Technical Science Equipment" title="Technical Science Equipment">TSE</option>
+                            </select>
 
-                                <label for="property_type">Property Type</label>
-                                <select id="property_type" name="property_type" class="input-type-text">
-                                    <option selected disabled>Select Property Type</option>
-                                    <option value="Building" title="Building">Bldng.</option>
-                                    <option value="Communication Equipment" title="Communication Equipment">CE</option>
-                                    <option value="Furniture and Fixture" title="Furniture and Fixture">FF</option>
-                                    <option value="ICT" title="Information Communication Technology">ICT</option>
-                                    <option value="Motor Vehicles" title="Motor Vehicles">MV</option>
-                                    <option value="Office Equipment" title="Office Equipment">OE</option>
-                                    <option value="Other Land Improvement" title="Other Land Improvement">OLI</option>
-                                    <option value="Other Machineries" title="Other Machineries">OM</option>
-                                    <option value="Other Structures" title="Other Structures">OS</option>
-                                    <option value="Technical Science Equipment" title="Technical Science Equipment">TSE</option>
-                                </select>
+                            <label for="article_item">Article/Item</label>
+                            <input type="text" id="article_item" name="article_item" class="input-type-text">
+                        </div>
 
-                                <label for="article_item">Article/Item</label>
-                                <input type="text" id="article_item" name="article_item" class="input-type-text">
-                            </div>
+                        <!-- Second Column -->
+                        <div class="form-column-input">
+                            <label for="description">Description</label>
+                            <input type="text" id="description" name="description" class="input-type-text">
 
-                            <!-- Second Column -->
-                            <div class="form-column-input">
-                                <label for="description">Description</label>
-                                <input type="text" id="description" name="description" class="input-type-text">
+                            <label for="old_pn">Old PN Number</label>
+                            <input type="text" id="old_pn" name="old_pn" class="input-type-text">
 
-                                <label for="old_pn">Old PN Number</label>
-                                <input type="text" id="old_pn" name="old_pn" class="input-type-text">
+                            <label for="new_pn">New PN Number</label>
+                            <input type="text" id="new_pn" name="new_pn" class="input-type-text">
 
-                                <label for="new_pn">New PN Number</label>
-                                <input type="text" id="new_pn" name="new_pn" class="input-type-text">
+                            <label for="unit_meas">Unit of Meas.</label>
+                            <input type="text" id="unit_meas" name="unit_meas" class="input-type-text">
+                        </div>
 
-                                <label for="unit_meas">Unit of Meas.</label>
-                                <input type="text" id="unit_meas" name="unit_meas" class="input-type-text">
-                            </div>
+                        <!-- Third Column -->
+                        <div class="form-column-input">
+                            <label for="unit_value">Unit Value</label>
+                            <input type="text" id="unit_value" name="unit_value" class="input-type-text">
 
-                            <!-- Third Column -->
-                            <div class="form-column-input">
-                                <label for="unit_value">Unit Value</label>
-                                <input type="text" id="unit_value" name="unit_value" class="input-type-text">
+                            <label for="quantity_property">Quantity (Property Card)</label>
+                            <input type="text" id="quantity_property" name="quantity_property" class="input-type-text">
 
-                                <label for="quantity_property">Quantity (Property Card)</label>
-                                <input type="text" id="quantity_property" name="quantity_property" class="input-type-text">
+                            <label for="quantity_physical">Quantity (Physical Count)</label>
+                            <input type="text" id="quantity_physical" name="quantity_physical" class="input-type-text">
 
-                                <label for="quantity_physical">Quantity (Physical Count)</label>
-                                <input type="text" id="quantity_physical" name="quantity_physical" class="input-type-text">
+                            <label for="location">Location/Whereabouts</label>
+                            <select id="location" name="location" class="input-type-text">
+                                <option selected disabled>Select Location/Whereabouts</option>
+                                <option value="ACD">ACD</option>
+                                <option value="ARMRD">ARMRD</option>
+                                <option value="AR-TANCO-HALL">AR-TANCO-HALL</option>
+                                <option value="BPI-Grounds">BPI-Grounds</option>
+                                <option value="BPK">BPK</option>
+                                <option value="COA">COA</option>
+                                <option value="CRD">CRD</option>
+                                <option value="DPITC">DPITC</option>
+                                <option value="DPITC-ACD">DPITC-ACD</option>
+                                <option value="DPITC-MISD">DPITC-MISD</option>
+                                <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
+                                <option value="DPITC-TTPD">DPITC-TTPD</option>
+                                <option value="E.O-TAN-HALL">E.O-TAN-HALL</option>
+                                <option value="FAD-Accounting">FAD-Accounting</option>
+                                <option value="FAD-Budget">FAD-Budget</option>
+                                <option value="FAD-Cash">FAD-Cash</option>
+                                <option value="FAD-GSS">FAD-GSS</option>
+                                <option value="FAD-GSS-Canteen">FAD-GSS-Canteen</option>
+                                <option value="FAD-DO">FAD-DO</option>
+                                <option value="FAD-Personnel">FAD-Personnel</option>
+                                <option value="FAD-Property">FAD-Property</option>
+                                <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
+                                <option value="FERD">FERD</option>
+                                <option value="GSS-Building">GSS-Building</option>
+                                <option value="Grounds-Motorpool">Grounds-Motorpool</option>
+                                <option value="Grounds-Staff Housing">Grounds-Staff Housing</option>
+                                <option value="Grounds-Main">Grounds-Main</option>
+                                <option value="Grounds-Near-Executive-Housing">Grounds-Near-Executive-Housing</option>
+                                <option value="IARRD">IARRD</option>
+                                <option value="IDD">IDD</option>
+                                <option value="LRD">LRD</option>
+                                <option value="MAIN-GATE">MAIN-GATE</option>
+                                <option value="MISD">MISD</option>
+                                <option value="MRRD">MRRD</option>
+                                <option value="Near-Executive-House#3">Near-Executive-House#3</option>
+                                <option value="Near-Main-Gate">Near-Main-Gate</option>
+                                <option value="OED">OED</option>
+                                <option value="OED-ARMSS">OED-ARMSS</option>
+                                <option value="OED-RD">OED-RD</option>
+                                <option value="PCAARRD-Main">PCAARRD-Main</option>
+                                <option value="PCMD">PCMD</option>
+                                <option value="Regional-NARC">Regional-NARC</option>
+                                <option value="SERD">SERD</option>
+                                <option value="Service-Area">Service-Area</option>
+                                <option value="Staff-Housing">Staff-Housing</option>
+                                <option value="TTPD">TTPD</option>
+                                <option value="Not_Available">Not_Available</option>
+                            </select>
+                        </div>
 
-                                <label for="location">Location/Whereabouts</label>
-                                <select id="location" name="location" class="input-type-text">
-                                    <option selected disabled>Select Location/Whereabouts</option>
-                                    <option value="ACD">ACD</option>
-                                    <option value="ARMRD">ARMRD</option>
-                                    <option value="AR-TANCO-HALL">AR-TANCO-HALL</option>
-                                    <option value="BPI-Grounds">BPI-Grounds</option>
-                                    <option value="BPK">BPK</option>
-                                    <option value="COA">COA</option>
-                                    <option value="CRD">CRD</option>
-                                    <option value="DPITC">DPITC</option>
-                                    <option value="DPITC-ACD">DPITC-ACD</option>
-                                    <option value="DPITC-MISD">DPITC-MISD</option>
-                                    <option value="DPITC-OED-ARMSS">DPITC-OED-ARMSS</option>
-                                    <option value="DPITC-TTPD">DPITC-TTPD</option>
-                                    <option value="E.O-TAN-HALL">E.O-TAN-HALL</option>
-                                    <option value="FAD-Accounting">FAD-Accounting</option>
-                                    <option value="FAD-Budget">FAD-Budget</option>
-                                    <option value="FAD-Cash">FAD-Cash</option>
-                                    <option value="FAD-GSS">FAD-GSS</option>
-                                    <option value="FAD-GSS-Canteen">FAD-GSS-Canteen</option>
-                                    <option value="FAD-DO">FAD-DO</option>
-                                    <option value="FAD-Personnel">FAD-Personnel</option>
-                                    <option value="FAD-Property">FAD-Property</option>
-                                    <option value="FAD-Property-Stock-Room">FAD-Property-Stock-Room</option>
-                                    <option value="FERD">FERD</option>
-                                    <option value="GSS-Building">GSS-Building</option>
-                                    <option value="Grounds-Motorpool">Grounds-Motorpool</option>
-                                    <option value="Grounds-Staff Housing">Grounds-Staff Housing</option>
-                                    <option value="Grounds-Main">Grounds-Main</option>
-                                    <option value="Grounds-Near-Executive-Housing">Grounds-Near-Executive-Housing</option>
-                                    <option value="IARRD">IARRD</option>
-                                    <option value="IDD">IDD</option>
-                                    <option value="LRD">LRD</option>
-                                    <option value="MAIN-GATE">MAIN-GATE</option>
-                                    <option value="MISD">MISD</option>
-                                    <option value="MRRD">MRRD</option>
-                                    <option value="Near-Executive-House#3">Near-Executive-House#3</option>
-                                    <option value="Near-Main-Gate">Near-Main-Gate</option>
-                                    <option value="OED">OED</option>
-                                    <option value="OED-ARMSS">OED-ARMSS</option>
-                                    <option value="OED-RD">OED-RD</option>
-                                    <option value="PCAARRD-Main">PCAARRD-Main</option>
-                                    <option value="PCMD">PCMD</option>
-                                    <option value="Regional-NARC">Regional-NARC</option>
-                                    <option value="SERD">SERD</option>
-                                    <option value="Service-Area">Service-Area</option>
-                                    <option value="Staff-Housing">Staff-Housing</option>
-                                    <option value="TTPD">TTPD</option>
-                                    <option value="Not_Available">Not_Available</option>
-                                </select>
-                            </div>
+                        <!-- Fourth Column -->
+                        <div class="form-column-input">
+                            <label for="condition">Condition</label>
+                            <select id="condition" name="condition" class="input-type-text">
+                                <option selected>Select Condition</option>
+                                <option value="Disposed" title="Disposed">Disposed</option>
+                                <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
+                                <option value="For Disposal" title="For Disposal">For Disposal</option>
+                                <option value="For Donation" title="For Donation">For Donation</option>
+                                <option value="Good Condition" title="Good Condition">Good Condition</option>
+                                <option value="Need Repair" title="Need Repair">Need Repair</option>
+                                <option value="No Longer Needed" title="No Longer Needed">No Longer Needed</option>
+                                <option value="Poor Condition" title="Poor Condition">Poor Condition</option>
+                                <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
+                                <option value="Very Good" title="Very Good">Very Good</option>
+                                <option value="Not_Available" title="Not Available">Not_Available</option>
+                            </select>
 
-                            <!-- Fourth Column -->
-                            <div class="form-column-input">
-                                <label for="condition">Condition</label>
-                                <select id="condition" name="condition" class="input-type-text">
-                                    <option selected>Select Condition</option>
-                                    <option value="Disposed" title="Disposed">Disposed</option>
-                                    <option value="Fair Condition" title="Fair Condition">Fair Condition</option>
-                                    <option value="For Disposal" title="For Disposal">For Disposal</option>
-                                    <option value="For Donation" title="For Donation">For Donation</option>
-                                    <option value="Good Condition" title="Good Condition">Good Condition</option>
-                                    <option value="Need Repair" title="Need Repair">Need Repair</option>
-                                    <option value="No Longer Needed" title="No Longer Needed">No Longer Needed</option>
-                                    <option value="Poor Condition" title="Poor Condition">Poor Condition</option>
-                                    <option value="Unserviceable" title="Unserviceable">Unserviceable</option>
-                                    <option value="Very Good" title="Very Good">Very Good</option>
-                                    <option value="Not_Available" title="Not Available">Not_Available</option>
-                                </select>
+                            <label for="status">Status</label>
+                            <select id="status" name="status" class="input-type-text">
+                                <option selected>Select Status</option>
+                                <option value="Checked">Checked</option>
+                                <option value="Found">Found</option>
+                                <option value="Missing">Missing</option>
+                                <option value="Unchecked">Unchecked</option>
+                            </select>
 
-                                <label for="status">Status</label>
-                                <select id="status" name="status" class="input-type-text">
-                                    <option selected>Select Status</option>
-                                    <option value="Checked">Checked</option>
-                                    <option value="Found">Found</option>
-                                    <option value="Missing">Missing</option>
-                                    <option value="Unchecked">Unchecked</option>
-                                </select>
+                            <label for="remarks">Remarks</label>
+                            <input type="text" id="remarks" name="remarks" class="input-type-text">
 
-                                <label for="remarks">Remarks</label>
-                                <input type="text" id="remarks" name="remarks" class="input-type-text">
+                            <label for="date_acq">Date Acquired</label>
+                            <input type="date" id="date_acq" name="date_acq" class="input-type-date">
 
-                                <label for="date_acq">Date Acquired</label>
-                                <input type="date" id="date_acq" name="date_acq" class="input-type-date">
-
-                                <button type="button" class="date-form-btn-cancel" onclick="resetPPEInput()">Reset</button>
-                                <input type="submit" value="Submit" class="ppe-submit-button">
-                            </div>
+                            <button type="button" class="date-form-btn-cancel" onclick="resetPPEInput()">Reset</button>
+                            <input type="submit" value="Submit" class="ppe-submit-button">
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
+    </div>
     <!-- Input Form Modal Pop-up --->
-
 
     <!-- View Modal -->
     <div class="overlay" id="ppeModal"></div>
@@ -652,7 +649,6 @@
                                 <option value="Not_Available">Not_Available</option>
 
                             </select>
-
 
                             <label for="user">User</label>
                             <input type="text" id="view_user" name="user" class="input-type-text" disabled>
@@ -774,7 +770,6 @@
                                 <option value="Not_Available" title="Not Available">Not_Available</option>
                             </select>
 
-
                             <label for="status">Status</label>
                                 <select id="view_status" name="status" class="input-type-text" disabled>
                                     <option selected>Select Status</option>
@@ -791,7 +786,6 @@
                             <input type="date" id="view_date_acq" name="date_acq" class="input-type-date" disabled>
                         </div>
                     </div>
-
 
                     <div class="form-column-input-flex">
                         <div class="form-group-item">
@@ -1138,6 +1132,32 @@
     const maxPaginationButtons = 3; // Maximum pagination buttons to display
     let allData = @json($ppes); // Original data from server
     let filteredData = [...allData]; // Default to all data initially
+
+    //Input Data
+    document.getElementById("ppeForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let formData = new FormData(this);
+
+        fetch("/api/ppes", {
+            method: "POST",
+            body: formData,
+            headers: {
+                "Accept": "application/json"
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.text().then(text => { throw new Error(text); });
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert(data.message);
+            location.reload();
+        })
+        .catch(error => console.error("Error:", error));
+    });
 
     // Function for PPE Table
     function updateUserDropdown(event) {

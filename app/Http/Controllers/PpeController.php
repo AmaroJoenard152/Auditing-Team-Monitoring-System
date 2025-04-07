@@ -76,7 +76,7 @@ class PpeController extends Controller
     {
         try {
             $ppe = Ppe::findOrFail($id); // fail if not found
-    
+
             $ppe->division = $request->division;
             $ppe->user = $request->user;
             $ppe->property_type = $request->property_type;
@@ -93,14 +93,15 @@ class PpeController extends Controller
             $ppe->status = $request->status;
             $ppe->remarks = $request->remarks;
             $ppe->date_acq = $request->date_acq;
-    
+
             $ppe->save();
-    
-            return redirect('/ppe')->with('success', 'PPE updated successfully!');
+
+            return response()->json(['message' => 'PPE updated successfully!'], 200);
         } catch (\Exception $e) {
-            return redirect('/ppe')->with('error', 'Failed to update PPE: ' . $e->getMessage());
+            return response()->json(['message' => 'Failed to update PPE: ' . $e->getMessage()], 500);
         }
     }
+
 
     public function searchPpe(Request $request)
     {

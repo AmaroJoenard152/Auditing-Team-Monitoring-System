@@ -63,10 +63,16 @@ class PpeController extends Controller
     {
         $ppe = Ppe::find($id);
 
+        if (!$ppe) {
+            return response()->json(['message' => 'PPE not found'], 404);
+        }
+
         $ppe->delete();
 
-        return redirect()->back();
+        return response()->json(['message' => 'PPE deleted successfully'], 200);
     }
+
+
     
     public function updatePpe($id)
     {

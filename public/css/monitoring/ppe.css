@@ -404,3 +404,10 @@ canvas {
     max-height: 300px;
 }
 
+
+button {
+    outline: none !important;
+    border: none !important;
+    background: none;
+    cursor: pointer;
+}

@@ -83,7 +83,7 @@ function editPpe(ppe) {
     document.getElementById('edit_remarks').value = ppe.remarks || '';
     document.getElementById('edit_date_acq').value = ppe.date_acq || '';
 
-    document.getElementById('editForm').action = `/savePpe/${ppe.id}`;
+    document.getElementById('editForm').action = `/api/ppes/${ppe.id}`;
 
     editPpeModal.style.display = "block";
     editPpeOverlay.style.display = "block";

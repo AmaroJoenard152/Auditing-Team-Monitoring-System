@@ -806,8 +806,9 @@
     <div class="overlay" id="editPpeOverlay"></div>
         <div id="editPpeModal" class="modal">
             <div class="modal-content">
-                <form id="editForm" method="POST" action="/savePpe/{{ $ppe->id }}">
-                    @csrf
+            <form id="editForm" method="POST" action="/api/ppes/{{ $ppe->id }}">
+                @csrf
+                @method('PATCH')
                     <input type="hidden" name="id" id="editPpeId">
 
                     <div class="editForm-input-container">

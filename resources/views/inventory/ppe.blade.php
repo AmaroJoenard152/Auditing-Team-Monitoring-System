@@ -2,6 +2,8 @@
 <html>
 <head>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- PPE ---->
     <link rel="stylesheet" href="{{ asset('css/monitoring/ppe.css') }}">
     <script src="{{ asset('js/monitoring/ppe.js') }}"></script>
@@ -368,8 +370,7 @@
                         </td>
 
                         <td>
-                            <a onclick="return confirm('Are you sure you want to delete this?');" href="/deletePpe/${ppe.id}">
-                                <!-- Delete SVG -->
+                            <button class="delete-btn" data-id="{{ $ppe->id }}">
                                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M14 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -377,9 +378,8 @@
                                     <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
-                            </a>
+                            </button>
                         </td>
-
 
                         <td>
                             <a href="javascript:void(0);" onclick='editPpe(${JSON.stringify(ppe)})'>
@@ -1159,6 +1159,26 @@
         .catch(error => console.error("Error:", error));
     });
 
+    // Delete Data
+    function deletePpe(id) {
+        if (confirm('Are you sure you want to delete this?')) {
+            fetch(`/api/ppe/${id}`, { 
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); // Show success message
+                updateTableRows(); // Refresh the table
+                location.reload(); // Reload the page after deletion
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }
+
     // Function for PPE Table
     function updateUserDropdown(event) {
         // Get the ID of the triggered division dropdown
@@ -1221,7 +1241,7 @@
 
             "FAD-Cash": ["Camposano, Rhodora G.", "Daza, Van Eric L.", "Lajara, Ma. Ester Catalina V.", "Ramos, Heidi"],
 
-            "FAD-DO": ["Amaro, Joenard M.", "Balita, Maria Lea Preciosa E.", "Ocier, Mary Jane" ],
+            "FAD-DO": ["Amaro, Joenard M.", "Balita, Maria Lea Preciosa E.", "Molina, Susan S.", "Ocier, Mary Jane" ],
 
             "FAD-GSS": ["Anda, Zoilo E.", "Balagat, Marion Clark H.", "Gregorio, Edicel C.", "Oleta, Armand J."],
             
@@ -1386,8 +1406,7 @@
                     </a>
                 </td>
                 <td>
-                    <a onclick="return confirm('Are you sure you want to delete this?');" href="/deletePpe/${ppe.id}">
-                        <!-- Delete SVG -->
+                    <button onclick="deletePpe(${ppe.id})">
                         <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M14 11V17" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1395,8 +1414,10 @@
                             <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                    </a>
+                    </button>
                 </td>
+
+
                 <td>
                     <a href="javascript:void(0);" onclick='editPpe(${JSON.stringify(ppe)})'>
                         <!-- Edit SVG -->

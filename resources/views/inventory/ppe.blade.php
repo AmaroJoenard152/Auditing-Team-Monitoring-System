@@ -54,7 +54,7 @@
         <div class="head-logo-container">
             <img src="{{ asset('img/dost.png') }}" class="dost-logo">
             <div class="head-text-container">
-                <!-- DOST-PCAARRD Auditing Team Monitoring System -->wakows
+                DOST-PCAARRD Auditing Team Monitoring System 
             </div>
         </div>
         <div class="head-nav-container">

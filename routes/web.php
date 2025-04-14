@@ -40,7 +40,6 @@ Route::get('/export-csv', [PpeController::class, 'dvExportCSV'])->name('export.c
 Route::get('/ppe', [PpeController::class, 'showPpe'])->name('inventory.ppe'); // Use for displaying data inside the table
 Route::get('/ppe/history', [PpeController::class, 'showPpe']); // Use the same function for showPpe and showPpeHistory
 
-
 //Data Visualization
 Route::get('/ppe-division-count', [PpeController::class, 'getDivisionCount']);
 Route::get('/ppe-year-count', [PpeController::class, 'getYearCount']);

@@ -65,6 +65,9 @@ var editPpeModal = document.getElementById("editPpeModal");
 var editPpeOverlay = document.getElementById("editPpeOverlay");
 
 function editPpe(ppe) {
+    // Set the hidden input with the PPE id
+    document.getElementById('editPpeId').value = ppe.id;
+
     document.getElementById('edit_division').value = ppe.division || 'Select Division';
     populateUserDropdownForEdit(ppe.division, ppe.user);  // Dynamically populate and select the user
 
@@ -83,8 +86,7 @@ function editPpe(ppe) {
     document.getElementById('edit_remarks').value = ppe.remarks || '';
     document.getElementById('edit_date_acq').value = ppe.date_acq || '';
 
-    document.getElementById('editForm').action = `/api/ppes/${ppe.id}`;
-
+    // Display the edit modal
     editPpeModal.style.display = "block";
     editPpeOverlay.style.display = "block";
 }

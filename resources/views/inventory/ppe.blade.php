@@ -806,9 +806,9 @@
     <div class="overlay" id="editPpeOverlay"></div>
         <div id="editPpeModal" class="modal">
             <div class="modal-content">
-            <form id="editForm" method="POST" action="/api/ppes/{{ $ppe->id }}">
+            <form id="editForm">
                 @csrf
-                @method('PATCH')
+                @method('POST')
                     <input type="hidden" name="id" id="editPpeId">
 
                     <div class="editForm-input-container">
@@ -987,9 +987,6 @@
 
                                 <input type="submit" value="Save" class="ppe-submit-button">
                             </div>
-
-
-
                         </div>
                     </div>
                 </form>
@@ -1179,6 +1176,41 @@
             .catch(error => console.error('Error:', error));
         }
     }
+
+    //Edit PPE
+    document.getElementById('editForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const id = document.getElementById('editPpeId').value;
+    if (!id) {
+        alert('Error: PPE ID not found.');
+        return;
+    }
+
+    const formData = new FormData(this);
+    formData.append('id', id);
+
+    fetch(`/api/ppes/${id}`, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json',
+        }
+    })
+    .then(response => response.json())  // Parse JSON response
+    .then(data => {
+        if (data.message) {
+            alert(data.message);
+            location.reload();
+        } else {
+            throw new Error('Unexpected response structure.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Something went wrong while updating. Please check the console for more details.');
+        });
+    });
 
     // Function for PPE Table
     function updateUserDropdown(event) {

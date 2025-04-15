@@ -34,7 +34,7 @@ Route::get('/dv-export-csv', [DisbursementVoucherController::class, 'dvDownloadC
 
 Route::get('/searchVoucher', [DisbursementVoucherController::class, 'searchVoucher'])->name('monitoring.disbursement-voucher');
 
-Route::get('/searchPpe', [PpeController::class, 'searchPpe'])->name('inventory.ppe');
+
 Route::get('/export-csv', [PpeController::class, 'dvExportCSV'])->name('export.csv');
 
 Route::get('/ppe', [PpeController::class, 'showPpe'])->name('inventory.ppe'); // Use for displaying data inside the table

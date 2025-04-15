@@ -108,36 +108,31 @@ class PpeController extends Controller
     {
         $searchValue = $request->input('search_ppe');
 
-        // Split the search query into individual keywords
         $keywords = preg_split('/\s+/', $searchValue, -1, PREG_SPLIT_NO_EMPTY);
-
-        // Start building the query
         $query = Ppe::query();
 
-        // For each keyword, add a sub-query that checks multiple columns
         foreach ($keywords as $keyword) {
             $query->where(function($q) use ($keyword) {
                 $q->where('division', 'LIKE', "%{$keyword}%")
-                ->orWhere('user', 'LIKE', "%{$keyword}%")
-                ->orWhere('property_type', 'LIKE', "%{$keyword}%")
-                ->orWhere('article_item', 'LIKE', "%{$keyword}%")
-                ->orWhere('description', 'LIKE', "%{$keyword}%")
-                ->orWhere('new_pn', 'LIKE', "%{$keyword}%")
-                ->orWhere('unit_value', 'LIKE', "%{$keyword}%")
-                ->orWhere('quantity_property', 'LIKE', "%{$keyword}%")
-                ->orWhere('quantity_physical', 'LIKE', "%{$keyword}%")
-                ->orWhere('condition', 'LIKE', "%{$keyword}%")
-                ->orWhere('status', 'LIKE', "%{$keyword}%")
-                ->orWhere('old_pn', 'LIKE', "%{$keyword}%")
-                ->orWhere('unit_meas', 'LIKE', "%{$keyword}%")
-                ->orWhere('remarks', 'LIKE', "%{$keyword}%")
-                ->orWhere('date_acq', 'LIKE', "%{$keyword}%")
-                ->orWhere('created_at', 'LIKE', "%{$keyword}%")
-                ->orWhere('updated_at', 'LIKE', "%{$keyword}%");
+                    ->orWhere('user', 'LIKE', "%{$keyword}%")
+                    ->orWhere('property_type', 'LIKE', "%{$keyword}%")
+                    ->orWhere('article_item', 'LIKE', "%{$keyword}%")
+                    ->orWhere('description', 'LIKE', "%{$keyword}%")
+                    ->orWhere('new_pn', 'LIKE', "%{$keyword}%")
+                    ->orWhere('unit_value', 'LIKE', "%{$keyword}%")
+                    ->orWhere('quantity_property', 'LIKE', "%{$keyword}%")
+                    ->orWhere('quantity_physical', 'LIKE', "%{$keyword}%")
+                    ->orWhere('condition', 'LIKE', "%{$keyword}%")
+                    ->orWhere('status', 'LIKE', "%{$keyword}%")
+                    ->orWhere('old_pn', 'LIKE', "%{$keyword}%")
+                    ->orWhere('unit_meas', 'LIKE', "%{$keyword}%")
+                    ->orWhere('remarks', 'LIKE', "%{$keyword}%")
+                    ->orWhere('date_acq', 'LIKE', "%{$keyword}%")
+                    ->orWhere('created_at', 'LIKE', "%{$keyword}%")
+                    ->orWhere('updated_at', 'LIKE', "%{$keyword}%");
             });
         }
 
-        // Execute the query and format the result
         $ppes = $query->get()->map(function ($ppe) {
             return [
                 'id' => $ppe->id,
@@ -164,6 +159,7 @@ class PpeController extends Controller
 
         return response()->json($ppes);
     }
+
 
     public function dvExportCSV(Request $request)
     {

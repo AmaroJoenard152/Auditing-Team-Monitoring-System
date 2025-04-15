@@ -17,7 +17,7 @@ $(document).ready(function() {
 // Search function with AJAX
 function performSearch(searchValue) {
     $.ajax({
-        url: '/searchPpe',
+        url: '/api/ppe',
         type: 'GET',
         data: { search_ppe: searchValue },
         success: function(response) {

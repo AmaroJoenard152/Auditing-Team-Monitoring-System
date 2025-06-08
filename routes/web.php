@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\DisbursementVoucherController; 
 use App\Http\Controllers\PpeController;
+use App\Http\Controllers\ReconcilerController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request; 
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,6 +22,14 @@ Route::get('/logbook-incoming', function () {
 Route::get('/ppe', function () {
     return view('inventory/ppe');
 });
+
+Route::get('/ppe', function () {
+    return view('inventory/ppe');
+});
+
+// Route::get('/reconciler', function () {
+//     return view('reconciler/reconciler');
+// });
 
 Route::post('/submitVoucher', [DisbursementVoucherController::class, 'submitVoucher'])->name('monitoring.disbursement-voucher');
 
@@ -45,4 +56,13 @@ Route::get('/ppe-division-count', [PpeController::class, 'getDivisionCount']);
 Route::get('/ppe-year-count', [PpeController::class, 'getYearCount']);
 
 
+
+
+Route::post('/upload', [ReconcilerController::class, 'upload'])->name('upload');
+Route::post('/reconcile', [ReconcilerController::class, 'reconcile'])->name('reconcile');
+
+
+Route::get('/reconciler', function () {
+    return view('reconciler.reconciler'); // replace with your blade view name
+})->name('reconciler.view');
 

@@ -34,6 +34,9 @@ class Ppe extends Model
             foreach ($ppe->getDirty() as $field => $newValue) {
                 PpeHistory::create([
                     'ppe_id' => $ppe->id,
+                    'division' => $ppe->division, 
+                    'user' => $ppe->user,
+                    'new_pn' => $ppe->new_pn,
                     'field_name' => $field,
                     'previous_value' => array_key_exists($field, $original) ? $original[$field] : null,
                     'updated_value' => $newValue,

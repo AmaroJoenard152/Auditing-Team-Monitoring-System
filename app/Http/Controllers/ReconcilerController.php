@@ -131,16 +131,12 @@ class ReconcilerController extends Controller
         ]);
     }
 
-
-
     public function index()
     {
         // Show the form
         session()->forget(['differences', 'selectedColumn', 'compareColumn']);
         return view('reconciler.reconciler');
     }
-
-
 
     private function preprocessArray(array $arr): array {
         return array_map(function($item) {

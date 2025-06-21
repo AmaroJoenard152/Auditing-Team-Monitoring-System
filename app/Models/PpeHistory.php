@@ -10,7 +10,7 @@ class PpeHistory extends Model
     use HasFactory;
 
     protected $table = 'ppe_edit_histories'; 
-    protected $fillable = ['ppe_id', 'field_name', 'previous_value', 'updated_value', 'edited_at'];
+    protected $fillable = ['ppe_id', 'division', 'user', 'new_pn', 'field_name', 'previous_value', 'updated_value', 'edited_at'];
 
     public $timestamps = false; // Since 'edited_at' is manually handled
 

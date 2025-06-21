@@ -1013,7 +1013,7 @@
                                                     <div class="editHistoryDaterange-group">
                                                         <label for="search_ppe" class="date-form-label">Search</label>
                                                         <input type="text" id="search_ppe" name="search_ppe" class="date-form-input">
-                                                        <button type="button" id="search-btn" class="form-btn submit">Search</button>
+                                                        <button type="button" id="" class="form-btn submit">Search</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -1029,9 +1029,9 @@
                                                     <input type="date" id="end-date" name="end-date" class="date-form-input">
                                                 </div>
                                                 <div class="editHistoryDaterangeButton">
-                                                    <button type="button" onclick="filterByDateRange()" class="form-btn submit">Apply</button>
-                                                    <button onclick="dvDownloadCSV()" class="form-btn submit">Download</button>
-                                                    <button type="button" class="date-form-btn cancel" onclick="resetFilters()">Reset</button>
+                                                    <button type="button" onclick="" class="form-btn submit">Apply</button>
+                                                    <button onclick="" class="form-btn submit">Download</button>
+                                                    <button type="button" class="date-form-btn cancel" onclick="">Reset</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1042,9 +1042,9 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <!-- <th>Division</th>
+                                            <th>Division</th>
                                             <th>User</th>
-                                            <th>New PN</th> -->
+                                            <th>New PN</th>
                                             <th>Field Name</th>
                                             <th>Previous Value</th>
                                             <th>Updated Value</th>
@@ -1056,6 +1056,9 @@
                                         @foreach($editHistory as $index => $history)
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
+                                            <td>{{ $history->division ?? 'N/A' }}</td>
+                                            <td>{{ $history->user ?? 'N/A' }}</td>
+                                            <td>{{ $history->new_pn ?? 'N/A' }}</td>
                                             <td>{{ $history->field_name ?? 'N/A' }}</td>
                                             <td>{{ $history->previous_value ?? 'N/A' }}</td>
                                             <td>{{ $history->updated_value ?? 'N/A' }}</td>

@@ -95,62 +95,64 @@
                 <span class="sidenav_tooltip">Dashboard</span>
             </li>
             <li>
-                <a href="" class="active">
+                <a href="{{ url('/ppe') }}" class="{{ request()->is('ppe') ? 'active' : '' }}">
                     <i class="bx bx-grid-alt"></i>
-                    <span class="link_name">Disbursement Vouchers</span>
+                    <span class="link_name">One Time-Cleansing (PPE)</span>
                 </a>
-                <span class="sidenav_tooltip">Disbursement Vouchers</span>
+                <span class="sidenav_tooltip">One Time-Cleansing (PPE)</span>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route('reconciler.view') }}" class="{{ request()->is('reconciler') ? 'active' : '' }}">
                     <i class="bx bx-grid-alt"></i>
-                    <span class="link_name">Reports on Collections and Deposits</span>
+                    <span class="link_name">Reconciler</span>
                 </a>
-                <span class="sidenav_tooltip">Reports on Collections and Deposits</span>
+                <span class="sidenav_tooltip">Reconciler</span>
             </li>
             <li>
-                <a href="">
+                <a href="{{ url('/disbursement-voucher') }}" class="{{ request()->is('disbursement-voucher') ? 'active' : '' }}">
                     <i class="bx bx-grid-alt"></i>
-                    <span class="link_name">MMRI</span>
+                    <span class="link_name">DV Monitoring</span>
                 </a>
-                <span class="sidenav_tooltip">MMRI</span>
+                <span class="sidenav_tooltip">DV Monitoring</span>
             </li>
             <li>
-                <a href="">
-                    <i class="bx bx-grid-alt"></i>
-                    <span class="link_name">General Journal</span>
-                </a>
-                <span class="sidenav_tooltip">General Journal</span>
-            </li>
-            <li>
-                <a href="">
-                    <i class="bx bx-grid-alt"></i>
-                    <span class="link_name">Reports on Checks Issued</span>
-                </a>
-                <span class="sidenav_tooltip">Reports on Checks Issued</span>
-            </li>
-            <li>
-                <a href="">
-                    <i class="bx bx-grid-alt"></i>
-                    <span class="link_name">Magna Carta Benefits</span>
-                </a>
-                <span class="sidenav_tooltip">Magna Carta Benefits</span>
-            </li>
-            <li>
-                <a href="">
-                    <i class="bx bx-grid-alt"></i>
-                    <span class="link_name">Salary, PERA, and RATA</span>
-                </a>
-                <span class="sidenav_tooltip">Salary, PERA, and RATA</span>
-            </li>
-            <li>
-                <a href="">
+                <a href="{{ url('/logbook-incoming') }}" class="{{ request()->is('logbook-incoming') ? 'active' : '' }}">
                     <i class="bx bx-grid-alt"></i>
                     <span class="link_name">Logbook</span>
                 </a>
                 <span class="sidenav_tooltip">Logbook</span>
             </li>
+
+            <li>
+                <a href="">
+                    <i class="bx bx-grid-alt"></i>
+                    <span class="link_name"></span>
+                </a>
+                <span class="sidenav_tooltip"></span>
+            </li>
+            <li>
+                <a href="">
+                    <i class="bx bx-grid-alt"></i>
+                    <span class="link_name"></span>
+                </a>
+                <span class="sidenav_tooltip"></span>
+            </li>
+            <li>
+                <a href="">
+                    <i class="bx bx-grid-alt"></i>
+                    <span class="link_name"></span>
+                </a>
+                <span class="sidenav_tooltip"></span>
+            </li>
+            <li>
+                <a href="">
+                    <i class="bx bx-grid-alt"></i>
+                    <span class="link_name"></span>
+                </a>
+                <span class="sidenav_tooltip"></span>
+            </li>
         </ul>
+
     </div>
     <!--- Side Nav --->
 

@@ -482,34 +482,34 @@
                             </select>
 
                             <label for="article_item">Article/Item</label>
-                            <input type="text" id="article_item" name="article_item" class="input-type-text">
+                            <input type="text" id="article_item" name="article_item" class="input-type-text" autocomplete="off">
                         </div>
 
                         <!-- Second Column -->
                         <div class="form-column-input">
                             <label for="description">Description</label>
-                            <input type="text" id="description" name="description" class="input-type-text">
+                            <input type="text" id="description" name="description" class="input-type-text" autocomplete="off">
 
                             <label for="old_pn">Old PN Number</label>
-                            <input type="text" id="old_pn" name="old_pn" class="input-type-text">
+                            <input type="text" id="old_pn" name="old_pn" class="input-type-text" autocomplete="off">
 
                             <label for="new_pn">New PN Number</label>
-                            <input type="text" id="new_pn" name="new_pn" class="input-type-text">
+                            <input type="text" id="new_pn" name="new_pn" class="input-type-text" autocomplete="off">
 
                             <label for="unit_meas">Unit of Meas.</label>
-                            <input type="text" id="unit_meas" name="unit_meas" class="input-type-text">
+                            <input type="text" id="unit_meas" name="unit_meas" class="input-type-text" autocomplete="off">
                         </div>
 
                         <!-- Third Column -->
                         <div class="form-column-input">
                             <label for="unit_value">Unit Value</label>
-                            <input type="text" id="unit_value" name="unit_value" class="input-type-text">
+                            <input type="text" id="unit_value" name="unit_value" class="input-type-text" autocomplete="off">
 
                             <label for="quantity_property">Quantity (Property Card)</label>
-                            <input type="text" id="quantity_property" name="quantity_property" class="input-type-text">
+                            <input type="text" id="quantity_property" name="quantity_property" class="input-type-text" autocomplete="off">
 
                             <label for="quantity_physical">Quantity (Physical Count)</label>
-                            <input type="text" id="quantity_physical" name="quantity_physical" class="input-type-text">
+                            <input type="text" id="quantity_physical" name="quantity_physical" class="input-type-text" autocomplete="off">
 
                             <label for="location">Location/Whereabouts</label>
                             <select id="location" name="location" class="input-type-text">
@@ -592,7 +592,7 @@
                             </select>
 
                             <label for="remarks">Remarks</label>
-                            <input type="text" id="remarks" name="remarks" class="input-type-text">
+                            <input type="text" id="remarks" name="remarks" class="input-type-text" autocomplete="off">
 
                             <label for="date_acq">Date Acquired</label>
                             <input type="date" id="date_acq" name="date_acq" class="input-type-date">

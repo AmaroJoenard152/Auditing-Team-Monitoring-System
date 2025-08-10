@@ -39,8 +39,19 @@
     <!-- Summary Table ---->
     <script src="{{ asset('js/ppe/summary_table.js') }}" defer></script>
 
-    <!-- Data Visualization ---->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Data Visualization -->
+
+    <!-- Hammer.js for drag/pan gestures -->
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+
+    <!-- Chart.js UMD build -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+    <!-- Zoom plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+
+    <!-- Visualization logic -->
     <script src="{{ asset('js/ppe/visualization.js') }}" defer></script>
 
     <!-- Popup Modal ---->
@@ -1129,6 +1140,7 @@
     let currentPage = 1;
     const maxPaginationButtons = 3; // Maximum pagination buttons to display
     let allData = @json($ppes); // Original data from server
+    window.allData = allData; 
     let filteredData = [...allData]; // Default to all data initially
 
     //Input Data
